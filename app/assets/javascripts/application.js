@@ -11,6 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
+//= require angular
+//= require angular-animate
+//= require angular-ui-router
+//= require angular-rails-templates
+//= require cytoscape
+//= require cytoscape-qtip
+//= require qtip2
+//= require eventEmitter
+//= require eventie
+//= require imagesloaded
 //= require_tree .
+//= require_tree ../templates
