@@ -30,10 +30,10 @@ angular.module('NodeZen').factory('cytoscape', ['$q', 'config',
             nodeCollection.length = 0;
             for (var i = 0; i < nodes.length; i++) {
                 nodeCollection.push({
-                    group: nodes[i].group,
+                    group: "nodes",
                     data: {
-                        id: nodes[i].id,
-                        name: nodes[i].name,
+                        id: nodes[i].id + "",
+                        name: nodes[i].title,
                         source: nodes[i].source,
                         target: nodes[i].target,
                         tooltip: nodes[i].tooltip

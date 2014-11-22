@@ -1,4 +1,4 @@
-angular.module('NodeZen').controller('init', function ($scope, cytoscape) {
+angular.module('NodeZen').controller('init', function ($scope, cytoscape, Restangular) {
     //sample data
     var gatheredNodes = [
         {
@@ -30,15 +30,15 @@ angular.module('NodeZen').controller('init', function ($scope, cytoscape) {
 
     //sample function
     $scope.loadNodes = function () {
-        gatheredNodes[0].name = 'Books'
-        gatheredNodes[2].name = 'Television'
-        gatheredNodes[3].name = 'Games'
-        gatheredNodes[1].source = '2'
-        cytoscape.addNodes(gatheredNodes);
+        Restangular.all('node').getList().then(function(nodes){
+            cytoscape.addNodes(nodes);
+        });
     };
 
     cytoscape.init().then(function (instance) {
-        cytoscape.addNodes(gatheredNodes);
+        Restangular.all('node').getList().then(function(nodes){
+            cytoscape.addNodes(nodes);
+        });
         cytoscape.setOnEvent('tap', 'node', function (evt) {
             $scope.selectedNode = evt.cyTarget.id();
         });
@@ -48,7 +48,7 @@ angular.module('NodeZen').controller('init', function ($scope, cytoscape) {
         cytoscape.setOnEvent('free', 'node', function (event, instance) { 
             var target = event.cyTarget;
             var nodeID = target.data("id");
-            var nodeName = target.data("name");
+            var nodeName = target.data("title");
             var nodeToolTip = target.data("tooltip");
             var node = instance.$("#" + nodeID);
             
@@ -61,7 +61,7 @@ angular.module('NodeZen').controller('init', function ($scope, cytoscape) {
         cytoscape.setOnEvent('mousemove', 'node', function (event, instance) {
             var target = event.cyTarget;
             var nodeID = target.data("id");
-            var nodeName = target.data("name");
+            var nodeName = target.data("title");
             var nodeToolTip = target.data("tooltip");
             var node = instance.$("#" + nodeID);
             var createToolTip = false;

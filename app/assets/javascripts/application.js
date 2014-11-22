@@ -21,5 +21,7 @@
 //= require eventEmitter
 //= require eventie
 //= require imagesloaded
+//= require lodash
+//= require restangular
 //= require_tree .
 //= require_tree ../templates

@@ -9,6 +9,8 @@
       "cytoscape-qtip": "~2.0.1",
       "qtip2": "~2.2.1",
       "bootstrap-sass-official": "latest",
+      "restangular": "latest",
+      "lodash": "latest",
       "imagesloaded": "~3.1.8"
     }
   },

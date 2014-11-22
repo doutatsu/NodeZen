@@ -3,6 +3,7 @@ angular
         'ngAnimate',
         'ui.router',
         'templates',
+        'restangular'
     ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -10,14 +11,9 @@ angular
      * Routes and States
      */
     $stateProvider
-        .state('home', {
-            url: '/',
-            templateUrl: 'home.html',
-            controller: 'HomeCtrl'
-        })
         .state('index', {
             controller: 'init',
-            url: "/graph",
+            url: "/",
             templateUrl: "views/init.html"
         });
 
