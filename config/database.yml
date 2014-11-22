@@ -3,19 +3,19 @@ development:
   encoding: unicode
   database: NodeZen_development
   pool: 5
-  username: doutatsu
-  password: master
+  username: erselaker
+  password: 3rsel&Aker6
 test:
   adapter: postgresql
   encoding: unicode
   database: NodeZen_test
   pool: 5
-  username: doutatsu
-  password: master
+  username: erselaker
+  password: 3rsel&Aker6
 production:
   adapter: postgresql
   encoding: unicode
   database: NodeZen_production
   pool: 5
-  username: doutatsu
-  password: master
+  username: erselaker
+  password: 3rsel&Aker6

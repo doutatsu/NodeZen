@@ -1,5 +1,4 @@
-angular.module('NodeZen')
-  .factory('cytoscape', ['$q', 'config',
+angular.module('NodeZen').factory('cytoscape', ['$q', 'config',
     function ($q, config) {
         var nodegraph = {};
         var cytoscapeinstance;
@@ -58,5 +57,36 @@ angular.module('NodeZen')
             cytoscapeinstance.$('#' + id).data(data, name);
         };
 
+        nodegraph.addToolTip = function (node, nodeName, nodeToolTip) {
+            node.qtip({
+                content: {
+                    title: nodeName,
+                    text: nodeToolTip,
+                    button: 'Close'
+                },
+                show: {
+                    delay: 20,
+                    event: false,
+                    ready: true,
+                    effect: false
+
+                },
+                position: {
+                    my: 'bottom left'
+                },
+                hide: {
+                    fixed: true,
+                    leave: false,
+                    when: {
+                        event: 'unfocus'
+                    }
+                },
+                style: {
+                   classes: 'qtip-bootstrap qtip-rounded qtip-shadow',
+                    width: 600,
+               }
+            });
+        }
+
         return nodegraph;
-  }]);
+}]);
