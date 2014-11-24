@@ -32,7 +32,9 @@ angular.module('NodeZen').factory('cytoscape', ['$q', 'config',
                 nodeCollection.push({
                     group: "nodes",
                     data: {
+                        description: nodes[i].description,
                         id: nodes[i].id + "",
+                        image: nodes[i].image,
                         name: nodes[i].title,
                         source: nodes[i].source,
                         target: nodes[i].target,
@@ -86,7 +88,17 @@ angular.module('NodeZen').factory('cytoscape', ['$q', 'config',
                     width: 600,
                }
             });
-        }
+        };
+
+        nodegraph.generateTooltipContent = function (id) {
+            var selectedNode = null;
+            for (var i = 0; i < nodeCollection.length; i++) {
+                if (nodeCollection[i].data.id == id) {
+                    selectedNode = nodeCollection[i].data;
+                };
+            };
+            return '<h1>' + selectedNode.name + '</h1><hr><img src="' + selectedNode.image + '" height="100px"><hr><p>' + selectedNode.description + '</p>';
+        };
 
         return nodegraph;
 }]);
