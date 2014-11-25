@@ -74,7 +74,7 @@ angular.module('NodeZen').factory('cytoscape', ['$q', 'config',
 
                 },
                 position: {
-                    my: 'bottom left'
+                    my: 'bottom right'
                 },
                 hide: {
                     fixed: true,
@@ -98,6 +98,8 @@ angular.module('NodeZen').factory('cytoscape', ['$q', 'config',
                 };
             };
             return '<h1>' + selectedNode.name + '</h1><hr><img src="' + selectedNode.image + '" height="100px"><hr><p>' + selectedNode.description + '</p>';
+            //return '<div class="democontent"><img src="http://media1.juggledesign.com/qtip2/images/demos/owl_3.jpg" alt="" width="101" height="150" class="photo left"/><div class="info"><h1>Burrowing Owl</h1><p>The <a href="http://en.wikipedia.org/wiki/Burrowing_Owl">Burrowing Owl</a> (Athene cunicularia) is a small, long-legged owl found throughout open landscapes of North and South America. Burrowing owls can be found in grasslands, rangelands and deserts.</p><p>Unlike most owls, burrowing owls are often active during the day, although they tend to avoid the mid-day heat. Most hunting is still done from dusk until dawn, when their owl apomorphies are most advantageous.</p><p class="note">Image credit: <a href="http://www.flickr.com/photos/flaviocb/312257053/">Flickr</a></p><div class="clear"></div></div></div>'
+
         };
 
         return nodegraph;
