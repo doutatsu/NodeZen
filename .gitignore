@@ -16,5 +16,5 @@
 /tmp
 
 # Ignoring bower components
-/lib/assets/bower_components
+# /lib/assets/bower_components
 
