@@ -49,7 +49,7 @@ angular.module('NodeZen').controller('init', function ($scope, cytoscape, Restan
             var target = event.cyTarget;
             var nodeID = target.data("id");
             var nodeName = target.data("name");
-            var nodeToolTip = cytoscape.generateTooltipContent(nodeID);
+            var nodeToolTip = cytoscape.generateTooltipContent(target.data());
             var node = instance.$("#" + nodeID);
             
             $('div.qtip:visible').qtip('hide');
@@ -62,7 +62,7 @@ angular.module('NodeZen').controller('init', function ($scope, cytoscape, Restan
             var target = event.cyTarget;
             var nodeID = target.data("id");
             var nodeName = target.data("name");
-            var nodeToolTip = cytoscape.generateTooltipContent(nodeID);
+            var nodeToolTip = cytoscape.generateTooltipContent(target.data());
             var node = instance.$("#" + nodeID);
             var createToolTip = false;
 
