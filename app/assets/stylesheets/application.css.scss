@@ -10,3 +10,13 @@
  *
  */
 @import "ng-app/main";
+.qtip
+{
+	max-width:600px;		
+}
+
+.qtip-content
+{
+	height: 300px;
+	overflow: auto;
+}
