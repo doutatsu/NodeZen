@@ -1,5 +1,4 @@
 class NodeController < ApplicationController
-  
   def index
     render json: Node.all
   end
