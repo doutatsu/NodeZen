@@ -1,0 +1,19 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.cover{
+  text-align: center;
+  background-color: #1a8fb4;
+  .cover-text{
+    padding: 100px 0 100px 0;
+    color: white;
+  }
+  .bg{
+    background: url("images/sphere_white-7b42295a46c43dd1f87d112db1064352.png") no-repeat 50% 0%;
+    height: 300px;
+  }
+}
+.outline-text{ 
+  h1{ padding: 20px 0 20px 0; } 
+  p{ font-size: 16px; }
+}
