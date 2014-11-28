@@ -1,14 +1,29 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$blue: #1a8fb4;
+.semi-bold{
+  font-family: open_sanssemibold;
+}
+.bold{
+  font-family: open_sansbold;
+}
+.light-italic{
+  font-family: open_sanslight;
+}
 .cover{
   text-align: center;
-  background-color: #1a8fb4;
+  background-color: $blue;
+  .logo{
+    font-size: 45px;
+    padding-bottom: 15px;
+  }
   .cover-text{
-    padding: 100px 0 100px 0;
+    padding: 100px 0 90px 0;
     color: white;
   }
   .bg{
+
     background: url("images/sphere_white-7b42295a46c43dd1f87d112db1064352.png") no-repeat 50% 0%;
     height: 300px;
   }
@@ -21,9 +36,5 @@
   p{ 
     color: #808080;
     font-size: 16px; 
-  }
-  .bold{
-    color: black;
-    font-family: open_sansbold;
   }
 }
