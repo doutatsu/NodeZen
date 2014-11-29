@@ -1,4 +1,4 @@
-angular
+window.App = angular
     .module('NodeZen', [
         'ngAnimate',
         'ui.router',
