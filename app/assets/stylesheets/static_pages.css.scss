@@ -1,84 +1,85 @@
-$blue:#5066ed;
-
+$blue: #6878D9;
+$brown: #484452;
 @-webkit-keyframes globe {
-    0% {
-        background-position: 50% -20%;
-    }
-    100% {
-        background-position: 50% 0%;
-    }
+  0% {
+    background-position: 50% -20%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
 }
 
 body {
-    text-align: justify;
+  text-align: justify;
 }
-
-.semi-bold {
-    font-family: open_sanssemibold;
+#main{
+  // display: none;
 }
-
-.bold {
-    font-family: open_sansbold;
-}
-
-.light-italic {
-    font-family: open_sanslight;
-}
-
 .cover {
-    background-color: $blue;
-    text-align: center;
-        
-    .logo {
-        font-size: 45px;
-        padding-bottom: 15px;
-    }
-    
-    .cover-text {
-        color: white;
-        padding: 30px 0;
-    }
-    
-    .bg {
-        -webkit-animation: globe 2s;
-        -webkit-animation-fill-mode: forwards;
-        background: url("images/browsernodewireframe.png");
-        background-repeat: no-repeat;
-        height: 220px;
-    }
-}
-.picture{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: $blue;
   text-align: center;
-}
-.outline-text {
-    h1 {
-        padding: 20px 0 20px 0;
+      
+  .logo {
+    font-size: 45px;
+    padding-bottom: 15px;
+  }
+  
+  .cover-text {
+    color: white;
+    .btn-lg{ 
+      color: white;
+      background: inherit;
+      border: 2px solid white;
+      margin-top: 25px;
+      border-radius: 30px; 
     }
+    .btn-lg:hover{
+      color: $brown;
+      border-color: $brown;
+    }
+  }
+  
+  .bg {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 0;
+    -webkit-animation: globe 1.5s;
+    -webkit-animation-fill-mode: forwards;
+    background: url("images/sphere_white.png");
+    background-repeat: no-repeat;
+    height: 220px;
+  }
+}
+.picture{ text-align: center; }
+.outline-text {
+    h1 { padding: 20px 0 20px 0; }
     
     p {
-        color: #808080;
-        font-size: 16px;
+      color: #808080;
+      font-size: 16px;
     }
 }
 
 .navigation {
-    background-color: #fcfcfc;
-    border-bottom: 1px solid #ebebeb;
-    border-top: 1px solid #ebebeb;
-    
-    .nounderline {
-        text-decoration: none;
-    }
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #ebebeb;
+  border-top: 1px solid #ebebeb;
+  
+  .nounderline { text-decoration: none; }
 }
 
 .affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:1;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:1;
 }
 
 .footer {
-    margin-bottom: 0;
-    margin-top: 50px;
+  margin-bottom: 0;
+  margin-top: 50px;
 }
