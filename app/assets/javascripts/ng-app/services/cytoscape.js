@@ -45,12 +45,13 @@ angular.module('NodeZen').factory('cytoscape', ['$q', '$http', 'config',
                         description: nodes[i].description
                     }
                 });
+
                 //add edges under that node
-                for(var j = 0; j < nodes[i].edges; j++){
+                for(var j = 0; j < nodes[i].edges.length; j++){
                     nodeCollection.push({
                         group: "edges",
                         data: {
-                            id: nodes[i].id + "" + nodes[i].edges[j],
+                            id: "e" + nodes[i].id + "-" + nodes[i].edges[j],
                             name: 'some edge',
                             source: nodes[i].id,
                             target: nodes[i].edges[j]
