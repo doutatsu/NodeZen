@@ -4,7 +4,6 @@ $(document).ready(function () {
     $('#main').css('margin-top',height);
     $('.cover-text').css('padding-top',(height * 0.50)-190);
 
-
     $('#navigation').affix({
         offset: {
             top: height

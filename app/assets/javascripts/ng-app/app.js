@@ -1,9 +1,11 @@
-window.App = angular.module('NodeZen', [
+window.App = angular
+    .module('NodeZen', [
         'ngAnimate',
         'ui.router',
         'templates',
         'restangular'
-    ]).config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    ])
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     /**
      * Routes and States
