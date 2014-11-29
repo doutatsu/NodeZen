@@ -1,6 +1,4 @@
 {
-  "name": "NodeZen",
-  "version": "0.0.1",
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {
@@ -14,7 +12,8 @@
       "restangular": "latest",
       "lodash": "latest",
       "imagesloaded": "~3.1.8",
-      "jquery-waypoints": "latest"
+      "jquery-waypoints": "latest",
+      "jquery": "latest"
     }
   }
 }
