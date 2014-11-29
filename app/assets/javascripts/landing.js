@@ -9,12 +9,15 @@ $(document).ready(function () {
             top: height
         }
     });
+    
     $('#navigation').on('affix.bs.affix', function () {
-        $('.container-fluid').css('margin-top', $('#navigation').outerHeight(true));
+        $('.container-fluid').css('margin-top', $('#navigation').outerHeight(true))-10;
+        $('#navigation').css('z-index', 3);
     });
 
     $('#navigation').on('affix-top.bs.affix', function () {
         $('.container-fluid').css('margin-top', 0);
+        $('#navigation').css('z-index', 2);
     });
 
     $('.page_scroll').click(function (evt) {
@@ -24,7 +27,4 @@ $(document).ready(function () {
         }, 300);
         evt.preventDefault();
     });
-    // $('.btn-lg').click(function (evt) {
-    //     $('#main').css('display','block');
-    // });
 });
