@@ -1,40 +1,82 @@
-// Place all the styles related to the static_pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-$blue: #1a8fb4;
-.semi-bold{
-  font-family: open_sanssemibold;
-}
-.bold{
-  font-family: open_sansbold;
-}
-.light-italic{
-  font-family: open_sanslight;
-}
-.cover{
-  text-align: center;
-  background-color: $blue;
-  .logo{
-    font-size: 45px;
-    padding-bottom: 15px;
-  }
-  .cover-text{
-    padding: 100px 0 90px 0;
-    color: white;
-  }
-  .bg{
+$blue:#5066ed;
 
-    background: url("images/sphere_white-7b42295a46c43dd1f87d112db1064352.png") no-repeat 50% 0%;
-    height: 300px;
-  }
+@-webkit-keyframes globe {
+    0% {
+        background-position: 50% -20%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
 }
-.outline-text{ 
-  
-  h1{ 
-    padding: 20px 0 20px 0; 
-  } 
-  p{ 
-    color: #808080;
-    font-size: 16px; 
-  }
+
+body {
+    text-align: justify;
+}
+
+.semi-bold {
+    font-family: open_sanssemibold;
+}
+
+.bold {
+    font-family: open_sansbold;
+}
+
+.light-italic {
+    font-family: open_sanslight;
+}
+
+.cover {
+    background-color: $blue;
+    text-align: center;
+        
+    .logo {
+        font-size: 45px;
+        padding-bottom: 15px;
+    }
+    
+    .cover-text {
+        color: white;
+        padding: 30px 0;
+    }
+    
+    .bg {
+        -webkit-animation: globe 2s;
+        -webkit-animation-fill-mode: forwards;
+        background: url("images/browsernodewireframe.png");
+        background-repeat: no-repeat;
+        height: 220px;
+    }
+}
+
+.outline-text {
+    h1 {
+        padding: 20px 0 20px 0;
+    }
+    
+    p {
+        color: #808080;
+        font-size: 16px;
+    }
+}
+
+.navigation {
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #ebebeb;
+    border-top: 1px solid #ebebeb;
+    
+    .nounderline {
+        text-decoration: none;
+    }
+}
+
+.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:1;
+}
+
+.footer {
+    margin-bottom: 0;
+    margin-top: 50px;
 }
