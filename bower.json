@@ -1,4 +1,6 @@
 {
+  "name": "NodeZen",
+  "version": "0.0.1",
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {
