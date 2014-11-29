@@ -3,60 +3,59 @@ $blue:#6878D9;
 $brown:#484452;
 
 @-webkit-keyframes globe {
-    0% {
-        background-position: 50% -20%;
-    }
-    100% {
-        background-position: 50% 0%;
-    }
+  0% {
+    background-position: 50% -20%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
 }
 
 body {
-    text-align: justify;
+  text-align: justify;
 }
 
 .cover {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background-color: $blue;
-    text-align: center;
-    z-index: 2;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: $blue;
+  text-align: center;
+  z-index: 2;
+  
+  .logo {
+    font-size: 45px;
+    padding-bottom: 15px;
+  }
+  
+  .cover-text {
+    color: white;
     
-    .logo {
-        font-size: 45px;
-        padding-bottom: 15px;
+    .btn-lg {
+      color: white;
+      background: inherit;
+      border: 2px solid white;
+      margin-top: 25px;
+      border-radius: 30px;
     }
     
-    .cover-text {
-        color: white;
-        
-        .btn-lg {
-            color: white;
-            background: inherit;
-            border: 2px solid white;
-            margin-top: 25px;
-            border-radius: 30px;
-        }
-        
-        .btn-lg:hover {
-            color: $brown;
-            border-color: $brown;
-        }
+    .btn-lg:hover {
+      color: $brown;
+      border-color: $brown;
     }
-    
-    .bg {
-        position: absolute;
-        bottom: 1px;
-        left: 0;
-        right: 0;
-        -webkit-animation: globe 1.5s;
-        -webkit-animation-fill-mode: forwards;
-        background-image: asset-data-url("sphere_white.png");
-        // background: url("sphere_white.png");
-        background-repeat: no-repeat;
-        height: 220px;
-    }
+  }
+  
+  .bg {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 0;
+    -webkit-animation: globe 1.5s;
+    -webkit-animation-fill-mode: forwards;
+    background-image: asset-data-url("sphere_white.png");
+    background-repeat: no-repeat;
+    height: 220px;
+  }
 }
 
 .picture {

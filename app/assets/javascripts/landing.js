@@ -4,11 +4,6 @@ $(document).ready(function () {
     $('#main').css('margin-top',height);
     $('.cover-text').css('padding-top',(height * 0.50)-190);
 
-    // $('.node').waypoint(function(direction) {
-    //   $('.node').addClass('animated fadeIn');
-    // });
-    // setTimeout(doSomethingUsefulThisTime, 10);
-    
 
     $('#navigation').affix({
         offset: {
