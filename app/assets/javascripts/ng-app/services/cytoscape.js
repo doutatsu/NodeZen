@@ -29,6 +29,7 @@ angular.module('NodeZen').factory('cytoscape', ['$q', '$http', 'config',
         nodegraph.addNodes = function (nodes) {
             nodeCollection.length = 0;
             for (var i = 0; i < nodes.length; i++) {
+                //add node 
                 nodeCollection.push({
                     group: "nodes",
                     data: {
@@ -44,6 +45,18 @@ angular.module('NodeZen').factory('cytoscape', ['$q', '$http', 'config',
                         description: nodes[i].description
                     }
                 });
+                //add edges under that node
+                for(var j = 0; j < nodes[i].edges; j++){
+                    nodeCollection.push({
+                        group: "edges",
+                        data: {
+                            id: nodes[i].id + "" + nodes[i].edges[j],
+                            name: 'some edge',
+                            source: nodes[i].id,
+                            target: nodes[i].edges[j]
+                        }
+                    });
+                };         
             };
             cytoscapeinstance.load(nodeCollection);
         };
@@ -115,7 +128,7 @@ angular.module('NodeZen').factory('cytoscape', ['$q', '$http', 'config',
                     videoID = match[7];
                 }
 
-                toolTipContent += '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1&theme=light" frameborder="0" allowfullscreen>';
+                toolTipContent += '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + videoID + '?autoplay=0&theme=light" frameborder="0" allowfullscreen>';
 
             } else if (node.domain === "soundcloud") {
                 var client_ID = '9fe2a2240624e436a99fd049a59af11c';
@@ -127,7 +140,9 @@ angular.module('NodeZen').factory('cytoscape', ['$q', '$http', 'config',
                     .error(function(data, status, headers, config){
                         $("#soundcloud-import").replaceWith('<div id="soundcloud-import">SoundCloud player failed to load.</div>');
                     });   
-            } 
+            } else if(node.domain === "spotify"){
+                toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
+            }
 
             //desc
             toolTipContent += '<p>' + node.description + '</p>';
