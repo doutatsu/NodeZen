@@ -22,6 +22,7 @@
 //= require eventEmitter
 //= require eventie
 //= require imagesloaded
+//= require jquery-waypoints
 //= require lodash
 //= require restangular
 //= require_tree .

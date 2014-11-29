@@ -11,7 +11,8 @@
       "bootstrap-sass-official": "latest",
       "restangular": "latest",
       "lodash": "latest",
-      "imagesloaded": "~3.1.8"
+      "imagesloaded": "~3.1.8",
+      "jquery-waypoints": "latest"
     }
   }
 }
