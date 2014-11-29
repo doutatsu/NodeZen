@@ -1,0 +1,24 @@
+{
+  "name": "NodeZen",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-ui-router": "latest",
+    "angular-animate": "latest",
+    "cytoscape": "~2.3.4",
+    "cytoscape-qtip": "~2.0.1",
+    "qtip2": "~2.2.1",
+    "bootstrap-sass-official": "latest",
+    "restangular": "latest",
+    "lodash": "latest",
+    "imagesloaded": "~3.1.8",
+    "jquery-waypoints": "latest"
+  },
+  "engine": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
+  }
+}
