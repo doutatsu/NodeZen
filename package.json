@@ -13,12 +13,5 @@
     "lodash": "latest",
     "imagesloaded": "~3.1.8",
     "jquery-waypoints": "latest"
-  },
-  "engine": {
-    "node": "0.10.x",
-    "npm": "1.3.x"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
