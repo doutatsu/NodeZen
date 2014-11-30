@@ -2,14 +2,52 @@
 <html>
 <head>
   <base href="/">
+    <meta name="title" content="NodeZen">
+    <meta name="description" content="Explore your interests in a revolutionary visual way, a free and inspiring social network to explore, discover and collaborate.">
+    <meta name="keywords" content="symantic internet">
+    <meta name="author" content="Node Ventures">
+<!--     <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@referencemeapp">
+    <meta name="twitter:title" content="ReferenceME">
+    <meta name="twitter:description" content="ReferenceME makes referencing easy. Download our apps to start saving marks and time. Scan the barcode of any book or journal, choose your referencing style and export to your essay.">
+    <meta name="twitter:creator" content="@referencemeapp">
+    <meta name="twitter:image:src" content="https://refme.co/assets/icons/logo_refme-cb939497de60a82cb04157ebf9c27f4f.png">
+    <meta name="twitter:domain" content="RefME.co">
+    <meta name="twitter:app:name:iphone" content="ReferenceME">
+    <meta name="twitter:app:name:ipad" content="ReferenceME">
+    <meta name="twitter:app:name:googleplay" content="ReferenceME">
+    <meta name="twitter:app:url:iphone" content="http://app.adjust.io/g7bndp">
+    <meta name="twitter:app:url:ipad" content="http://app.adjust.io/g7bndp">
+    <meta name="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=appwolf.referenceme.activities">
+    <meta name="twitter:app:id:iphone" content="553222694">
+    <meta name="twitter:app:id:ipad" content="553222694">
+    <meta name="twitter:app:id:googleplay" content=""> -->
+    <meta property="og:title" content="NodeZen"/>
+    <meta property="og:url" content="http://www.nodezen.me"/>
+    <meta property="og:site_name" content="NodeZen"/>
+<!--     <meta property="og:image" content="https://refme.co/assets/icons/logo_refme-cb939497de60a82cb04157ebf9c27f4f.png" /> -->
+    <meta property="og:description" content="Explore your interests in a revolutionary visual way, a free and inspiring social network to explore, discover and collaborate." />
+    <!-- <meta property="fb:app_id" content="343287469054819" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NodeZen</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-57217646-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>
