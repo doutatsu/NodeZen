@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     var height = $('.cover').height()
     $('#main').css('margin-top',height);
     $('.cover-text').css('padding-top',(height * 0.50)-190);
