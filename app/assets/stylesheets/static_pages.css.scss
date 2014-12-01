@@ -60,6 +60,10 @@ body {
 
 .picture {
   text-align: center;
+  img{
+    max-height: 400px;
+    width: 100%;
+  }
 }
 
 .outline-text {
@@ -88,9 +92,4 @@ body {
     top: 0;
     width: 100%;
     z-index: 1;
-}
-
-.footer {
-    margin-bottom: 0;
-    margin-top: 50px;
 }

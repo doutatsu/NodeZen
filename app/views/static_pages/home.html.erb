@@ -37,10 +37,11 @@
   </div>
   <section id="main">
     <div class="row">
-      <div class="picture col-xs-12 col-md-8 col-lg-6">
-          <%= image_tag "3_forces.png", height: '400'%>
+      <div class="picture col-xs-12 col-md-6 col-lg-6">
+        <%= image_tag "3_forces.png"%>
+        <!-- <div id="cy2" style='height: 500px'></div> -->
       </div>
-      <div class="outline-text col-xs-6 col-md-4 col-lg-6">
+      <div class="outline-text col-xs-12 col-md-6 col-lg-6">
         <h1>Explore. Discover. Collaborate.</h1>
         <hr>
         <p id="explore"><span class='bold' style='color:black'>Exploration</span> of internet content has never been more engaging. By applying smart filtering, we free you of hours of searching letting you concentrate on exploring content you are interested in.</p>
@@ -49,23 +50,23 @@
       </div>
     </div>
     <div class="row">
-      <div class="outline-text col-xs-6 col-md-4 col-lg-6">
+      <div class="outline-text col-xs-12 col-md-6 col-lg-6">
         <h1 id="graph">The Graph</h1>
         <hr>
         <p class="bold" style='color:black'>Are you tired of constant scrolling and swiping to find what matters to you?<br> So are we!</p>
         <p> We harness the power of the graph, to bring you the most engaging and easy way to Explore the content you love.</p>
         <p>NodeZen is powered by an intuitive and easy-to-use information visualization technology. You can spot useful content at a single glance. You can dive deeper into a subject and Collaborate with likeminded individuals. </p>
       </div>
-      <div class="picture col-xs-12 col-md-8 col-lg-6">
-        <%= image_tag "graph_example.png", height: '500'%>
+      <div class="picture col-xs-12 col-md-6 col-lg-6">
+         <%= image_tag "graph_example.png"%>
+        <!-- <div id="cy3" style='height: 500px'></div> -->
       </div>
     </div>
     <div class="row">
-      <div id="context"></div>
-        <div class="col-xs-12 col-md-8 col-lg-6">
-
-        </div>
-        <div class="outline-text col-xs-6 col-md-4 col-lg-6">
+<!--         <div class="pictures col-xs-12 col-md-8 col-lg-6">
+           <div id="cy" style='height: 500px'></div>
+        </div> -->
+        <div class="outline-text col-xs-12 col-md-12 col-lg-12">
             <h1 id="context">Context</h1>
             <hr>
             <p>By analysing what you are Exploring, we will show you content which is tailored to your preferences as well as context. No more jumping from link to link to find out information.</p>
@@ -73,10 +74,6 @@
             <p>Whether it is articles, multi-media files, individuals with subject expertise or deals. NodeZen carefully considers its knowledge base and serves you the information in an intuitive way.</p>
         </div>
     </div>
-    <div class="jumbotron footer">
-        <div class="container">
-            <h2>NodeZen</h2>
-            <p>Do you want to join the revolution?</p>
-        </div>
-    </div>
   </section>
+</div>
+<%= render 'layouts/footer' %>

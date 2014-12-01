@@ -1,0 +1,31 @@
+footer{
+  @media (max-width: 515px) { 
+    h2{ font-size: 20px !important; }
+    p{ font-size: 15px !important; }
+  }
+  text-align: center;
+  background-color: #f7f4ed !important;
+  margin-bottom: 0 !important;
+  margin-top: 200px;
+  .signup{
+    @media (max-width: 556px) { width: 260px; }
+    width: 515px;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    input{
+      width: 100%;
+      font-size: 16px;
+      padding-right: 84px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 2px solid #404041;
+      border-radius: 0;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      position: relative;
+      padding: 20px 25px;
+      height: auto;
+    }
+  }
+}
