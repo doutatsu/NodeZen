@@ -1,7 +1,7 @@
 angular.module('NodeZen').factory('config', [
     function () {
         var config = {
-            container: $('#cy')[0],
+            container: $('#cy5')[0],
             motionBlur: false,
             zoomingEnabled: false,
             style: cytoscape.stylesheet()
