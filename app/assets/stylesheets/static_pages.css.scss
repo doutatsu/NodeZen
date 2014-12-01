@@ -1,6 +1,7 @@
 @import 'animate';
 $blue:#6878D9;
 $brown:#484452;
+$content-margins:30px;
 
 @-webkit-keyframes globe {
   0% {
@@ -92,4 +93,9 @@ body {
     top: 0;
     width: 100%;
     z-index: 1;
+}
+
+#main{
+  padding-left: $content-margins;
+  padding-right: $content-margins;
 }

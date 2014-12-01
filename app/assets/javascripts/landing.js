@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // examples();
+    examples();
     var height = $('.cover').height()
     $('#main').css('margin-top',height);
     $('.cover-text').css('padding-top',(height * 0.50)-190);
@@ -133,6 +133,7 @@ function examples(){ // on dom ready
       padding: 10
     }
   }); // cy init
+
   // Constructor for Core Values Example
   var cy2 = cytoscape({
     container: document.getElementById('cy2'),
@@ -222,12 +223,14 @@ function examples(){ // on dom ready
       padding: 10
     }
   }); // cy init
+  cy.center();
   cy.userZoomingEnabled(false);
   cy.userPanningEnabled(false);
   cy.boxSelectionEnabled(false);
   // Undraggable nodes
   cy.autoungrabify(true);
 
+  cy2.center();
   cy2.userZoomingEnabled(false);
   cy2.userPanningEnabled(false);
   cy2.boxSelectionEnabled(false);
@@ -293,4 +296,5 @@ function examples(){ // on dom ready
     })(); } // for
     
   }); // on tap
+
 }; // on dom ready
