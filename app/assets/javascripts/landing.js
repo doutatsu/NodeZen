@@ -246,6 +246,64 @@ function examples(){ // on dom ready
   // Undraggable nodes
   cy3.autoungrabify(true);
 
+  var nodes = cy.getElementById("center");
+  var deal = cy.getElementById("deal");
+  deal.originalPos = {x:305, y:159};
+  var person = cy.getElementById("person");
+  person.originalPos = {x:214,y:250};
+  var person = cy.getElementById("video");
+  person.originalPos = {x:305,y:341};
+  var person = cy.getElementById("article");
+  person.originalPos = {x:396,y:250};
+  var food = {};
+
+   for(;;){
+      var connectedEdges = nodes.connectedEdges(function(){
+        return !this.target().anySame( nodes );
+      });
+      
+      var connectedNodes = connectedEdges.targets();
+      
+      Array.prototype.push.apply( food, connectedNodes );
+      
+      nodes = connectedNodes;
+      
+      if( nodes.empty() ){ break; }
+    }
+          
+    var delay = 0;
+    var duration = 500;
+
+    for( var i = food.length - 1; i >= 0; i-- ){ (function(){
+      var thisFood = food[i];
+      var eater = thisFood.connectedEdges(function(){
+        return this.target().same(thisFood);
+      }).source();
+      
+      //thisFood.originalPos = thisFood.position();
+
+      thisFood.delay( delay, function(){
+        eater.addClass('eating');
+      } ).animate({
+        position: eater.position(),
+        css: {
+          'width': 10,
+          'height': 10,
+          'border-width': 0,
+          'opacity': 1
+        }
+      }, {
+        duration: duration,
+        complete: function(){
+          thisFood.hide();
+        }
+      });
+      
+      delay += duration;
+    })(); } // for
+
+
+
   cy.on('tap', 'node', function(){
     var nodes = this;
     var tapped = nodes;
@@ -269,32 +327,36 @@ function examples(){ // on dom ready
           
     var delay = 0;
     var duration = 500;
+
     for( var i = food.length - 1; i >= 0; i-- ){ (function(){
+
       var thisFood = food[i];
+      thisFood.show();
       var eater = thisFood.connectedEdges(function(){
         return this.target().same(thisFood);
       }).source();
-              
+
       thisFood.delay( delay, function(){
         eater.addClass('eating');
       } ).animate({
-        position: eater.position(),
+        position: thisFood.originalPos,
         css: {
-          'width': 10,
-          'height': 10,
-          'border-width': 0,
-          'opacity': 0
+          'width': 80,
+          'height': 80,
+          'border-width': 2,
+          'opacity': 100
         }
       }, {
         duration: duration,
         complete: function(){
-          thisFood.remove();
+          thisFood.show();
         }
       });
       
       delay += duration;
-    })(); } // for
+    })(); } // for)(); } // for
     
+
   }); // on tap
 
 }; // on dom ready
