@@ -257,55 +257,62 @@ function examples(){ // on dom ready
   person.originalPos = {x:396,y:250};
   var food = {};
 
-   for(;;){
-      var connectedEdges = nodes.connectedEdges(function(){
-        return !this.target().anySame( nodes );
-      });
-      
-      var connectedNodes = connectedEdges.targets();
-      
-      Array.prototype.push.apply( food, connectedNodes );
-      
-      nodes = connectedNodes;
-      
-      if( nodes.empty() ){ break; }
-    }
-          
-    var delay = 0;
-    var duration = 500;
+  for(;;){
+    var connectedEdges = nodes.connectedEdges(function(){
+      return !this.target().anySame( nodes );
+    });
+    
+    var connectedNodes = connectedEdges.targets();
+    
+    Array.prototype.push.apply( food, connectedNodes );
+    
+    nodes = connectedNodes;
+    
+    if( nodes.empty() ){ break; }
+  }
+        
+  var delay = 0;
+  var duration = 500;
 
-    for( var i = food.length - 1; i >= 0; i-- ){ (function(){
-      var thisFood = food[i];
-      var eater = thisFood.connectedEdges(function(){
-        return this.target().same(thisFood);
-      }).source();
-      
-      //thisFood.originalPos = thisFood.position();
+  //collapse the context graph initially
+  for( var i = food.length - 1; i >= 0; i-- ){ (function(){
+    var thisFood = food[i];
+    var eater = thisFood.connectedEdges(function(){
+      return this.target().same(thisFood);
+    }).source();
+    
+    //thisFood.originalPos = thisFood.position();
 
-      thisFood.delay( delay, function(){
-        eater.addClass('eating');
-      } ).animate({
-        position: eater.position(),
-        css: {
-          'width': 10,
-          'height': 10,
-          'border-width': 0,
-          'opacity': 1
-        }
-      }, {
-        duration: duration,
-        complete: function(){
-          thisFood.hide();
-        }
-      });
-      
-      delay += duration;
-    })(); } // for
+    thisFood.delay( delay, function(){
+      eater.addClass('eating');
+    } ).animate({
+      position: eater.position(),
+      css: {
+        'width': 10,
+        'height': 10,
+        'border-width': 0,
+        'opacity': 1
+      }
+    }, {
+      duration: duration,
+      complete: function(){
+        thisFood.hide();
+      }
+    });
+    
+    delay += duration;
+  })(); } // for
 
-
+  $('#cy').waypoint(function() {
+    extendContext(cy.getElementById("center"));
+  }, { offset: 150 });
 
   cy.on('tap', 'node', function(){
-    var nodes = this;
+    extendContext(this);
+  }); // on tap
+
+  function extendContext(centre){
+    var nodes = centre;
     var tapped = nodes;
     var food = [];
     
@@ -355,8 +362,6 @@ function examples(){ // on dom ready
       
       delay += duration;
     })(); } // for)(); } // for
-    
-
-  }); // on tap
+  }
 
 }; // on dom ready
