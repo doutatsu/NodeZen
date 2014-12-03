@@ -155,6 +155,55 @@ function examples(){ // on dom ready
       name: 'concentric',
       directed: true,
       padding: 10
+    },
+    ready: function(){
+      var food = {};
+
+      for(;;){
+        var connectedEdges = nodes.connectedEdges(function(){
+          return !this.target().anySame( nodes );
+        });
+        
+        var connectedNodes = connectedEdges.targets();
+        
+        Array.prototype.push.apply( food, connectedNodes );
+        
+        nodes = connectedNodes;
+        
+        if( nodes.empty() ){ break; }
+      }
+            
+      var delay = 0;
+      var duration = 100;
+
+      //collapse the context graph initially
+      for( var i = food.length - 1; i >= 0; i-- ){ (function(){
+        var thisFood = food[i];
+        var eater = thisFood.connectedEdges(function(){
+          return this.target().same(thisFood);
+        }).source();
+
+        thisFood.originalPos = jQuery.extend(true, {}, thisFood.position());
+
+        thisFood.delay( delay, function(){
+          eater.addClass('eating');
+        } ).animate({
+          position: eater.position(),
+          css: {
+            'width': 10,
+            'height': 10,
+            'border-width': 0,
+            'opacity': 1
+          }
+        }, {
+          duration: duration,
+          complete: function(){
+            thisFood.hide();
+          }
+        });
+
+        delay += duration;
+      })(); } // for
     }
   }); // cy init
 
@@ -255,63 +304,7 @@ function examples(){ // on dom ready
   cy_graph.boxSelectionEnabled(false);
   // Undraggable nodes
   cy_graph.autoungrabify(true);
-
   var nodes = cy.getElementById("center");
-  var deal = cy.getElementById("deal");
-  deal.originalPos = {x:305, y:159};
-  var person = cy.getElementById("person");
-  person.originalPos = {x:214,y:250};
-  var person = cy.getElementById("video");
-  person.originalPos = {x:305,y:341};
-  var person = cy.getElementById("article");
-  person.originalPos = {x:396,y:250};
-  var food = {};
-
-  for(;;){
-    var connectedEdges = nodes.connectedEdges(function(){
-      return !this.target().anySame( nodes );
-    });
-    
-    var connectedNodes = connectedEdges.targets();
-    
-    Array.prototype.push.apply( food, connectedNodes );
-    
-    nodes = connectedNodes;
-    
-    if( nodes.empty() ){ break; }
-  }
-        
-  var delay = 0;
-  var duration = 500;
-
-  //collapse the context graph initially
-  for( var i = food.length - 1; i >= 0; i-- ){ (function(){
-    var thisFood = food[i];
-    var eater = thisFood.connectedEdges(function(){
-      return this.target().same(thisFood);
-    }).source();
-    
-    //thisFood.originalPos = thisFood.position();
-
-    thisFood.delay( delay, function(){
-      eater.addClass('eating');
-    } ).animate({
-      position: eater.position(),
-      css: {
-        'width': 10,
-        'height': 10,
-        'border-width': 0,
-        'opacity': 1
-      }
-    }, {
-      duration: duration,
-      complete: function(){
-        thisFood.hide();
-      }
-    });
-    
-    delay += duration;
-  })(); } // for
 
   $('#cy').waypoint(function() {
     extendContext(cy.getElementById("center"));
@@ -374,4 +367,4 @@ function examples(){ // on dom ready
     })(); } // for)(); } // for
   }
 
-}; // on dom ready
+}; // on dom ready */
