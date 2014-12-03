@@ -151,7 +151,7 @@ function examples(){ // on dom ready
       }
             
       var delay = 0;
-      var duration = 500;
+      var duration = 100;
 
       //collapse the context graph initially
       for( var i = food.length - 1; i >= 0; i-- ){ (function(){
