@@ -1,32 +1,30 @@
 $(document).ready(function () {
-    examples();
-    var height = $('.cover').height()
-    $('#main').css('margin-top',height);
-    $('.cover-text').css('padding-top',(height * 0.50)-190);
+  examples();
+  var height = $('.cover').height()
+  $('#main').css('margin-top',height);
+  $('.cover-text').css('padding-top',(height * 0.50)-190);
 
-    $('#navigation').affix({
-        offset: {
-            top: height
-        }
-    });
-    
-    $('#navigation').on('affix.bs.affix', function () {
-        $('.container-fluid').css('margin-top', $('#navigation').outerHeight(true))-10;
-        $('#navigation').css('z-index', 3);
-    });
+  $('#navigation').affix({
+      offset: { top: height }
+  });
+  
+  $('#navigation').on('affix.bs.affix', function () {
+      $('.container-fluid').css('margin-top', $('#navigation').outerHeight(true))-10;
+      $('#navigation').css('z-index', 3);
+  });
 
-    $('#navigation').on('affix-top.bs.affix', function () {
-        $('.container-fluid').css('margin-top', 0);
-        $('#navigation').css('z-index', 2);
-    });
+  $('#navigation').on('affix-top.bs.affix', function () {
+      $('.container-fluid').css('margin-top', 0);
+      $('#navigation').css('z-index', 2);
+  });
 
-    $('.page_scroll').click(function (evt) {
-        var $anchor = $(this);
-        $('body').stop().animate({
-            scrollTop: (($($anchor.attr('href')).offset().top)-$('#navigation').outerHeight(true))
-        }, 300);
-        evt.preventDefault();
-    });
+  $('.page_scroll').click(function (evt) {
+      var $anchor = $(this);
+      $('body').stop().animate({
+          scrollTop: (($($anchor.attr('href')).offset().top)-$('#navigation').outerHeight(true))
+      }, 300);
+      evt.preventDefault();
+  });
 });
 function examples(){ // on dom ready
   var context = {
@@ -59,11 +57,36 @@ function examples(){ // on dom ready
   };
   var graph = {
     nodes: [
-      { data: { id: '1' } },
-      { data: { id: '2' } },
-      { data: { id: '3' } },
-      { data: { id: '4' } },
-      { data: { id: '5' } },
+      { data: { id: '1' },
+        css:  {
+          'background-image': 'url(/assets/icons/article.png)',
+          'background-fit': 'none'
+        } 
+      },
+      { data: { id: '2' },
+        css:  {
+          'background-image': 'url(/assets/icons/earth17.png)',
+          'background-fit': 'none'
+        } 
+      },
+      { data: { id: '3' },
+        css:  {
+          'background-image': 'url(/assets/icons/vintage.svg)',
+          'background-fit': 'none',
+        } 
+      },
+      { data: { id: '4' }, 
+        css:  {
+          'background-image': 'url(/assets/icons/youtube.svg)',
+          'background-fit': 'none'
+        } 
+      },
+      { data: { id: '5' }, 
+        css:  {
+          'background-image': 'url(/assets/icons/facebook.svg)',
+          'background-fit': 'none'
+        }  
+      },
       { data: { id: '6' } },
       { data: { id: '7' } },
     ],
@@ -150,13 +173,14 @@ function examples(){ // on dom ready
       .selector('edge')
         .css({
           'width': 3,
-          'line-color': 'black',
+          'line-color': 'black'
         })
       .selector('#explore')
         .css({
+          'text-valign': 'center', 
+          'font-family': 'open_sanslight',
           'content': 'Explore',
-          'text-valign': 'center',
-          // 'background-color': '#7BDE7B',
+          'background-color': '#E62E2E'
         })
       .selector('#discover')
         .css({
@@ -185,39 +209,26 @@ function examples(){ // on dom ready
     style: cytoscape.stylesheet()
       .selector('node')
         .css({
-          'height': 90,
-          'width': 90,
-          'background-fit': 'cover',
+          'height': 120,
+          'width': 120,
+          'background-color': 'white',
+          'border-color': '#000',
+          'border-width': 1,
+          'border-opacity': 2,
         })
       .selector('edge')
         .css({
           'width': 4,
           'line-color': 'black',
-          'target-arrow-color': '#6878D9'
-        })
-      .selector('#explore')
-        .css({
-          'content': 'Explore',
-          'text-valign': 'center',
-          'background-color': '#6272A3',
-        })
-      .selector('#discover')
-        .css({
-          'content': 'Discover',
-          'text-valign': 'center', 
-          'background-color': '#FF3333',       
-        })
-      .selector('#collaborate')
-        .css({
-          'content': 'Collaborate',
-          'text-valign': 'center',
-          'background-color': '#6272A3',
+          'target-arrow-color': '#6878D9',
+          'control-point-step-size': '12'
         }),
     
     elements: graph,
     
     layout: {
       name: 'concentric',
+      minNodeSpacing: 60,
       directed: true,
       padding: 10
     }
@@ -235,10 +246,9 @@ function examples(){ // on dom ready
   cy_values.boxSelectionEnabled(false);
   // Undraggable nodes
   cy_values.autoungrabify(true);
-  cy_values.$('#explore').addClass('bla');
 
-  cy_graph.height(100)
-  cy_graph.width(100)
+  cy_graph.height(300)
+  cy_graph.width(300)
   cy_graph.zoomingEnabled(false);
   cy_graph.userZoomingEnabled(false);
   cy_graph.userPanningEnabled(false);
