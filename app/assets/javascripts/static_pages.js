@@ -46,7 +46,7 @@ function examples(){ // on dom ready
   };
   var values = {
     nodes: [
-      { data: { id: 'explore'} },
+      { data: { id: 'explore'}, classes: 'bla' },
       { data: { id: 'discover' } },
       { data: { id: 'collaborate' } },
     ],
@@ -54,7 +54,8 @@ function examples(){ // on dom ready
       { data: { source: 'explore', target: 'discover' } },
       { data: { source: 'explore', target: 'collaborate' } },
       { data: { source: 'discover', target: 'collaborate' } },
-    ]
+    ],
+
   };
   var graph = {
     nodes: [
@@ -135,8 +136,8 @@ function examples(){ // on dom ready
   }); // cy init
 
   // Constructor for Core Values Example
-  var cy2 = cytoscape({
-    container: document.getElementById('cy2'),
+  var cy_values = cytoscape({
+    container: document.getElementById('cy_values'),
 
     style: cytoscape.stylesheet()
       .selector('node')
@@ -155,7 +156,7 @@ function examples(){ // on dom ready
         .css({
           'content': 'Explore',
           'text-valign': 'center',
-          'background-color': '#7BDE7B',
+          // 'background-color': '#7BDE7B',
         })
       .selector('#discover')
         .css({
@@ -171,7 +172,6 @@ function examples(){ // on dom ready
         }),
     
     elements: values,
-    
     layout: {
       name: 'circle',
       directed: true,
@@ -179,8 +179,8 @@ function examples(){ // on dom ready
     }
   }); // cy init
   // Constructor for Graph Example 
-  var cy3 = cytoscape({
-    container: document.getElementById('cy3'),
+  var cy_graph = cytoscape({
+    container: document.getElementById('cy_graph'),
 
     style: cytoscape.stylesheet()
       .selector('node')
@@ -188,7 +188,6 @@ function examples(){ // on dom ready
           'height': 90,
           'width': 90,
           'background-fit': 'cover',
-          'font-family': 'open_sanslight'
         })
       .selector('edge')
         .css({
@@ -230,21 +229,22 @@ function examples(){ // on dom ready
   // Undraggable nodes
   cy.autoungrabify(true);
 
-  cy2.center();
-  cy2.userZoomingEnabled(false);
-  cy2.userPanningEnabled(false);
-  cy2.boxSelectionEnabled(false);
+  cy_values.center();
+  cy_values.userZoomingEnabled(false);
+  cy_values.userPanningEnabled(false);
+  cy_values.boxSelectionEnabled(false);
   // Undraggable nodes
-  cy2.autoungrabify(true);
+  cy_values.autoungrabify(true);
+  cy_values.$('#explore').addClass('bla');
 
-  cy3.height(100)
-  cy3.width(100)
-  cy3.zoomingEnabled(false);
-  cy3.userZoomingEnabled(false);
-  cy3.userPanningEnabled(false);
-  cy3.boxSelectionEnabled(false);
+  cy_graph.height(100)
+  cy_graph.width(100)
+  cy_graph.zoomingEnabled(false);
+  cy_graph.userZoomingEnabled(false);
+  cy_graph.userPanningEnabled(false);
+  cy_graph.boxSelectionEnabled(false);
   // Undraggable nodes
-  cy3.autoungrabify(true);
+  cy_graph.autoungrabify(true);
 
   var nodes = cy.getElementById("center");
  /* 

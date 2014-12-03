@@ -79,4 +79,5 @@ NodeZen::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.mandrill_mailer.default_url_options = { :host => 'localhost' }
+  GA.tracker = "UA-57217646-1"
 end

@@ -27,3 +27,4 @@ group :doc do
 end
 
 gem 'newrelic_rpm'
+gem 'google-analytics-rails'

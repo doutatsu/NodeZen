@@ -25,5 +25,5 @@
 //= require jquery-waypoints
 //= require lodash
 //= require restangular
-//= require_tree .
+//= require_tree ./ng-app
 //= require_tree ../templates
