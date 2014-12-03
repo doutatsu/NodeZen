@@ -82,7 +82,6 @@ body {
     background-color: #fcfcfc;
     border-bottom: 1px solid #ebebeb;
     border-top: 1px solid #ebebeb;
-    
     .nounderline {
         text-decoration: none;
     }
@@ -98,4 +97,7 @@ body {
 #main{
   padding-left: $content-margins;
   padding-right: $content-margins;
+}
+.bla{
+  background-color: red;
 }

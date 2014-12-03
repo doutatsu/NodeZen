@@ -44,6 +44,7 @@ GEM
     erubis (2.7.0)
     excon (0.41.0)
     execjs (2.2.2)
+    google-analytics-rails (0.0.6)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (1.5.3)
@@ -145,6 +146,7 @@ PLATFORMS
 DEPENDENCIES
   angular-rails-templates
   coffee-rails (~> 4.0.0)
+  google-analytics-rails
   jbuilder (~> 1.2)
   mandrill_mailer
   newrelic_rpm
