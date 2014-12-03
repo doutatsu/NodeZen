@@ -247,6 +247,7 @@ function examples(){ // on dom ready
   cy3.autoungrabify(true);
 
   var nodes = cy.getElementById("center");
+ /* 
   var deal = cy.getElementById("deal");
   deal.originalPos = {x:305, y:159};
   var person = cy.getElementById("person");
@@ -255,6 +256,7 @@ function examples(){ // on dom ready
   person.originalPos = {x:305,y:341};
   var person = cy.getElementById("article");
   person.originalPos = {x:396,y:250};
+  */
   var food = {};
 
   for(;;){
@@ -281,7 +283,10 @@ function examples(){ // on dom ready
       return this.target().same(thisFood);
     }).source();
     
-    //thisFood.originalPos = thisFood.position();
+    //thisFood.originalPos = ;
+    console.log($.extend(true,{},cy.getElementById("article").position()))
+    //console.log(eater.position())
+    //console.log()
 
     thisFood.delay( delay, function(){
       eater.addClass('eating');
