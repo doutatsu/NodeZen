@@ -2,6 +2,8 @@
     <h2>Do you want to become an Explorer?</h2>
     <p>Join our waiting list and we'll send you an invitation when our beta goes live</p>
     <div class="signup">
-      <input type="text" class="form-control" placeholder="Enter your email">
+      <%= form_tag('/subscribe_api/subscribe', method: "post", id: "subscribe", remote: "true") do -%>
+        <%= email_field(:email, :address, {id: "email", class: "form-control", placeholder: "Enter your email"}) %>
+      <% end %>
     </div>
 </footer>
