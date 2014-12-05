@@ -18,6 +18,7 @@
 //= require angular-rails-templates
 //= require cytoscape
 //= require cytoscape-qtip
+//= require d3
 //= require qtip2
 //= require eventEmitter
 //= require eventie

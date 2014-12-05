@@ -133,6 +133,7 @@ function examples(){ // on dom ready
       directed: true,
       padding: 10
     },
+    motionBlur: true,
     ready: function(){
       var food = {};
 
