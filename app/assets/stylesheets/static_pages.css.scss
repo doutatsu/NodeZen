@@ -28,6 +28,9 @@ body {
     font-size: 45px;
     padding-bottom: 15px;
   }
+  .logo-text{
+    @media (max-width: 468px) { font-size: 19px; }
+  }
   
   .cover-text {
     color: white;
@@ -69,12 +72,15 @@ body {
 
 .outline-text {
     h1 {
-        padding: 20px 0 20px 0;
+      @media (max-width: 602px) { font-size: 32px; }
+      @media (max-width: 545px) { font-size: 26px; }
+      padding: 20px 0 20px 0;
     }
     
     p {
-        color: #808080;
-        font-size: 16px;
+      @media (max-width: 468px) { font-size: 14px; }
+      color: #808080;
+      font-size: 16px;
     }
 }
 
