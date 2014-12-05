@@ -1,4 +1,6 @@
 NodeZen::Application.routes.draw do
+  post 'subscribe_api/subscribe' => 'subscribe_api#subscribe'
+
   root 'static_pages#home'
 
  if Rails.env.development?

@@ -1,7 +1,10 @@
 <footer class="jumbotron">
     <h2>Do you want to become an Explorer?</h2>
     <p>Join our waiting list and we'll send you an invitation when our beta goes live</p>
+    <p>Also for any questions, just send us a <a style='text-decoration: none' href="mailto:hello@nodezen.me">message</a></p>
     <div class="signup">
-      <input type="text" class="form-control" placeholder="Enter your email">
+      <%= form_tag('/subscribe_api/subscribe', method: "post", id: "subscribe", remote: "true") do -%>
+        <%= email_field(:email, :address, {id: "email", class: "form-control", placeholder: "Enter your email"}) %>
+      <% end %>
     </div>
 </footer>
