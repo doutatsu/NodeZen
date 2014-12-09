@@ -1,10 +1,17 @@
 <footer class="jumbotron">
+<!--   <div class="thank-you" style='display: none'>
+    <h2>Thank you for subscribing</h2>
+    <p>We'll be in touch!</p>
+    <p>If still want to email us, click <a style='text-decoration: none' href="mailto:hello@nodezen.me">here</a></p>
+  </div> -->
+  <div class='footer-content'>
     <h2>Do you want to become an Explorer?</h2>
     <p>Join our waiting list and we'll send you an invitation when our beta goes live</p>
     <p>Also for any questions, just send us a <a style='text-decoration: none' href="mailto:hello@nodezen.me">message</a></p>
     <div class="signup">
-      <%= form_tag('/subscribe_api/subscribe', method: "post", id: "subscribe", remote: "true") do -%>
+      <%= form_tag('/subscribe_api/subscribe', method: "post", id: "subscribe", :remote => true, :'data-update-target' => 'signup') do %>
         <%= email_field(:email, :address, {id: "email", class: "form-control", placeholder: "Enter your email"}) %>
       <% end %>
     </div>
+  </div>
 </footer>
