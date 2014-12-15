@@ -18,7 +18,7 @@ window.App = angular
             })
             .state('graph', {
                 controller: 'graph',
-                url: "/test",
+                url: "/d3",
                 templateUrl: "views/d3.html"
             });
 

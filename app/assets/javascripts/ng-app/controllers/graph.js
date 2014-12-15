@@ -1,6 +1,58 @@
-angular.module('NodeZen').controller('graph', function ($scope, Restangular) {
+angular.module('NodeZen').controller('graph', ["$q","Restangular","$scope",function($q, Restangular, $scope){
     //here we go 
-    $scope.graphData = {
+    $scope.graphData = {}; 
+    var nodeCollection;
+
+    Restangular.all('node').getList().then(function(graphData){
+
+        var nodes = [];
+        var links = [];
+        nodes.length = 0;
+        links.length = 0;
+
+        for(var i = 0; i < graphData.length; i++){
+            //add node 
+            nodes.push({
+                    description: graphData[i].description,
+                    id: graphData[i].id + "",
+                    image: graphData[i].image,
+                    name: graphData[i].title,
+                    source: graphData[i].source,
+                    target: graphData[i].target,
+                    tooltip: graphData[i].tooltip,
+                    link: graphData[i].link,
+                    domain: graphData[i].domain,
+                    description: graphData[i].description,
+                    group: Math.floor((Math.random() * 20) + 1)
+            });
+
+            //add edges under that node
+            for(var j = 0; j < graphData[i].edges.length; j++){
+                links.push({
+                        //id: "e" + graphData[i].id + "-" + graphData[i].edges[j],
+                        //name: 'some edge',
+                        source: 1,//graphData[i].id,
+                        target: 2,//graphData[i].edges[j],
+                        value: Math.floor((Math.random() * 10) + 1)
+                });
+            };   
+        }
+
+        //$scope.graphData = nodeCollection;
+        nodeCollection = {
+            nodes: nodes,
+            links: links
+        };
+
+        console.log(nodeCollection);
+        $scope.graphData = nodeCollection;
+    });
+    
+
+    
+    /*
+    $scope.graphData = 
+    {
     "nodes": [{
         "name": "Myriel",
         "group": 1
@@ -1250,7 +1302,7 @@ angular.module('NodeZen').controller('graph', function ($scope, Restangular) {
         "target": 58,
         "value": 1
     }]
-};
-
-
-});
+    };
+    */
+console.log($scope.graphData);
+}]);
