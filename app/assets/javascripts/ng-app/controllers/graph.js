@@ -17,7 +17,7 @@ angular.module('NodeZen').controller('graph', ["$scope", "Restangular",
                 //add node 
                 nodes.push({
                     description: graphData[i].description,
-                    id: graphData[i].id + "",
+                    id: graphData[i].id,
                     image: graphData[i].image,
                     name: graphData[i].title,
                     source: graphData[i].source,
@@ -33,8 +33,8 @@ angular.module('NodeZen').controller('graph', ["$scope", "Restangular",
                     links.push({
                         //id: "e" + graphData[i].id + "-" + graphData[i].edges[j],
                         //name: 'some edge',
-                        source: 1, //graphData[i].id,
-                        target: 2, //graphData[i].edges[j],
+                        source: graphData[i].id,
+                        target: graphData[i].edges[j],
                         value: Math.floor((Math.random() * 10) + 1)
                     });
                 };
@@ -44,9 +44,13 @@ angular.module('NodeZen').controller('graph', ["$scope", "Restangular",
                 nodes: nodes,
                 links: links
             };
+
+            $scope.graphData = nodeCollection;
         });
 
-        $scope.graphData = {
+        /*
+
+        {
             "nodes": [{
                 "name": "Myriel",
                 "group": 1
@@ -106,4 +110,5 @@ angular.module('NodeZen').controller('graph', ["$scope", "Restangular",
                 "value": 1
     }]
         };
+        */
 }]);

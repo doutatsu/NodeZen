@@ -29,6 +29,24 @@ angular.module('NodeZen')
                 }, true);
 
                 scope.render = function (data) {
+
+                	//	to make the edges work 
+                	//	we need to map them manually to correct ids
+                	//	d3js uses array mapping
+                	//	but we have custom ids on nodes
+                	var edges = [];
+                	if(typeof data.links != 'undefined'){
+                	data.links.forEach(function(e) { 
+					    // Get the source and target nodes
+					    var sourceNode = data.nodes.filter(function(n) { return n.id === e.source; })[0],
+					        targetNode = data.nodes.filter(function(n) { return n.id === e.target; })[0];
+
+					    // Add the edge to the array
+					    edges.push({source: sourceNode, target: targetNode});
+					});
+                	}
+
+
                     window.force = d3.layout.force()
                         .gravity(.05)
                         .distance(100)
@@ -37,11 +55,11 @@ angular.module('NodeZen')
 
 
                     force.nodes(data.nodes)
-                        .links(data.links)
+                        .links(edges)
                         .start();
 
                     var link = svg.selectAll(".link")
-                        .data(data.links)
+                        .data(edges)
                         .enter().append("line")
                         .attr("class", "link");
 
