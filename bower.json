@@ -15,7 +15,8 @@
     "jquery-waypoints": "latest",
     "jquery": "latest",
     "components-font-awesome": "latest",
-    "d3": "~3.4.13"
+    "d3": "~3.4.13",
+    "d3-tip": "~0.6.6"
   },
   "homepage": "https://github.com/doutatsu/NodeZen",
   "authors": [

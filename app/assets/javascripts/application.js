@@ -19,6 +19,7 @@
 //= require cytoscape
 //= require cytoscape-qtip
 //= require d3
+//= require d3-tip
 //= require qtip2
 //= require eventEmitter
 //= require eventie
