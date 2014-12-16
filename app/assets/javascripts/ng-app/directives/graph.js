@@ -72,7 +72,11 @@ angular.module('NodeZen')
 								mappings[1] = "s";
 								mappings[2] = "sw";
 								mappings[3] = "e";
-								mappings[4] = "n";
+								mappings[4] = [];
+								mappings[4][0] = "se";
+								mappings[4][1] = "sw";
+								mappings[4][2] = "ne";
+								mappings[4][3] = "nw";
 								mappings[5] = "w";
 								mappings[6] = "ne";
 								mappings[7] = "n";
@@ -92,6 +96,22 @@ angular.module('NodeZen')
 									depth = 1;
 								} else if(posX > secondLevelDepth){
 									depth = 2;
+								}
+
+								if(level + depth === 4){
+									if(posY <= (height * 0.5)){
+										level = 0;
+									} else {
+										level = 2;
+									}
+
+									if(posX <= (width * 0.5)){
+										depth = 0;
+									}  else {
+										depth = 1;
+									}
+
+									return mappings[4][level+depth];
 								}
 
 								return mappings[level + depth];
