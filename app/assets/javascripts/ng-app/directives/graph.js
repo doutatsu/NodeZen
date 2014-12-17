@@ -1,5 +1,5 @@
 angular.module('NodeZen')
-    .directive('graph', function ($window) {
+    .directive('graph', ['$window', 'd3tip', function ($window, d3tip) {
         var margin = 30;
         var width = 800;
         var height = 500 - .5 - margin;
@@ -15,7 +15,7 @@ angular.module('NodeZen')
                 var svg = d3.select(element[0])
                     .append("svg")
                     .attr("width", '100%')
-                    .attr("height", 400);//height + margin + 100);
+                    .attr("height", height + margin + 100);
 
                 window.onresize = function () {
                     scope.$apply();
@@ -31,92 +31,13 @@ angular.module('NodeZen')
                 scope.render = function (data) {
 
                 	/* Initialize tooltip */
-					tip =   d3.tip()
-							.attr('class', 'd3-tip')
-							.html(function(d) { 
-								return "d"; 
-							})
-							.direction(function(d){
-								/*
-									divide the graph area 
-									into 9 subsections
-									and decide which direction
-									node tooltip will appear
-									(0,0)
-									----------------
-									| SE | S  | SW |
-									----------------  < first level height
-									|  E |  X  | W |
-									----------------  < second level height
-									|  NE | N | NW |
-									---------------- (width, height)
-										
-									nodes in the middle 
-									will require further 
-									calculations
+					tip = d3tip.initialize(svg);
 
-								*/
-								var height = svg[0][0].clientHeight;
-								var width = svg[0][0].clientWidth;
-								var posX = d.x;
-								var posY = d.y;
-								var firstLevelHeight = height * (1/3);
-								var secondLevelHeight = height * (2/3);
-								var firstLevelDepth = width * (1/3);
-								var secondLevelDepth = width * (2/3);
-
-								var level;
-								var depth;
-								var mappings = [];
-								mappings[0] = "se";
-								mappings[1] = "s";
-								mappings[2] = "sw";
-								mappings[3] = "e";
-								mappings[4] = [];
-								mappings[4][0] = "se";
-								mappings[4][1] = "sw";
-								mappings[4][2] = "ne";
-								mappings[4][3] = "nw";
-								mappings[5] = "w";
-								mappings[6] = "ne";
-								mappings[7] = "n";
-								mappings[8] = "nw";
-
-								if(posY < firstLevelHeight){
-									level = 0;
-								} else if(posY > firstLevelHeight && posY < secondLevelHeight){
-									level = 3;
-								} else if(posY > secondLevelHeight ){
-									level = 6;
-								} 
-
-								if(posX < firstLevelDepth){
-									depth = 0;
-								} else if(posX > firstLevelDepth && posX < secondLevelDepth){
-									depth = 1;
-								} else if(posX > secondLevelDepth){
-									depth = 2;
-								}
-
-								if(level + depth === 4){
-									if(posY <= (height * 0.5)){
-										level = 0;
-									} else {
-										level = 2;
-									}
-
-									if(posX <= (width * 0.5)){
-										depth = 0;
-									}  else {
-										depth = 1;
-									}
-
-									return mappings[4][level+depth];
-								}
-
-								return mappings[level + depth];
-
-							});
+					svg.on("click", function(){
+						svg.selectAll(".node").each(function(d, i) { 
+							tip.hide(this);
+						})
+					});
 
 					/* Invoke the tip in the context of your visualization */
 					svg.call(tip)
@@ -127,14 +48,14 @@ angular.module('NodeZen')
                 	//	but we have custom ids on nodes
                 	var edges = [];
                 	if(typeof data.links != 'undefined'){
-                	data.links.forEach(function(e) { 
-					    // Get the source and target nodes
-					    var sourceNode = data.nodes.filter(function(n) { return n.id === e.source; })[0],
-					        targetNode = data.nodes.filter(function(n) { return n.id === e.target; })[0];
+	                	data.links.forEach(function(e) { 
+						    // Get the source and target nodes
+						    var sourceNode = data.nodes.filter(function(n) { return n.id === e.source; })[0],
+						        targetNode = data.nodes.filter(function(n) { return n.id === e.target; })[0];
 
-					    // Add the edge to the array
-					    edges.push({source: sourceNode, target: targetNode});
-					});
+						    // Add the edge to the array
+						    edges.push({source: sourceNode, target: targetNode});
+						});
                 	}
 
 
@@ -159,7 +80,6 @@ angular.module('NodeZen')
                         .enter().append("g")
                         .attr("class", "node")
                         .on('mouseover', tip.show)
-						.on('mouseout', tip.hide)
                         .call(force.drag);
 
                     node.append("image")
@@ -198,4 +118,4 @@ angular.module('NodeZen')
             }
         }
 
-    });
+    }]);
