@@ -15,7 +15,7 @@ angular.module('NodeZen')
                 var svg = d3.select(element[0])
                     .append("svg")
                     .attr("width", '100%')
-                    .attr("height", height + margin + 100);
+                    .attr("height", height + margin + 200);
 
                 window.onresize = function () {
                     scope.$apply();
@@ -61,7 +61,7 @@ angular.module('NodeZen')
 
                     window.force = d3.layout.force()
                         .gravity(.05)
-                        .distance(100)
+                        .distance(400)
                         .charge(-100)
                         .size([angular.element($window)[0].innerWidth, height]);
 
