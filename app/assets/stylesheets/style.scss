@@ -27,5 +27,9 @@
 
 .node text {
   pointer-events: none;
-  font: 10px sans-serif;
+  font: 13px open_sansregular;
+  fill: white;
+}
+.node circle {
+  fill: white;
 }

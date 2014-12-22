@@ -81,16 +81,24 @@ angular.module('NodeZen')
                         .attr("class", "node")
                         .on('mouseover', tip.show)
                         .call(force.drag);
-
-                    node.append("image")
-                        .attr("xlink:href", "https://github.com/favicon.ico")
+                    node.append("line")
+                        .style("stroke", "black")          // colour the line
+                        .style("stroke-width", 20)         // adjust line width
+                        .style("stroke-linecap", "round")  // stroke-linecap type
+                        .attr("x1", 40)     // x position of the first end of the line
+                        .attr("x2", 200)     // x position of the second end of the line
+                    node.append("circle")
                         .attr("x", -64)
                         .attr("y", -32)
-                        .attr("width", 64)
-                        .attr("height", 64);
-
+                        .attr("r", 40)
+                        .style("stroke", "gray")
+                    node.append("circle")
+                        .attr("x", -64)
+                        .attr("y", -32)
+                        .attr("r", 37)
+                        .style("stroke", "black")
                     node.append("text")
-                        .attr("dx", 12)
+                        .attr("dx", 45)
                         .attr("dy", ".35em")
                         .text(function (d) {
                             return d.name
