@@ -1,5 +1,6 @@
 $(document).ready(function () {
   examples();
+
   var height = $('.cover').height()
   $('#main').css('margin-top',height);
   $('.cover-text').css('padding-top',(height * 0.50)-190);
@@ -26,6 +27,10 @@ $(document).ready(function () {
       evt.preventDefault();
   });
 });
+window.onresize = function(event) {
+  var height = $('.cover').height()
+  $('#main').css('margin-top',height);
+};
 function examples(){ // on dom ready
   var context = {
     nodes: [

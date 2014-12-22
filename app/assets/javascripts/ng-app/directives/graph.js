@@ -15,7 +15,7 @@ angular.module('NodeZen')
                 var svg = d3.select(element[0])
                     .append("svg")
                     .attr("width", '100%')
-                    .attr("height", height + margin + 100);
+                    .attr("height", height + margin + 200);
 
                 window.onresize = function () {
                     scope.$apply();
@@ -60,17 +60,12 @@ angular.module('NodeZen')
 
 
                     window.force = d3.layout.force()
-                        .gravity(0.01)
-                        .distance(200)
-                        .charge(-200)
+                        .gravity(.05)
+                        .distance(400)
+                        .charge(-100)
                         .size([angular.element($window)[0].innerWidth, height]);
 
-                    data.nodes.forEach(function(d, i) {
-					    d.x = width/2 + i ;
-					});
 
-                    console.log(data.nodes);
-                    console.log(data.links);
                     force.nodes(data.nodes)
                         .links(edges)
                         .start();
@@ -85,9 +80,6 @@ angular.module('NodeZen')
                         .enter().append("g")
                         .attr("class", "node")
                         .on('mouseover', tip.show)
-                        .on('click', function(d){
-                        	console.log(d);
-                        })
                         .call(force.drag);
 
                     node.append("image")
@@ -105,9 +97,6 @@ angular.module('NodeZen')
                         });
 
                     force.on("tick", function () {
-                    	//root node in the middle
-                    	data.nodes[0].x = width / 2;
-   						data.nodes[0].y = height / 2;
                         link.attr("x1", function (d) {
                             return d.source.x;
                         })
