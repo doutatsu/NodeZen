@@ -80,6 +80,9 @@ angular.module('NodeZen')
                         .enter().append("g")
                         .attr("class", "node")
                         .on('mouseover', tip.show)
+                        .on('click', function(node){
+                        	scope.$parent.getNodes(node.id);
+                        })
                         .call(force.drag);
 
                     node.append("image")
