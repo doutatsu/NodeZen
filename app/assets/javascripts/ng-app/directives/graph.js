@@ -90,17 +90,38 @@ angular.module('NodeZen')
                         	scope.$parent.getNodes(node.id);
                         })
                         .call(force.drag);
-
-                    node.append("image")
-                        .attr("xlink:href", "https://github.com/favicon.ico")
+                    node.append("line")
+                        .style("stroke", "black")          // colour the line
+                        .style("stroke-width", 20)         // adjust line width
+                        .style("stroke-linecap", "round")  // stroke-linecap type
+                        .attr("x1", 20)     // x position of the first end of the line
+                        .attr("x2", 200)     // x position of the second end of the line
+                        .attr("y1", -25)     // x position of the first end of the line
+                        .attr("y2", -25)     // x position of the second end of the line
+                    node.append("circle")
                         .attr("x", -64)
                         .attr("y", -32)
-                        .attr("width", 64)
-                        .attr("height", 64);
-
+                        .attr("r", 40)
+                        .style("stroke", "gray")
+                    node.append("circle")
+                        .attr("x", -64)
+                        .attr("y", -32)
+                        .attr("r", 37)
+                        .style("stroke", "black")
+                    node.append('text')
+                        .attr('text-anchor', 'middle')
+                        .attr("pointer-events", "none")
+                        .attr('dominant-baseline', 'central')
+                        .attr('font-family', 'FontAwesome')
+                        .attr('font-size', '30px')
+                        .attr('fill', 'black')
+                        .text(function(d) { return '\uf04b' }); 
                     node.append("text")
-                        .attr("dx", 12)
-                        .attr("dy", ".35em")
+                        .attr("dx", 45)
+                        .attr("dy", -20)
+                        .attr("pointer-events", "none")
+                        .attr("font", "13px open_sansregular")
+                        .attr("fill", "white")
                         .text(function (d) {
                             return d.name
                         });

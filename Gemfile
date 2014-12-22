@@ -13,6 +13,7 @@ gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and view
 gem 'sass-rails', '~> 4.0.3' # Use SCSS for stylesheets
 gem 'public_suffix' #public top level domain library
 gem 'mandrill_mailer'
+gem 'font-awesome-rails'
 # gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
