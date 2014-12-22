@@ -1,8 +1,8 @@
 angular.module('NodeZen')
     .directive('graph', ['$window', 'd3tip', function ($window, d3tip) {
-        var margin = 30;
-        var width = 800;
-        var height = 500 - .5 - margin;
+ 
+        var width;
+        var height = 700 - .5;
         var colour = d3.interpolateRgb("#f77", "#77f");
 
         return {
@@ -12,10 +12,12 @@ angular.module('NodeZen')
             },
             link: function (scope, element, attrs) {
 
+            	width = angular.element($window)[0].innerWidth;
+
                 var svg = d3.select(element[0])
                     .append("svg")
-                    .attr("width", '100%')
-                    .attr("height", height + margin + 200);
+                    .attr("width", width)
+                    .attr("height", height);
 
                 window.onresize = function () {
                     scope.$apply();
@@ -60,10 +62,12 @@ angular.module('NodeZen')
 
 
                     window.force = d3.layout.force()
-                        .gravity(.05)
-                        .distance(400)
-                        .charge(-100)
-                        .size([angular.element($window)[0].innerWidth, height]);
+						.charge(-1000)
+						.gravity(.01)
+						.friction(.2)
+						.linkStrength(9)
+						.linkDistance( function(d) { if (width < height) { return width*1/3; } else { return height*1/3 } } ) // Controls edge length
+                        .size([width, height]);
 
 
                     force.nodes(data.nodes)
@@ -79,6 +83,8 @@ angular.module('NodeZen')
                         .data(data.nodes)
                         .enter().append("g")
                         .attr("class", "node")
+                        .attr("cx", -1*(width/2 - 25))
+            			.attr("cy", function(d, i) { return (i*20-height/7*3 + 20); } )
                         .on('mouseover', tip.show)
                         .on('click', function(node){
                         	scope.$parent.getNodes(node.id);
@@ -100,6 +106,9 @@ angular.module('NodeZen')
                         });
 
                     force.on("tick", function () {
+                    	//last node in the array is the root node, so center it
+                    	data.nodes[data.nodes.length-1].x = width / 2;
+                    	data.nodes[data.nodes.length-1].y = height/ 2;
                         link.attr("x1", function (d) {
                             return d.source.x;
                         })
