@@ -41,7 +41,10 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             }
 
             //desc
-            toolTipContent += '<p>' + node.description + '</p>';
+            toolTipContent += 
+            '<div class="description">Description: ' + node.description + '</div>' + 
+            '<div class="tags">Tags: Music</div>' + 
+            '<div class="social">Facebook Twitter Google+</div>';
             
             return toolTipContent;
 
@@ -54,7 +57,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 					url: 'http://api.soundcloud.com/resolve.json?url=' + node.link + '&client_id=' + client_ID,
 					context: document.body
 				}).done(function(result) {
-					$("#soundcloud-import").replaceWith('<iframe width="100%" height="180px" style="z-index:999999" type="text/html" 	scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
+					$("#soundcloud-import").replaceWith('<iframe id="frame" width="100%" height="180px" style="z-index:999999" type="text/html" 	scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
 				});
         }
 

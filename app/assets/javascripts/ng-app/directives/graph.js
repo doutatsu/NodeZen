@@ -85,8 +85,10 @@ angular.module('NodeZen')
                         .style("stroke", "black")          // colour the line
                         .style("stroke-width", 20)         // adjust line width
                         .style("stroke-linecap", "round")  // stroke-linecap type
-                        .attr("x1", 40)     // x position of the first end of the line
+                        .attr("x1", 20)     // x position of the first end of the line
                         .attr("x2", 200)     // x position of the second end of the line
+                        .attr("y1", -25)     // x position of the first end of the line
+                        .attr("y2", -25)     // x position of the second end of the line
                     node.append("circle")
                         .attr("x", -64)
                         .attr("y", -32)
@@ -97,9 +99,20 @@ angular.module('NodeZen')
                         .attr("y", -32)
                         .attr("r", 37)
                         .style("stroke", "black")
+                    node.append('text')
+                        .attr('text-anchor', 'middle')
+                        .attr("pointer-events", "none")
+                        .attr('dominant-baseline', 'central')
+                        .attr('font-family', 'FontAwesome')
+                        .attr('font-size', '30px')
+                        .attr('fill', 'black')
+                        .text(function(d) { return '\uf04b' }); 
                     node.append("text")
                         .attr("dx", 45)
-                        .attr("dy", ".35em")
+                        .attr("dy", -20)
+                        .attr("pointer-events", "none")
+                        .attr("font", "13px open_sansregular")
+                        .attr("fill", "white")
                         .text(function (d) {
                             return d.name
                         });
