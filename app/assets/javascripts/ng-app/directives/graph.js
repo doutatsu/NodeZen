@@ -89,8 +89,15 @@ angular.module('NodeZen')
                         .on('mouseover', tip.show)
                         .on('click', function(node){
                         	scope.$parent.getNodes(node.id);
+                            // d3.select(this).select("circle").transition()
+                            // d3.transform(d3.select(this.parentNode).attr("transform")).translate;
+                            // d3.select(this).select("circle").transition()
+                            // .duration(250)
+                            // .attr("x", 500);
                         })
                         .call(force.drag);
+                    node.transition()
+                      .style('r', 100);
                     // Title container
                     node.append("line")
                         .style("stroke", "black")          // colour the line
@@ -122,7 +129,6 @@ angular.module('NodeZen')
                         .attr('font-size', '30px')
                         .attr('fill', 'black')
                         .text(function(d) { 
-                            console.log(d)
                             return icons_codes[d.kind]; 
                         }); 
                     // Title
