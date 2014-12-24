@@ -25,7 +25,8 @@
   stroke: #ccc;
 }
 .node circle {
-  fill: white;
+  // fill: white;
+  fill: rgb(156,217,240);
 }
 .d3-tip{
   padding: 0 !important;
@@ -38,4 +39,7 @@
 .widget{
   border-radius: 0 !important; 
   border: none !important; 
+}
+.preview{
+  max-width: 400px;
 }

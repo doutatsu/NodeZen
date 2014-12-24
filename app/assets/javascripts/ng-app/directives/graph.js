@@ -4,6 +4,7 @@ angular.module('NodeZen')
         var width;
         var height = 700 - .5;
         var colour = d3.interpolateRgb("#f77", "#77f");
+        var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac"}
 
         return {
             restrict: 'E',
@@ -64,7 +65,7 @@ angular.module('NodeZen')
                     window.force = d3.layout.force()
 						.charge(-1000)
 						.gravity(.01)
-						.friction(.2)
+						.friction(.8)
 						.linkStrength(9)
 						.linkDistance( function(d) { if (width < height) { return width*1/3; } else { return height*1/3 } } ) // Controls edge length
                         .size([width, height]);
@@ -90,6 +91,7 @@ angular.module('NodeZen')
                         	scope.$parent.getNodes(node.id);
                         })
                         .call(force.drag);
+                    // Title container
                     node.append("line")
                         .style("stroke", "black")          // colour the line
                         .style("stroke-width", 20)         // adjust line width
@@ -98,16 +100,20 @@ angular.module('NodeZen')
                         .attr("x2", 200)     // x position of the second end of the line
                         .attr("y1", -25)     // x position of the first end of the line
                         .attr("y2", -25)     // x position of the second end of the line
+                    // First Circle
                     node.append("circle")
                         .attr("x", -64)
                         .attr("y", -32)
                         .attr("r", 40)
                         .style("stroke", "gray")
-                    node.append("circle")
-                        .attr("x", -64)
-                        .attr("y", -32)
-                        .attr("r", 37)
-                        .style("stroke", "black")
+                        .style("stroke-width", 2)    // set the stroke width
+                    // Second Circle
+                    // node.append("circle")
+                    //     .attr("x", -64)
+                    //     .attr("y", -32)
+                    //     .attr("r", 37)
+                    //     .style("stroke", "black")
+                    // Icons
                     node.append('text')
                         .attr('text-anchor', 'middle')
                         .attr("pointer-events", "none")
@@ -115,7 +121,11 @@ angular.module('NodeZen')
                         .attr('font-family', 'FontAwesome')
                         .attr('font-size', '30px')
                         .attr('fill', 'black')
-                        .text(function(d) { return '\uf04b' }); 
+                        .text(function(d) { 
+                            console.log(d)
+                            return icons_codes[d.kind]; 
+                        }); 
+                    // Title
                     node.append("text")
                         .attr("dx", 45)
                         .attr("dy", -20)

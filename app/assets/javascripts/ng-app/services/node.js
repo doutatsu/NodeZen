@@ -18,6 +18,8 @@ angular.module('NodeZen').factory('node', ['Restangular', '$q',
                     target: graphData[i].target,
                     tooltip: graphData[i].tooltip,
                     link: graphData[i].link,
+                    kind: graphData[i].kind,
+                    preview: graphData[i].preview,
                     domain: graphData[i].domain,
                     description: graphData[i].description,
                     group: Math.floor((Math.random() * 20) + 1)
