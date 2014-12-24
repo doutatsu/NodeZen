@@ -29,10 +29,11 @@
   fill: rgb(156,217,240);
 }
 .d3-tip{
+  // line-height: 0;
   padding: 0 !important;
   border-radius: 4px !important;
   div{
-    margin: 10px 0 10px 5px;
+    padding: 10px;
     font-family: open_sansregular;
   }
 }
@@ -41,5 +42,6 @@
   border: none !important; 
 }
 .preview{
-  max-width: 400px;
+  position: relative;
+  max-width: 100%;
 }
