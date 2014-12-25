@@ -1,5 +1,5 @@
 angular.module('NodeZen')
-    .directive('graph', ['$window', 'd3tip', function ($window, d3tip) {
+    .directive('graph', ['$window', 'd3tip','$filter', function ($window, d3tip, $filter) {
  
         var width;
         var height = 700 - .5;
@@ -68,8 +68,20 @@ angular.module('NodeZen')
 						.friction(.8)
 						.linkStrength(9)
 						.linkDistance( function(d) { if (width < height) { return width*1/3; } else { return height*1/3 } } ) // Controls edge length
-                        .size([width, height]);
-
+                        .size([width, height])
+                        .on('start', function(){
+                            svg.style("opacity", "0")
+                            // console.log("started")
+                            // var nodes = svg.selectAll(".node")
+                            // console.log(d3.selectAll(nodes))
+                            // .style("opacity", "0");
+                        })
+                        .on('end', function(){
+                            svg
+                            .transition()
+                                .duration(450)
+                                .style("opacity", "1")
+                        });
 
                     force.nodes(data.nodes)
                         .links(edges)
@@ -86,18 +98,28 @@ angular.module('NodeZen')
                         .attr("class", "node")
                         .attr("cx", -1*(width/2 - 25))
             			.attr("cy", function(d, i) { return (i*20-height/7*3 + 20); } )
-                        .on('mouseover', tip.show)
+                        // .on('mouseover', tip.show)
                         .on('click', function(node){
-                        	scope.$parent.getNodes(node.id);
-                            // d3.select(this).select("circle").transition()
-                            // d3.transform(d3.select(this.parentNode).attr("transform")).translate;
-                            // d3.select(this).select("circle").transition()
-                            // .duration(250)
-                            // .attr("x", 500);
+                            var nodes = svg.selectAll(".node") // load all nodes
+                            var root = nodes[0][nodes[0].length-1] // store middle node
+                            // Move chosen node to the middle
+                            d3.select(this)
+                              .transition()
+                                  .duration(750)
+                                  .attr("transform", d3.select(root).attr("transform"))
+                            var circleUnderMouse = this;
+                            // select everything except the node we've chosen
+                            d3.selectAll(nodes[0]).filter(function(d,i) {
+                              return (this !== circleUnderMouse);
+                            })
+                            // Fade out everything else
+                            .transition()
+                                .duration(750)
+                                .style('opacity','0');
+                            // load node children
+                            
                         })
                         .call(force.drag);
-                    node.transition()
-                      .style('r', 100);
                     // Title container
                     node.append("line")
                         .style("stroke", "black")          // colour the line
@@ -139,7 +161,7 @@ angular.module('NodeZen')
                         .attr("font", "13px open_sansregular")
                         .attr("fill", "white")
                         .text(function (d) {
-                            return d.name
+                            return $filter('limitTo')(d.name, 10) 
                         });
 
                     force.on("tick", function () {
@@ -162,7 +184,10 @@ angular.module('NodeZen')
                         node.attr("transform", function (d) {
                             return "translate(" + d.x + "," + d.y + ")";
                         });   
-                    });
+                    })
+                    // force.on('end', function(){
+                    //     node[0].style("opacity", "0");
+                    // });
                 }
             }
         }
