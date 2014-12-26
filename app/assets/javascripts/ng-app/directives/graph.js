@@ -56,48 +56,99 @@ angular.module('NodeZen')
 						        targetNode = data.nodes.filter(function(n) { return n.id === e.target; })[0];
 
 						    // Add the edge to the array
-						    edges.push({source: sourceNode, target: targetNode});
+						    edges.push({source: sourceNode, target: targetNode, weight : Math.random()});
 						});
                 	}
 
+                	var labels = [];
+                	var labelsEdges = [];
+                	data.nodes.forEach(function(node){
+                		labels.push({
+							node : node
+						});
+                	})
 
+
+                	var i = 0;
+					data.nodes.forEach(function(edge){
+						 labelsEdges.push({
+						 	source : 0,
+						 	target : i + 1,
+						 	weight : 1
+						 })
+					});
+					
                     window.force = d3.layout.force()
-						.charge(-1000)
-						.gravity(.01)
-						.friction(.2)
-						.linkStrength(9)
-						.linkDistance( function(d) { if (width < height) { return width*1/3; } else { return height*1/3 } } ) // Controls edge length
-                        .size([width, height]);
+						.charge(-3000)
+						.gravity(1)
+						//.friction(0.8)
+						.linkStrength(function(x) {
+							return 12;
+						})
+						.linkDistance(function(d,i){
+							 var dist = (i % 2 == 0) ? 250 : 275;
+							 return dist;
+						})
+                       .size([width, height]);  
 
+                    window.force2 = d3.layout.force()
+									.charge(-3000)
+									.gravity(1)
+									.linkStrength(8)
+									.linkDistance(0)
+			                        .size([width, height]);  
 
                     force.nodes(data.nodes)
                         .links(edges)
                         .start();
+
+                    force2.nodes(labels)
+                    	.links(labelsEdges)
+                    	.start();
+
 
                     var link = svg.selectAll(".link")
                         .data(edges)
                         .enter().append("line")
                         .attr("class", "link");
 
+                    var label = svg.selectAll(".label")
+                    			.data(force2.nodes())
+                    			.enter().append("g")
+                    			.attr("class", "label")
+
+                    label.append("line")
+		                    .style("stroke", "black")          // colour the line
+		                    .style("stroke-width", 20)         // adjust line width
+		                    .style("stroke-linecap", "round")  // stroke-linecap type
+		                    .attr("x1", -20)     // x position of the first end of the line
+		                    .attr("x2", 200)     // x position of the second end of the line
+		                    .attr("y1", -25)     // x position of the first end of the line
+		                    .attr("y2", -25);     // x position of the second end of the line
+			            	label.append("text")
+			            	.attr("dx", 20)
+                      		.attr("dy", -20)
+			                .attr("pointer-events", "none")
+		                    .attr("font", "13px open_sansregular")
+		                    .attr("fill", "white")
+		                    .text(function (d) {
+		                        return d.node.name.substring(0, 28) + "...";;
+		                    });
+
+
+                    var labelLinks = svg.selectAll(".Labellink").data(labelsEdges)
+
                     var node = svg.selectAll(".node")
-                        .data(data.nodes)
+                        .data(force.nodes())
                         .enter().append("g")
                         .attr("class", "node")
                         .attr("cx", -1*(width/2 - 25))
             			.attr("cy", function(d, i) { return (i*20-height/7*3 + 20); } )
-                        .on('mouseover', tip.show)
+                        //.on('mouseover', tip.show)
                         .on('click', function(node){
-                        	scope.$parent.getNodes(node.id);
+                        	//scope.$parent.getNodes(node.id);
                         })
-                        .call(force.drag);
-                    node.append("line")
-                        .style("stroke", "black")          // colour the line
-                        .style("stroke-width", 20)         // adjust line width
-                        .style("stroke-linecap", "round")  // stroke-linecap type
-                        .attr("x1", 20)     // x position of the first end of the line
-                        .attr("x2", 200)     // x position of the second end of the line
-                        .attr("y1", -25)     // x position of the first end of the line
-                        .attr("y2", -25)     // x position of the second end of the line
+                        //.call(force.drag);
                     node.append("circle")
                         .attr("x", -64)
                         .attr("y", -32)
@@ -116,36 +167,56 @@ angular.module('NodeZen')
                         .attr('font-size', '30px')
                         .attr('fill', 'black')
                         .text(function(d) { return '\uf04b' }); 
-                    node.append("text")
-                        .attr("dx", 45)
-                        .attr("dy", -20)
-                        .attr("pointer-events", "none")
-                        .attr("font", "13px open_sansregular")
-                        .attr("fill", "white")
-                        .text(function (d) {
-                            return d.name
-                        });
+
+					var updateLink = function() {
+						this.attr("x1", function(d) {
+							return d.source.x;
+						}).attr("y1", function(d) {
+							return d.source.y;
+						}).attr("x2", function(d) {
+							return d.target.x;
+						}).attr("y2", function(d) {
+							return d.target.y;
+						});
+
+					}
+
+					var updateNode = function() {
+						this.attr("transform", function(d) {
+							return "translate(" + d.x + "," + d.y + ")";
+						});
+
+					}
 
                     force.on("tick", function () {
+                    	force2.start();
                     	//last node in the array is the root node, so center it
                     	data.nodes[data.nodes.length-1].x = width / 2;
                     	data.nodes[data.nodes.length-1].y = height/ 2;
-                        link.attr("x1", function (d) {
-                            return d.source.x;
-                        })
-                            .attr("y1", function (d) {
-                                return d.source.y;
-                            })
-                            .attr("x2", function (d) {
-                                return d.target.x;
-                            })
-                            .attr("y2", function (d) {
-                                return d.target.y;
-                            });
 
-                        node.attr("transform", function (d) {
-                            return "translate(" + d.x + "," + d.y + ")";
-                        });   
+                        node.call(updateNode);
+                        node.each(function(d,i){
+                        	var offset = 0;
+                        	node.each(function(o,i){
+                        		if(Math.random() * (999) < 5 ){
+                        		if(Math.abs(d.y - o.y) < 20){
+                        			offset = d.y - o.y > 0 ? -5 : 5;
+                        		}
+                        		}
+                        	})
+                        	//console.log(d.y);
+                        	//console.log(d);
+                        	d.y += offset;
+                        })
+
+                    	label.each(function(d, i) {
+							d.x = d.node.x;
+							d.y = d.node.y;
+						});
+                    	label.call(updateNode);
+
+                        link.call(updateLink);
+                        labelLinks.call(updateLink);
                     });
                 }
             }
