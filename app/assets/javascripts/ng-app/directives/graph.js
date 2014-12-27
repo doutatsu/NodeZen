@@ -89,17 +89,17 @@ angular.module('NodeZen')
 						})
 						.size([width, height])
                         .on('start', function(){
-                            svg.style("opacity", "0")
+                            //svg.style("opacity", "0")
                             // console.log("started")
                             // var nodes = svg.selectAll(".node")
                             // console.log(d3.selectAll(nodes))
                             // .style("opacity", "0");
                         })
                         .on('end', function(){
-                            svg
-                            .transition()
-                                .duration(450)
-                                .style("opacity", "1")
+                            // svg
+                            // .transition()
+                            //     .duration(450)
+                            //     .style("opacity", "1")
                         });
 
                     window.force2 = d3.layout.force()
@@ -132,7 +132,7 @@ angular.module('NodeZen')
 		                    .style("stroke", "black")          // colour the line
 		                    .style("stroke-width", 20)         // adjust line width
 		                    .style("stroke-linecap", "round")  // stroke-linecap type
-		                    .attr("x1", -20)     // x position of the first end of the line
+		                    .attr("x1", -18)     // x position of the first end of the line
 		                    .attr("x2", 200)     // x position of the second end of the line
 		                    .attr("y1", -25)     // x position of the first end of the line
 		                    .attr("y2", -25);     // x position of the second end of the line
@@ -143,7 +143,7 @@ angular.module('NodeZen')
 		                    .attr("font", "13px open_sansregular")
 		                    .attr("fill", "white")
 		                    .text(function (d) {
-		                        return $filter('limitTo')(d.name, 10) + "...";
+		                        return $filter('limitTo')(d.node.name, 23) + "...";
 		                    });
 
 
@@ -233,9 +233,9 @@ angular.module('NodeZen')
                         	var offset = 0;
                         	node.each(function(o,i){
                         		if(Math.random() * (999) < 5 ){
-                        		if(Math.abs(d.y - o.y) < 20){
-                        			offset = d.y - o.y > 0 ? -5 : 5;
-                        		}
+	                        		if(Math.abs(d.y - o.y) < 20){
+	                        			offset = d.y - o.y > 0 ? -5 : 5;
+	                        		}
                         		}
                         	})
                         	//console.log(d.y);
