@@ -14,6 +14,7 @@ angular.module('NodeZen')
             link: function (scope, element, attrs) {
 
             	width = angular.element($window)[0].innerWidth;
+            	var rePopulateHeights = true;
 
                 var svg = d3.select(element[0])
                     .append("svg")
@@ -222,25 +223,61 @@ angular.module('NodeZen')
 
 					}
 
+					var getMin = function(array){
+					    return Math.min.apply(Math,array);
+					}
+
+					var getMax = function(array){
+					    return Math.max.apply(Math,array);
+					}
+
                     force.on("tick", function () {
                     	force2.start();
                     	//last node in the array is the root node, so center it
                     	data.nodes[data.nodes.length-1].x = width / 2;
                     	data.nodes[data.nodes.length-1].y = height/ 2;
+                    	var rootNodePos = height/ 2;
+                    	var nodeHeights = [];
+                    	var highestNode;
+                    	var lowestNode;
 
                         node.call(updateNode);
+						
+						if(rePopulateHeights){
+	                        for(var i = 0; i < data.nodes.length; i++){
+	                        	nodeHeights.push(data.nodes[i].y);
+	                        }
+	                    	highestNode = getMax(nodeHeights);
+	                    	lowestNode = getMin(nodeHeights);
+	                    	rePopulateHeights = false;
+                    	}
+
+						/* fix */
                         node.each(function(d,i){
                         	var offset = 0;
                         	node.each(function(o,i){
-                        		if(Math.random() * (999) < 5 ){
+                        		if(Math.random() * (999) < 10 ){
 	                        		if(Math.abs(d.y - o.y) < 20){
-	                        			offset = d.y - o.y > 0 ? -5 : 5;
+	                        			if(rootNodePos != d.y && rootNodePos != o.y && d.y != o.y){
+	                        				offset = d.y - o.y > 0 ? -10 : 10;
+	                        				if(d.y == highestNode){
+	                        					o.y += offset * 2;
+	                        				} else if(d.y == lowestNode){
+	                        					o.y -= offset * 2;
+	                        				} else if(o.y == highestNode){
+	                        					d.y += offset * 2;
+	                        				} else if(o.y == lowestNode){
+	                        					d.y -= offset * 2;
+	                        				} else {
+	                        					d.y += offset;
+		                        				o.y -= offset;
+	                        				}
+	                        				rePopulateHeights = true;
+                        				}
 	                        		}
                         		}
                         	})
-                        	//console.log(d.y);
-                        	//console.log(d);
-                        	d.y += offset;
+                        	
                         })
 
                     	label.each(function(d, i) {
