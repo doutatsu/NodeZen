@@ -21,21 +21,27 @@
 /* 
   d3js vis
 */
-.link {
-  stroke: #ccc;
-}
+// .link {
+//   stroke: #ccc;
+// }
 .node circle {
-  fill: white;
+  // fill: white;
+  fill: rgb(156,217,240);
 }
 .d3-tip{
+  // line-height: 0;
   padding: 0 !important;
   border-radius: 4px !important;
   div{
-    margin: 10px 0 10px 5px;
+    padding: 10px;
     font-family: open_sansregular;
   }
 }
 .widget{
   border-radius: 0 !important; 
   border: none !important; 
+}
+.preview{
+  position: relative;
+  max-width: 100%;
 }

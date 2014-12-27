@@ -11,11 +11,6 @@ window.App = angular
          * Routes and States
          */
         $stateProvider
-            .state('index', {
-                controller: 'init',
-                url: "/",
-                templateUrl: "views/init.html"
-            })
             .state('graph', {
                 controller: 'graph',
                 url: "/d3",

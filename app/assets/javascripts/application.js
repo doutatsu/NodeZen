@@ -16,8 +16,6 @@
 //= require angular-animate
 //= require angular-ui-router
 //= require angular-rails-templates
-//= require cytoscape
-//= require cytoscape-qtip
 //= require d3
 //= require d3-tip
 //= require qtip2

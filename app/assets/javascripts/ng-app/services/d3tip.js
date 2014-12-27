@@ -39,6 +39,9 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             } else if(node.domain === "spotify"){
                 toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
             }
+            else if(node.kind === "article"){
+                toolTipContent += '<img class="preview" src="' + node.preview + '"></img>'
+            }
 
             //desc
             toolTipContent += 

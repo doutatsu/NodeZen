@@ -1,9 +1,10 @@
 angular.module('NodeZen')
-    .directive('graph', ['$window', 'd3tip', function ($window, d3tip) {
+    .directive('graph', ['$window', 'd3tip','$filter', function ($window, d3tip, $filter) {
  
         var width;
         var height = 700 - .5;
         var colour = d3.interpolateRgb("#f77", "#77f");
+        var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac"}
 
         return {
             restrict: 'E',
@@ -81,15 +82,25 @@ angular.module('NodeZen')
                     window.force = d3.layout.force()
 						.charge(-3000)
 						.gravity(1)
-						//.friction(0.8)
-						.linkStrength(function(x) {
-							return 12;
-						})
+						.linkStrength(12)
 						.linkDistance(function(d,i){
 							 var dist = (i % 2 == 0) ? 250 : 275;
 							 return dist;
 						})
-                       .size([width, height]);  
+						.size([width, height])
+                        .on('start', function(){
+                            svg.style("opacity", "0")
+                            // console.log("started")
+                            // var nodes = svg.selectAll(".node")
+                            // console.log(d3.selectAll(nodes))
+                            // .style("opacity", "0");
+                        })
+                        .on('end', function(){
+                            svg
+                            .transition()
+                                .duration(450)
+                                .style("opacity", "1")
+                        });
 
                     window.force2 = d3.layout.force()
 									.charge(-3000)
@@ -126,13 +137,13 @@ angular.module('NodeZen')
 		                    .attr("y1", -25)     // x position of the first end of the line
 		                    .attr("y2", -25);     // x position of the second end of the line
 			            	label.append("text")
-			            	.attr("dx", 20)
+			            	.attr("dx", 45)
                       		.attr("dy", -20)
 			                .attr("pointer-events", "none")
 		                    .attr("font", "13px open_sansregular")
 		                    .attr("fill", "white")
 		                    .text(function (d) {
-		                        return d.node.name.substring(0, 28) + "...";;
+		                        return $filter('limitTo')(d.name, 10) + "...";
 		                    });
 
 
@@ -144,9 +155,26 @@ angular.module('NodeZen')
                         .attr("class", "node")
                         .attr("cx", -1*(width/2 - 25))
             			.attr("cy", function(d, i) { return (i*20-height/7*3 + 20); } )
-                        //.on('mouseover', tip.show)
+                        // .on('mouseover', tip.show)
                         .on('click', function(node){
-                        	//scope.$parent.getNodes(node.id);
+                            var nodes = svg.selectAll(".node") // load all nodes
+                            var root = nodes[0][nodes[0].length-1] // store middle node
+                            // Move chosen node to the middle
+                            d3.select(this)
+                              .transition()
+                                  .duration(750)
+                                  .attr("transform", d3.select(root).attr("transform"))
+                            var circleUnderMouse = this;
+                            // select everything except the node we've chosen
+                            d3.selectAll(nodes[0]).filter(function(d,i) {
+                              return (this !== circleUnderMouse);
+                            })
+                            // Fade out everything else
+                            .transition()
+                                .duration(750)
+                                .style('opacity','0');
+                            // load node children
+                            
                         })
                         //.call(force.drag);
                     node.append("circle")
@@ -154,11 +182,14 @@ angular.module('NodeZen')
                         .attr("y", -32)
                         .attr("r", 40)
                         .style("stroke", "gray")
-                    node.append("circle")
-                        .attr("x", -64)
-                        .attr("y", -32)
-                        .attr("r", 37)
-                        .style("stroke", "black")
+                        .style("stroke-width", 2)    // set the stroke width
+                    // Second Circle
+                    // node.append("circle")
+                    //     .attr("x", -64)
+                    //     .attr("y", -32)
+                    //     .attr("r", 37)
+                    //     .style("stroke", "black")
+                    // Icons
                     node.append('text')
                         .attr('text-anchor', 'middle')
                         .attr("pointer-events", "none")
@@ -166,7 +197,10 @@ angular.module('NodeZen')
                         .attr('font-family', 'FontAwesome')
                         .attr('font-size', '30px')
                         .attr('fill', 'black')
-                        .text(function(d) { return '\uf04b' }); 
+                        .text(function(d) { 
+                            return icons_codes[d.kind]; 
+                        }); 
+                   
 
 					var updateLink = function() {
 						this.attr("x1", function(d) {
