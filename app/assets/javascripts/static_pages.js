@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  examples();
+  //examples();
 
   var height = $('.cover').height()
   $('#main').css('margin-top',height);
