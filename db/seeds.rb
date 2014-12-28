@@ -6,6 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Music tier 2
+
+psy_edges = Node.create([
+  {title: "PSY - GENTLEMAN M/V", description: "PSY - GENTLEMAN M/V", link: "https://www.youtube.com/watch?v=ASO_zypdnsQ", kind: "video"},
+])
+psy_edges.map! { |node| node.id }
+
 # Music
 music = Node.create([
   {title: "Tree of Life", description: "The Most Epic Music", link: "https://soundcloud.com/themostepicmusic/tree-of-life", kind: "music"},
@@ -13,7 +20,7 @@ music = Node.create([
   {title: "Why are female pop stars frequently accused of being men?", description: "Iggy Azalea is the latest prominent female popstar to be ‘called out’ for being born male. Are the false accusations just a rite of passage for singers, or something more sinister?", link: "http://www.theguardian.com/music/2014/dec/19/female-popstars-accused-of-being-men", preview: "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/12/18/1418917450105/3a9bb6c4-b2eb-475e-a7cd-87e7541aaad2-2060x1236.jpeg", kind: "article"},
   {title: "2-Hours Epic Music Mix | Most Beautiful & Emotional Music - Emotional Mix Vol. 1", description: "2-Hours filled with some of the most beautiful/emotional tracks of all times. Lose yourself in its beauty", link: "https://www.youtube.com/watch?v=guXMb7zLblM", kind: "video"},
   {title: "Madonna to release new album Monday", description: "Madonna's already leaked new album is expected to be released stealth style on Monday.Madonna has had multiple issues with leaked new music. Since 2000 they have tended to happen right at that moment when they can create maximum publicity.", link: "http://www.music-news.com/shownews.asp?H=Madonna-to-release-new-album-Monday&nItemID=85878", preview: "http://www.music-news.com/images/logo.png?24/12/2014%2015:39:17", kind: "article"},
-  {title: "PSY - GANGNAM STYLE (강남스타일) M/V", description: "PSY - Gangnam Style (강남스타일)", link: "https://www.youtube.com/watch?v=9bZkp7q19f0", kind: "video"}
+  {title: "PSY - GANGNAM STYLE (강남스타일) M/V", description: "PSY - Gangnam Style (강남스타일)", link: "https://www.youtube.com/watch?v=9bZkp7q19f0", edges: psy_edges.join(','), kind: "video"}
 ])
 
 # News

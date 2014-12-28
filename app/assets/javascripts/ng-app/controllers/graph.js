@@ -63,5 +63,6 @@ angular.module('NodeZen').controller('graph', ["$scope", "Restangular", "node", 
 
         };        
         // $scope.getData();
-        $scope.getNodes(18);
+        $scope.getNodes(19);
+
 }]);

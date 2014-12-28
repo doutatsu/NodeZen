@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  examples();
+  // examples();
 
   var height = $('.cover').height()
   $('#main').css('margin-top',height);
@@ -126,7 +126,7 @@ function examples(){ // on dom ready
       { data: { source: '1', target: '4' } },
       { data: { source: '1', target: '5' } },
       { data: { source: '1', target: '6' } },
-      { data: { source: '1', target: '7' } },
+      { data: { source: '1', target: '7' } }
     ]
   };
 
@@ -313,8 +313,8 @@ function examples(){ // on dom ready
   // Undraggable nodes
   cy_values.autoungrabify(true);
 
-  cy_graph.height(300)
-  cy_graph.width(300)
+  cy_graph.height(300);
+  cy_graph.width(300);
   cy_graph.zoomingEnabled(false);
   cy_graph.userZoomingEnabled(false);
   cy_graph.userPanningEnabled(false);
