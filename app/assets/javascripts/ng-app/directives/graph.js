@@ -25,10 +25,13 @@ angular.module('NodeZen')
           };
 
           scope.$watch('data', function () {
-            svg.selectAll('*').data([]).text(function (d) {
-              return d.name;
-            }).exit().remove();
-            scope.render(scope.data);
+              svg.selectAll('*').data([]).text(function (d) {
+                return d.name;
+              }).exit().remove();
+
+              if(scope.data){
+                scope.render(scope.data);
+              }
           }, true);
 
           scope.render = function (data) {

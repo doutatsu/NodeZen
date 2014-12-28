@@ -12,7 +12,7 @@ window.App = angular
          */
         $stateProvider
             .state('graph', {
-                controller: 'graph',
+                controller: 'GraphCtrl',
                 url: "/d3",
                 templateUrl: "views/d3.html"
             });
