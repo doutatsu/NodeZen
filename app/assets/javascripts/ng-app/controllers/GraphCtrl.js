@@ -1,6 +1,7 @@
-angular.module('NodeZen').controller('graph', ["$scope", "Restangular", "node", "$q",
+angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "node", "$q",
     function ($scope, Restangular, node, $q) {
-        $scope.graphData = {};
+        $scope.graphData = null;
+        $scope.journeyLine = [];
         var nodeCollection;
         
         $scope.getData = function () {
@@ -56,7 +57,7 @@ angular.module('NodeZen').controller('graph', ["$scope", "Restangular", "node", 
                 childrenPromise.then(function(childNodes){
                     nodes = childNodes;
                     nodes.push(rootNode);
-                    
+                    $scope.journeyLine.push(rootNode);
                     $scope.graphData = node.constructD3Data(nodes);
                 })
             })

@@ -29,7 +29,9 @@ angular.module('NodeZen')
                     svg.selectAll('*').data([]).text(function (d) {
                         return d.name;
                     }).exit().remove();
-                    scope.render(scope.data);
+                    if(scope.data){
+                    	scope.render(scope.data);
+                	}
                 }, true);
 
                 scope.render = function (data) {
