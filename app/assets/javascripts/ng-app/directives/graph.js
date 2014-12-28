@@ -177,6 +177,7 @@ angular.module('NodeZen')
                                 .duration(750)
                                 .style('opacity','0');
                             // load node children
+                            scope.$parent.getNodes(node.id);
                             
                         })
                         //.call(force.drag);
