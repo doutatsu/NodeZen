@@ -86,11 +86,12 @@ angular.module('NodeZen')
 					})
 					.size([width, height])
           // When force layout starts to get calcualted
-          .on('start', function(){
-            svg.style("opacity", "0")
-          })
+          // .on('start', function(){
+          //   svg.style("opacity", "0")
+          // })
           // Force layout and node positions calcualted
           .on('end', function(){
+            console.log("force layout ended");
             svg.transition()
               .duration(450)
               .style("opacity", "1")
@@ -99,6 +100,7 @@ angular.module('NodeZen')
             var labels                 = svg.selectAll(".label")
             var rootNode               = nodes[0][nodes[0].length-1] // store middle node
             var rootLabel              = label[0][label[0].length-1] // store middle node
+            var links                  = svg.selectAll(".link")
             var originalNodePositions  = {};
             var originalLabelPositions = {};
             // Save original node positions
@@ -120,28 +122,26 @@ angular.module('NodeZen')
                 .duration(1)
                 .attr("transform", d3.select(rootLabel).attr("transform"))
             // retract all edges
-            console.log(d3.selectAll(svg.selectAll(".link"))[0][0])
-            // d3.selectAll(svg.selectAll(".link"))
-            //   .transition()
-            //     .duration(1)
-            //     .attr("transform", d3.select(rootLabel).attr("transform"))
+
             // After everything hidden, return nodes and edges to their original positions
-            setInterval(function(){ 
-              // return nodes
-              d3.selectAll(nodes[0]).each(function(d,i) {
-                d3.select(this)
-                  .transition()
-                    .duration(750)
-                    .attr("transform", originalNodePositions[d.index].transform)
-              })
-              // return labels
-              d3.selectAll(labels[0]).each(function(d,i) {
-                d3.select(this)
-                  .transition()
-                    .duration(750)
-                    .attr("transform", originalLabelPositions[d.index].transform)
-              })
-            }, 750);
+            // setInterval(function(){ 
+            //   // return nodes
+            //   d3.selectAll(nodes[0]).each(function(d,i) {
+            //     if (this !== rootNode) {
+            //       d3.select(this)
+            //         .transition()
+            //           .duration(750)
+            //           .attr("transform", originalNodePositions[d.index].transform)
+            //     };
+            //   })
+            //   // return labels
+            //   d3.selectAll(labels[0]).each(function(d,i) {
+            //     d3.select(this)
+            //       .transition()
+            //         .duration(750)
+            //         .attr("transform", originalLabelPositions[d.index].transform)
+            //   })
+            // }, 750);
           });
 
           window.force2 = d3.layout.force()
@@ -216,7 +216,8 @@ angular.module('NodeZen')
                       .attr("transform", d3.select(rootNode).attr("transform"))
                     .each("end", function() {
                       // load node children
-                      scope.$parent.getNodes(node.id);
+                      console.log("hi")
+                      // scope.$parent.getNodes(node.id);
                     })
                   // Move chosen node's label to the middle
                   d3.select(selectedLabel)
