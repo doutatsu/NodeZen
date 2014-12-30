@@ -36,6 +36,7 @@ angular.module('NodeZen').factory('node', ['Restangular', '$q',
                 };
             }
 
+            
             nodeCollection = {
                 nodes: nodes,
                 links: links

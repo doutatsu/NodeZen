@@ -20,7 +20,6 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'd3tip', function
                 svg.selectAll('*').data([]).text(function (d) {
                     return d.name;
                 }).exit().remove();
-                // console.log(scope.journeyLine);
                 scope.render(scope.journeyLine);
             }, true);
 
