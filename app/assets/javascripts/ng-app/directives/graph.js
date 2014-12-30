@@ -62,14 +62,14 @@ angular.module('NodeZen')
 
             data.nodes.forEach(function(node, i){
               
-              var angleBetweenEachNode = 360 / (data.nodes.length - 1);
+              var angleBetweenEachNode = (360 / (data.nodes.length - 1));
               var angleOfCurrentNode = i * angleBetweenEachNode;
-              var edgeLength = 150;
+              var edgeLength = 300;
               var deg2rad = Math.PI/180;
               var rad2deg = 180/Math.PI;
               var centreNode = {x : width/2, y: height/2};
               var nodeTransform = {x : null, y : null};
-
+              var calculatedPosition = {};
 
               if(angleOfCurrentNode <= 45){
                 y = Math.sin( angleOfCurrentNode * deg2rad ) * edgeLength;
@@ -115,50 +115,86 @@ angular.module('NodeZen')
               }
 
               if(data.nodes.length-1 == i){
-                node.calculatedPosition = centreNode;
+                calculatedPosition = centreNode;
               } else {
-                node.calculatedPosition = {x: centreNode.x + nodeTransform.x, y : centreNode.y + nodeTransform.y, test: "n"};
+                calculatedPosition = {x: centreNode.x + nodeTransform.x, y : centreNode.y + nodeTransform.y, test: "n"};
               }
 
-              nodePos.push(node.calculatedPosition);
-              console.log(node.calculatedPosition, i);
-              //console.log(angleOfCurrentNode); 
+              nodePos.push(calculatedPosition);
             })
- var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac"}
+
+            var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac"}
     
-            svg .selectAll(".node")
+            var nodes = svg
+                .selectAll(".node")            
                 .data(data.nodes)
                 .enter()
-                .append("g")
-                .append("circle")
+                .append("g");
+                
+                nodes.append("line")
+                .style("stroke", "black")          // colour the line
+                .style("stroke-width", 20)         // adjust line width
+                .style("stroke-linecap", "round")  // stroke-linecap type
+                .attr("x1", function(d, i){
+                  return nodePos[i].x;
+                })     // x position of the first end of the line
+                .attr("x2", function(d, i){
+                  return nodePos[i].x + 225;
+                })      // x position of the second end of the line
+                .attr("y1", function(d, i){
+                  return nodePos[i].y - 25;
+                })      // x position of the first end of the line
+                .attr("y2", function(d, i){
+                  return nodePos[i].y - 25;
+                })      // x position of the second end of the line
+
+                nodes.append("circle")
                 .attr("class", "node")          
                 .attr("x", -64)
                 .attr("y", -32)
                 .attr("r", 40)
-                .style("stroke", "red")
+                .style("stroke", "gray")
                 .style("stroke-width", 2)
                 .attr("cx", function(d, i){
-                  console.log(nodePos[i], i, "rendered");
                   return nodePos[i].x;
                 })
                 .attr("cy", function(d, i){
                   return nodePos[i].y;
                 })
-                .append('text')
+
+                nodes.append('text')
                 .attr('text-anchor', 'middle')
                 .attr("pointer-events", "none")
                 .attr('dominant-baseline', 'central')
                 .attr('font-family', 'FontAwesome')
                 .attr('font-size', '30px')
-                .attr('fill', 'gray')
-                .text(function(d) { 
+                .attr('fill', 'white')
+                .attr("x", function(d, i){
+                  return nodePos[i].x;
+                })
+                .attr("y", function(d, i){
+                  return nodePos[i].y;
+                })
+                .text(function(d) {
+                  console.log(icons_codes[d.kind]); 
                   return icons_codes[d.kind]; 
-                }); 
+                });
                 
-          	// nasty code will be changed to an actual service over factory as more appropiate 
-            //labelFactory.initializeLabels(data);
-            //var labels = labelFactory.getAllLabels();
-            //var labelsEdges = labelFactory.getAllLabelsEdges();
+                nodes.append("text")
+                .attr("dx", 45)
+                .attr("dy", -20)
+                .attr("x", function(d, i){
+                  return nodePos[i].x;
+                })
+                .attr("y", function(d, i){
+                  return nodePos[i].y;
+                })
+                .attr("pointer-events", "none")
+                .attr("font", "13px open_sansregular")
+                .attr("fill", "white")
+                .text(function (d) {
+                  return $filter('limitTo')(d.name, 23) + "...";
+                });
 
           }
         }

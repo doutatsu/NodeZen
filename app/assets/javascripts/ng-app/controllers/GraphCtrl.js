@@ -60,7 +60,6 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                     nodes.push(rootNode);
                     $scope.addToJourneyLine(rootNode);
                     $scope.graphData = node.constructD3Data(nodes);
-                    console.log($scope.graphData);
                 })
             })
 
