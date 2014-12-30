@@ -84,31 +84,31 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 				calculations
 
 			*/
-			var height = svg[0][0].clientHeight;
-			var width = svg[0][0].clientWidth;
-			var posX = d.x;
-			var posY = d.y;
-			var firstLevelHeight = height * (1/3);
-			var secondLevelHeight = height * (2/3);
-			var firstLevelDepth = width * (1/3);
-			var secondLevelDepth = width * (2/3);
+      var height            = svg[0][0].clientHeight;
+      var width             = svg[0][0].clientWidth;
+      var posX              = d.x;
+      var posY              = d.y;
+      var firstLevelHeight  = height * (1/3);
+      var secondLevelHeight = height * (2/3);
+      var firstLevelDepth   = width * (1/3);
+      var secondLevelDepth  = width * (2/3);
 
 			var level;
 			var depth;
-			var mappings = [];
-			mappings[0] = "se";
-			mappings[1] = "s";
-			mappings[2] = "sw";
-			mappings[3] = "e";
-			mappings[4] = [];
-			mappings[4][0] = "se";
-			mappings[4][1] = "sw";
-			mappings[4][2] = "ne";
-			mappings[4][3] = "nw";
-			mappings[5] = "w";
-			mappings[6] = "ne";
-			mappings[7] = "n";
-			mappings[8] = "nw";
+      var mappings   = [];
+      mappings[0]    = "se";
+      mappings[1]    = "s";
+      mappings[2]    = "sw";
+      mappings[3]    = "e";
+      mappings[4]    = [];
+      mappings[4][0] = "se";
+      mappings[4][1] = "sw";
+      mappings[4][2] = "ne";
+      mappings[4][3] = "nw";
+      mappings[5]    = "w";
+      mappings[6]    = "ne";
+      mappings[7]    = "n";
+      mappings[8]    = "nw";
 
 			if(posY < firstLevelHeight){
 				level = 0;
