@@ -132,23 +132,28 @@ angular.module('NodeZen')
           .append("g")
           .on('mouseover', tip.show)
           .on('click', function(node){
+
             var selectedNode = this;
-            var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value
-            var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value
+            var x = nodePos[nodes[0].length-1].x - selectedNode.children[2].cx.baseVal.value
+            var y = nodePos[nodes[0].length-1].y - selectedNode.children[2].cy.baseVal.value
             console.log(nodes)
             console.log(x)
             console.log(y)
             console.log(nodePos)
+            
+            d3.select(selectedNode.children[0]).transition().duration(1).style('opacity','0')
             // Move chosen node to the middle
             d3.select(selectedNode)
               .transition()
                 .duration(750)
-                .ease("linear")
+                .ease("cubic-in-out")
                 .attr("transform", "translate(" + x + "," + y + ")")
               .each("end", function() {
                 // load node children
+                tip.hide;
                 scope.$parent.getNodes(node.id);
               })
+
             // select all the nodes except the node we've chosen
             d3.selectAll(nodes[0]).filter(function(d,i) {
               return (this !== selectedNode);
