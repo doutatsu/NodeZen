@@ -129,8 +129,7 @@ angular.module('NodeZen')
           .selectAll(".edges")            
           .data(data.nodes)
           .enter()
-
-        edges.append("line")
+          .append("line")
           .style("stroke", "black")          // colour the line
           .style("stroke-width", 2)         // adjust line width
           .style("stroke-linecap", "round")  // stroke-linecap type
@@ -161,16 +160,19 @@ angular.module('NodeZen')
 
             console.log(edges);
             console.log(nodes);
+
             //collapse the edge line towards the centre
-            d3.selectAll(edges).filter(function(d,i) {
-              //return (this !== selectedNode);
-              //console.log(this);
-              return true;
+            d3.selectAll(edges[0]).filter(function(d,i) {
+              if(d.id === node.id){
+                return true;
+              } else {
+                return false;
+              }
             })
-              .transition()
-              .duration(750)
-              .attr("x2", nodePos[nodePos.length-1].x)
-              .attr("y2", nodePos[nodePos.length-1].y)
+            .transition()
+            .duration(750)
+            .attr("x2", nodePos[nodePos.length-1].x)
+            .attr("y2", nodePos[nodePos.length-1].y)
 
 
             // collapse chosen node towards the centre
@@ -191,8 +193,21 @@ angular.module('NodeZen')
             })
             // Fade them out
             .transition()
-              .duration(750)
-              .style('opacity','0')
+            .duration(750)
+            .style('opacity','0')
+
+            //select all the edges except for the selected node
+            d3.selectAll(edges[0]).filter(function(d,i) {
+              if(d.id !== node.id){
+                return true;
+              } else {
+                return false;
+              }
+            })
+            // Fade them out
+            .transition()
+            .duration(750)
+            .style('opacity','0')
           });
           
 
