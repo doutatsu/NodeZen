@@ -129,15 +129,11 @@ angular.module('NodeZen')
           .data(data.nodes)
           .enter()
           .append("g")
-          .on('mouseover', tip.show)
+          // .on('mouseover', tip.show)
           .on('click', function(node){
             var selectedNode = this;
             var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value
             var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value
-            console.log(nodes)
-            console.log(x)
-            console.log(y)
-            console.log(nodePos)
             // Move chosen node to the middle
             d3.select(selectedNode)
               .transition()
