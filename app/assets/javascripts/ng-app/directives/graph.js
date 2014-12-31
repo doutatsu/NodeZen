@@ -33,8 +33,6 @@ angular.module('NodeZen')
         }, true);
 
         scope.render = function (data) {
-          /* Initialize tooltip */
-				  tip = d3tip.initialize(svg);
 
     			svg.on("click", function(){
     				svg.selectAll(".node").each(function(d, i) { 
@@ -42,7 +40,7 @@ angular.module('NodeZen')
     				})
     			});
   				/* Invoke the tip in the context of your visualization */
-  				svg.call(tip)
+
         	//	to make the edges work 
         	//	we need to map them manually to correct ids
         	//	d3js uses array mapping
@@ -121,8 +119,33 @@ angular.module('NodeZen')
           }
           nodePos.push(calculatedPosition);
         })
-
+        
+        /* Initialize tooltip */
+        tip = d3tip.initialize(svg, nodePos);
+        svg.call(tip)
         var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac"}
+
+        var edges = svg
+          .selectAll(".edges")            
+          .data(data.nodes)
+          .enter()
+
+        edges.append("line")
+          .style("stroke", "black")          // colour the line
+          .style("stroke-width", 2)         // adjust line width
+          .style("stroke-linecap", "round")  // stroke-linecap type
+          .attr("x1", function(d, i){
+            return nodePos[nodePos.length-1].x;
+          })     // x position of the first end of the line
+          .attr("x2", function(d, i){
+            return nodePos[i].x ;
+          })      // x position of the second end of the line
+          .attr("y1", function(d, i){
+            return nodePos[nodePos.length-1].y;
+          })      // x position of the first end of the line
+          .attr("y2", function(d, i){
+            return nodePos[i].y;
+          })      // x position of the second end of the line
 
         var nodes = svg
           .selectAll(".node")            
@@ -131,19 +154,36 @@ angular.module('NodeZen')
           .append("g")
           // .on('mouseover', tip.show)
           .on('click', function(node){
+
             var selectedNode = this;
-            var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value
-            var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value
-            // Move chosen node to the middle
+            var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
+            var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
+
+            console.log(edges);
+            console.log(nodes);
+            //collapse the edge line towards the centre
+            d3.selectAll(edges).filter(function(d,i) {
+              //return (this !== selectedNode);
+              //console.log(this);
+              return true;
+            })
+              .transition()
+              .duration(750)
+              .attr("x2", nodePos[nodePos.length-1].x)
+              .attr("y2", nodePos[nodePos.length-1].y)
+
+            // collapse chosen node towards the centre
             d3.select(selectedNode)
               .transition()
                 .duration(750)
-                .ease("linear")
+                .ease("cubic-in-out")
                 .attr("transform", "translate(" + x + "," + y + ")")
               .each("end", function() {
                 // load node children
+                tip.hide;
                 scope.$parent.getNodes(node.id);
               })
+
             // select all the nodes except the node we've chosen
             d3.selectAll(nodes[0]).filter(function(d,i) {
               return (this !== selectedNode);
@@ -152,9 +192,10 @@ angular.module('NodeZen')
             .transition()
               .duration(750)
               .style('opacity','0')
-            // Extract edges
           });
           
+
+
           nodes.append("line")
             .style("stroke", "black")          // colour the line
             .style("stroke-width", 20)         // adjust line width
@@ -219,6 +260,7 @@ angular.module('NodeZen')
             .text(function (d) {
               return $filter('limitTo')(d.name, 23) + "...";
             });
+
         }
       }
     }
