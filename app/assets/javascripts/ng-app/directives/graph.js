@@ -33,8 +33,6 @@ angular.module('NodeZen')
         }, true);
 
         scope.render = function (data) {
-          /* Initialize tooltip */
-				  tip = d3tip.initialize(svg);
 
     			svg.on("click", function(){
     				svg.selectAll(".node").each(function(d, i) { 
@@ -42,7 +40,7 @@ angular.module('NodeZen')
     				})
     			});
   				/* Invoke the tip in the context of your visualization */
-  				svg.call(tip)
+
         	//	to make the edges work 
         	//	we need to map them manually to correct ids
         	//	d3js uses array mapping
@@ -121,7 +119,10 @@ angular.module('NodeZen')
           }
           nodePos.push(calculatedPosition);
         })
-
+        
+        /* Initialize tooltip */
+        tip = d3tip.initialize(svg, nodePos);
+        svg.call(tip)
         var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac"}
 
         var nodes = svg

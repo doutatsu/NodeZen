@@ -3,15 +3,15 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 
     	var d3tipInstance = {};
 
-    	d3tipInstance.initialize = function(svg){
+    	d3tipInstance.initialize = function(svg, nodePos){
 
 			var d3tip = d3.tip()
 			.attr('class', 'd3-tip')
 			.html(function(d) {
 				return d3tipInstance.generateTooltipContent(d);
 			})
-			.direction(function(d){
-				return d3tipInstance.calculateToolTipDirection(d, svg);
+			.direction(function(d, i){
+				return d3tipInstance.calculateToolTipDirection(d, i, nodePos, svg);
 			});
 
 			return d3tip;
@@ -64,7 +64,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 				});
         }
 
-		d3tipInstance.calculateToolTipDirection = function(d, svg){
+		d3tipInstance.calculateToolTipDirection = function(d, i, nodePos, svg){
 				/*
 				divide the graph area 
 				into 9 subsections
@@ -84,10 +84,11 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 				calculations
 
 			*/
+			
       var height            = svg[0][0].clientHeight;
       var width             = svg[0][0].clientWidth;
-      var posX              = d.x;
-      var posY              = d.y;
+      var posX              = nodePos[i].x;
+      var posY              = nodePos[i].y;
       var firstLevelHeight  = height * (1/3);
       var secondLevelHeight = height * (2/3);
       var firstLevelDepth   = width * (1/3);
