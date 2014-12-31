@@ -48,7 +48,6 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
         }
 
         $scope.getNodes = function (id) {
-            
             var nodes = [];
             var promise = $scope.getNode(id);
 
@@ -74,6 +73,11 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                 $scope.journeyLine.push(node);
             }
         } 
+
+        $scope.journeyLineNavigate = function(nodeId, arrayPos){
+            $scope.journeyLine = $scope.journeyLine.slice(0, arrayPos);
+            $scope.getNodes(nodeId);
+        }
 
         // $scope.getData();
         $scope.getNodes(19);

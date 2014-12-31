@@ -2,11 +2,12 @@ angular.module('NodeZen')
   .directive('graph', ['$window', 'd3tip', '$filter', 'nodeFactory', 'labelFactory', function ($window, d3tip, $filter, nodeFactory, labelFactory) {
 
     var width;
-    var height = 700 - .5;
+    var height = 625 - .5;
     var colour = d3.interpolateRgb("#f77", "#77f");
 
     return {
       restrict: 'E',
+      controller: 'GraphCtrl',
       scope: {
         data: '='
       },
@@ -129,8 +130,7 @@ angular.module('NodeZen')
           .selectAll(".edges")            
           .data(data.nodes)
           .enter()
-
-        edges.append("line")
+          .append("line")
           .style("stroke", "black")          // colour the line
           .style("stroke-width", 2)         // adjust line width
           .style("stroke-linecap", "round")  // stroke-linecap type
@@ -159,18 +159,18 @@ angular.module('NodeZen')
             var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
             var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
 
-            console.log(edges);
-            console.log(nodes);
             //collapse the edge line towards the centre
-            d3.selectAll(edges).filter(function(d,i) {
-              //return (this !== selectedNode);
-              //console.log(this);
-              return true;
+            d3.selectAll(edges[0]).filter(function(d,i) {
+              if(d.id === node.id){
+                return true;
+              } else {
+                return false;
+              }
             })
-              .transition()
-              .duration(750)
-              .attr("x2", nodePos[nodePos.length-1].x)
-              .attr("y2", nodePos[nodePos.length-1].y)
+            .transition()
+            .duration(750)
+            .attr("x2", nodePos[nodePos.length-1].x)
+            .attr("y2", nodePos[nodePos.length-1].y)
 
             // collapse chosen node towards the centre
             d3.select(selectedNode)
@@ -190,8 +190,21 @@ angular.module('NodeZen')
             })
             // Fade them out
             .transition()
-              .duration(750)
-              .style('opacity','0')
+            .duration(750)
+            .style('opacity','0')
+
+            //select all the edges except for the selected node
+            d3.selectAll(edges[0]).filter(function(d,i) {
+              if(d.id !== node.id){
+                return true;
+              } else {
+                return false;
+              }
+            })
+            // Fade them out
+            .transition()
+            .duration(750)
+            .style('opacity','0')
           });
           
 
