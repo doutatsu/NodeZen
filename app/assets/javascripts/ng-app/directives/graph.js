@@ -125,6 +125,28 @@ angular.module('NodeZen')
         svg.call(tip)
         var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac"}
 
+        var edges = svg
+          .selectAll(".edges")            
+          .data(data.nodes)
+          .enter()
+
+        edges.append("line")
+          .style("stroke", "black")          // colour the line
+          .style("stroke-width", 2)         // adjust line width
+          .style("stroke-linecap", "round")  // stroke-linecap type
+          .attr("x1", function(d, i){
+            return nodePos[nodePos.length-1].x;
+          })     // x position of the first end of the line
+          .attr("x2", function(d, i){
+            return nodePos[i].x ;
+          })      // x position of the second end of the line
+          .attr("y1", function(d, i){
+            return nodePos[nodePos.length-1].y;
+          })      // x position of the first end of the line
+          .attr("y2", function(d, i){
+            return nodePos[i].y;
+          })      // x position of the second end of the line
+
         var nodes = svg
           .selectAll(".node")            
           .data(data.nodes)
@@ -134,15 +156,24 @@ angular.module('NodeZen')
           .on('click', function(node){
 
             var selectedNode = this;
-            var x = nodePos[nodes[0].length-1].x - selectedNode.children[2].cx.baseVal.value
-            var y = nodePos[nodes[0].length-1].y - selectedNode.children[2].cy.baseVal.value
-            console.log(nodes)
-            console.log(x)
-            console.log(y)
-            console.log(nodePos)
-            
-            d3.select(selectedNode.children[0]).transition().duration(1).style('opacity','0')
-            // Move chosen node to the middle
+            var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
+            var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
+
+            console.log(edges);
+            console.log(nodes);
+            //collapse the edge line towards the centre
+            d3.selectAll(edges).filter(function(d,i) {
+              //return (this !== selectedNode);
+              //console.log(this);
+              return true;
+            })
+              .transition()
+              .duration(750)
+              .attr("x2", nodePos[nodePos.length-1].x)
+              .attr("y2", nodePos[nodePos.length-1].y)
+
+
+            // collapse chosen node towards the centre
             d3.select(selectedNode)
               .transition()
                 .duration(750)
@@ -162,25 +193,9 @@ angular.module('NodeZen')
             .transition()
               .duration(750)
               .style('opacity','0')
-            // Extract edges
           });
           
-          nodes.append("line")
-            .style("stroke", "black")          // colour the line
-            .style("stroke-width", 2)         // adjust line width
-            .style("stroke-linecap", "round")  // stroke-linecap type
-            .attr("x1", function(d, i){
-              return nodePos[nodePos.length-1].x;
-            })     // x position of the first end of the line
-            .attr("x2", function(d, i){
-              return nodePos[i].x ;
-            })      // x position of the second end of the line
-            .attr("y1", function(d, i){
-              return nodePos[nodePos.length-1].y;
-            })      // x position of the first end of the line
-            .attr("y2", function(d, i){
-              return nodePos[i].y;
-            })      // x position of the second end of the line
+
 
           nodes.append("line")
             .style("stroke", "black")          // colour the line
@@ -246,6 +261,7 @@ angular.module('NodeZen')
             .text(function (d) {
               return $filter('limitTo')(d.name, 23) + "...";
             });
+
         }
       }
     }
