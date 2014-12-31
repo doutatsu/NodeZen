@@ -13,7 +13,6 @@ angular.module('NodeZen').factory('nodeFactory', ['d3tip', function (d3tip) {
   	      .attr("cy", function(d, i) { return (i*20-height/7*3 + 20); } )
           // .on('mouseover', tip.show)
           .on('click', function(node){
-              
               var nodes        = svg.selectAll(".node");      // load all nodes
               var rootNode     = nodes[0][nodes[0].length-1]; // store middle node
               var rootLabel    = label[0][label[0].length-1]; // store middle node

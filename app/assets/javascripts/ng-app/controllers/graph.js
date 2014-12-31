@@ -44,25 +44,20 @@ angular.module('NodeZen').controller('graph', ["$scope", "Restangular", "node", 
             return deferred.promise;
         }
 
-
-
         $scope.getNodes = function (id) {
-            
-            var nodes = [];
-            var promise = $scope.getNode(id);
+          var nodes = [];
+          var promise = $scope.getNode(id);
 
-            promise.then(function(rootNode){
-                var childrenPromise = $scope.getChildren(rootNode);
-                childrenPromise.then(function(childNodes){
-                    nodes = childNodes;
-                    nodes.push(rootNode);
-                    
-                    $scope.graphData = node.constructD3Data(nodes);
-                })
+          promise.then(function(rootNode){
+            var childrenPromise = $scope.getChildren(rootNode);
+            childrenPromise.then(function(childNodes){
+              nodes = childNodes;
+              nodes.push(rootNode);
+              
+              $scope.graphData = node.constructD3Data(nodes);
             })
-
+          })
         };        
         // $scope.getData();
         $scope.getNodes(19);
-
 }]);

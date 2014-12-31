@@ -2,7 +2,7 @@ angular.module('NodeZen')
   .directive('graph', ['$window', 'd3tip', '$filter', 'nodeFactory', 'labelFactory', function ($window, d3tip, $filter, nodeFactory, labelFactory) {
 
     var width;
-    var height = 625 - .5;
+    var height = $('body').height() - 101;
     var colour = d3.interpolateRgb("#f77", "#77f");
 
     return {
@@ -62,53 +62,53 @@ angular.module('NodeZen')
         data.nodes.forEach(function(node, i){
           
           var angleBetweenEachNode = (360 / (data.nodes.length - 1));
-          var angleOfCurrentNode = i * angleBetweenEachNode;
-          var edgeLength = 300;
-          var deg2rad = Math.PI/180;
-          var rad2deg = 180/Math.PI;
-          var centreNode = {x : width/2, y: height/2};
-          var nodeTransform = {x : null, y : null};
-          var calculatedPosition = {};
+          var angleOfCurrentNode   = i * angleBetweenEachNode;
+          var edgeLength           = 300;
+          var deg2rad              = Math.PI/180;
+          var rad2deg              = 180/Math.PI;
+          var centreNode           = {x : width/2, y: height/2};
+          var nodeTransform        = {x : null, y : null};
+          var calculatedPosition   = {};
 
           if(angleOfCurrentNode <= 45){
-            y = Math.sin( angleOfCurrentNode * deg2rad ) * edgeLength;
-            x = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
+            y               = Math.sin( angleOfCurrentNode * deg2rad ) * edgeLength;
+            x               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
             nodeTransform.x = x;
             nodeTransform.y = -y;
 
           }else if(angleOfCurrentNode <= 90){
-            x = Math.sin((90 - angleOfCurrentNode) * deg2rad) * edgeLength;
-            y = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
+            x               = Math.sin((90 - angleOfCurrentNode) * deg2rad) * edgeLength;
+            y               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
             nodeTransform.x = x;
             nodeTransform.y = -y;
           }else if(angleOfCurrentNode <= 135){
-            x = Math.sin((45 - (135- angleOfCurrentNode)) * deg2rad) * edgeLength;
-            y = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
+            x               = Math.sin((45 - (135- angleOfCurrentNode)) * deg2rad) * edgeLength;
+            y               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
             nodeTransform.x = -x;
             nodeTransform.y = -y;
           }else if(angleOfCurrentNode <= 180){
-            y = Math.sin( (180 - angleOfCurrentNode) * deg2rad ) * edgeLength;
-            x = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
+            y               = Math.sin( (180 - angleOfCurrentNode) * deg2rad ) * edgeLength;
+            x               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
             nodeTransform.x = -x;
             nodeTransform.y = -y;
           }else if(angleOfCurrentNode <= 225){
-            y = Math.sin( (angleOfCurrentNode - 180) * deg2rad ) * edgeLength;
-            x = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
+            y               = Math.sin( (angleOfCurrentNode - 180) * deg2rad ) * edgeLength;
+            x               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
             nodeTransform.x = -x;
             nodeTransform.y = y;
           }else if(angleOfCurrentNode <= 270){
-            x = Math.sin( (45-(angleOfCurrentNode - 225)) * deg2rad ) * edgeLength;
-            y = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
+            x               = Math.sin( (45-(angleOfCurrentNode - 225)) * deg2rad ) * edgeLength;
+            y               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
             nodeTransform.x = -x;
             nodeTransform.y = y;
           }else if(angleOfCurrentNode <= 315){
-            x = Math.sin( (angleOfCurrentNode - 270) * deg2rad ) * edgeLength;
-            y = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
+            x               = Math.sin( (angleOfCurrentNode - 270) * deg2rad ) * edgeLength;
+            y               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(x, 2));
             nodeTransform.x = x;
             nodeTransform.y = y;
           }else if(angleOfCurrentNode <= 360){
-            y = Math.sin( (45-(angleOfCurrentNode - 315)) * deg2rad ) * edgeLength;
-            x = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
+            y               = Math.sin( (45-(angleOfCurrentNode - 315)) * deg2rad ) * edgeLength;
+            x               = Math.sqrt(Math.pow(edgeLength, 2) - Math.pow(y, 2));
             nodeTransform.x = x;
             nodeTransform.y = y;
           }
@@ -154,10 +154,9 @@ angular.module('NodeZen')
           .append("g")
           // .on('mouseover', tip.show)
           .on('click', function(node){
-
             var selectedNode = this;
-            var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
-            var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
+            var x            = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
+            var y            = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
 
             //collapse the edge line towards the centre
             d3.selectAll(edges[0]).filter(function(d,i) {
