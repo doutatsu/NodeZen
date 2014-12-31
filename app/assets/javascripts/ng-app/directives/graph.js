@@ -162,6 +162,23 @@ angular.module('NodeZen')
           
           nodes.append("line")
             .style("stroke", "black")          // colour the line
+            .style("stroke-width", 2)         // adjust line width
+            .style("stroke-linecap", "round")  // stroke-linecap type
+            .attr("x1", function(d, i){
+              return nodePos[nodePos.length-1].x;
+            })     // x position of the first end of the line
+            .attr("x2", function(d, i){
+              return nodePos[i].x ;
+            })      // x position of the second end of the line
+            .attr("y1", function(d, i){
+              return nodePos[nodePos.length-1].y;
+            })      // x position of the first end of the line
+            .attr("y2", function(d, i){
+              return nodePos[i].y;
+            })      // x position of the second end of the line
+
+          nodes.append("line")
+            .style("stroke", "black")          // colour the line
             .style("stroke-width", 20)         // adjust line width
             .style("stroke-linecap", "round")  // stroke-linecap type
             .attr("x1", function(d, i){
