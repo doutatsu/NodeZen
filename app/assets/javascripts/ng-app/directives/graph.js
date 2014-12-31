@@ -2,11 +2,12 @@ angular.module('NodeZen')
   .directive('graph', ['$window', 'd3tip', '$filter', 'nodeFactory', 'labelFactory', function ($window, d3tip, $filter, nodeFactory, labelFactory) {
 
     var width;
-    var height = 700 - .5;
+    var height = 625 - .5;
     var colour = d3.interpolateRgb("#f77", "#77f");
 
     return {
       restrict: 'E',
+      controller: 'GraphCtrl',
       scope: {
         data: '='
       },
@@ -157,9 +158,6 @@ angular.module('NodeZen')
             var selectedNode = this;
             var x = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
             var y = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
-
-            console.log(edges);
-            console.log(nodes);
 
             //collapse the edge line towards the centre
             d3.selectAll(edges[0]).filter(function(d,i) {
