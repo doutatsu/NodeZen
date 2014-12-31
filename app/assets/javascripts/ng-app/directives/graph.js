@@ -116,11 +116,47 @@ angular.module('NodeZen')
           if(data.nodes.length-1 == i){
             calculatedPosition = centreNode;
           } else {
-            calculatedPosition = {x: centreNode.x + nodeTransform.x, y : centreNode.y + nodeTransform.y, test: "n"};
+            calculatedPosition = {x: centreNode.x + nodeTransform.x, y : centreNode.y + nodeTransform.y};
           }
           nodePos.push(calculatedPosition);
         })
+
+        // Initial view
+        // console.log(nodePos[0][nodePos[0].length-1])
+        // var OriginPos = nodePos
+        // var nodes     = svg.selectAll(".node")
+        // var rootNode  = nodePos[0][nodePos[0].length-1] // store middle node
+        // console.log(nodePos[nodes[0].length-1])
+        // var x         = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
+        // var y         = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
         
+        // for (var i = nodePos[0].length - 2; i >= 0; i--) {
+        //   OriginPos[i] = { transform : "translate(" + nodePos[i].x + "," + nodePos[i].y + ")" }
+        // };
+
+            // Put all nodes inside the centre one 
+            // d3.selectAll(nodes[0])
+            //   .transition()
+            //     .duration(1)
+            //     .attr("transform", "translate(" + nodePos[nodes[0].length-1].x - this.children[1].cx.baseVal.value + "," + nodePos[nodes[0].length-1].y - this.children[1].cy.baseVal.value + ")")
+
+            // setInterval(function(){ 
+            //   // return nodes
+            //   d3.selectAll(nodes[0]).each(function(d,i) {
+            //     d3.select(this)
+            //       .transition()
+            //         .duration(750)
+            //         .attr("transform", OriginPos[d.index])
+            //   })
+            //   // return labels
+            //   d3.selectAll(labels[0]).each(function(d,i) {
+            //     d3.select(this)
+            //       .transition()
+            //         .duration(750)
+            //         .attr("transform", OriginPos[d.index])
+            //   })
+            // }, 750);
+      
         /* Initialize tooltip */
         tip = d3tip.initialize(svg, nodePos);
         svg.call(tip)
@@ -167,9 +203,9 @@ angular.module('NodeZen')
               }
             })
             .transition()
-            .duration(750)
-            .attr("x2", nodePos[nodePos.length-1].x)
-            .attr("y2", nodePos[nodePos.length-1].y)
+              .duration(750)
+              .attr("x2", nodePos[nodePos.length-1].x)
+              .attr("y2", nodePos[nodePos.length-1].y)
 
             // collapse chosen node towards the centre
             d3.select(selectedNode)
@@ -273,6 +309,38 @@ angular.module('NodeZen')
               return $filter('limitTo')(d.name, 23) + "...";
             });
 
+          var rootNode  = nodePos[nodePos.length-1] // store middle node
+          // Put all nodes inside the centre one 
+          d3.selectAll(nodes[0]).each(function(d,i) {
+            var x = nodePos[nodePos.length-1].x - this.children[1].cx.baseVal.value
+            var y = nodePos[nodePos.length-1].y - this.children[1].cy.baseVal.value
+
+            d3.select(this)
+              .attr("transform", "translate(" + x + "," + y + ")")
+          })
+          //collapse the edge line towards the centre
+          d3.selectAll(edges[0])
+            .attr("x2", nodePos[nodePos.length-1].x)
+            .attr("y2", nodePos[nodePos.length-1].y)
+          // return nodes
+          setTimeout(function(){ 
+            d3.selectAll(nodes[0]).each(function(d,i) {
+              var x = nodePos[i].x - this.children[1].cx.baseVal.value
+              var y = nodePos[i].y - this.children[1].cy.baseVal.value
+              d3.select(this)
+                .transition()
+                  .duration(750)
+                  .attr("transform", "translate(" + x + "," + y + ")")
+              // collapse the edge line towards the centre
+              d3.selectAll(edges[0]).each(function(d,i) {
+                d3.select(this)
+                  .transition()
+                    .duration(750)
+                    .attr("x2", nodePos[i].x)
+                    .attr("y2", nodePos[i].y)
+              })
+            })
+          }, 300);
         }
       }
     }
