@@ -2,7 +2,7 @@ angular.module('NodeZen')
   .directive('graph', ['$window', 'd3tip', '$filter', 'nodeFactory', 'labelFactory', function ($window, d3tip, $filter, nodeFactory, labelFactory) {
 
     var width;
-    var height = $('body').height() - 101;
+    var height = $('body').height() - 54;
     var colour = d3.interpolateRgb("#f77", "#77f");
 
     return {
@@ -13,6 +13,12 @@ angular.module('NodeZen')
       },
       link: function (scope, element, attrs) {
       	width = angular.element($window)[0].innerWidth;
+
+        //let's use a funky d3 scale, shall we?
+        var edgeScale = d3.scale
+                          .linear()
+                          .domain([1, 1000])
+                          .range([250, 300]);
 
         var svg = d3.select(element[0])
           .append("svg")
@@ -63,7 +69,7 @@ angular.module('NodeZen')
           
           var angleBetweenEachNode = (360 / (data.nodes.length - 1));
           var angleOfCurrentNode   = i * angleBetweenEachNode;
-          var edgeLength           = 300;
+          var edgeLength           = edgeScale($('body').height());
           var deg2rad              = Math.PI/180;
           var rad2deg              = 180/Math.PI;
           var centreNode           = {x : width/2, y: height/2};

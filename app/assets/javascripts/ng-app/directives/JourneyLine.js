@@ -10,7 +10,7 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
 		link: function (scope, element, attrs, ctrl) {
 
 			elementWidth = angular.element($window)[0].innerWidth;;
-      elementHeight = 100;
+      elementHeight = 50;
 
 			var svg = d3.select(element[0])
         .append("svg")
@@ -25,7 +25,6 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
           svg.selectAll('*').data([]).text(function (d) {
             return d.name;
           }).exit().remove();
-          console.log(scope.line)
           scope.render(scope.line);
         }, true);
 
