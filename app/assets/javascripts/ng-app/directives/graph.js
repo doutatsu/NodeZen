@@ -20,6 +20,12 @@ angular.module('NodeZen')
                           .domain([1, 1000])
                           .range([250, 300]);
 
+        //let's use a funky d3 scale, shall we?
+        var labelScale = d3.scale
+                          .linear()
+                          .domain([1, 23])
+                          .range([50, 230]);
+
         var svg = d3.select(element[0])
           .append("svg")
           .attr("width", width)
@@ -222,7 +228,12 @@ angular.module('NodeZen')
               return nodePos[i].x;
             })     // x position of the first end of the line
             .attr("x2", function(d, i){
-              return nodePos[i].x + 225;
+              var titleLen = d.name.length;
+              if(d.name.length > 23){
+                titleLen = 23;
+              }
+              var labelSize = labelScale(titleLen);
+              return nodePos[i].x + Math.round(labelSize);
             })      // x position of the second end of the line
             .attr("y1", function(d, i){
               return nodePos[i].y - 25;
@@ -277,7 +288,11 @@ angular.module('NodeZen')
             .attr("font", "13px open_sansregular")
             .attr("fill", "white")
             .text(function (d) {
-              return $filter('limitTo')(d.name, 23) + "...";
+              if(d.name.length > 23){
+                return $filter('limitTo')(d.name, 23) + "...";
+              } else {
+                return d.name;
+              }
             });
 
           var rootNode  = nodePos[nodePos.length-1] // store middle node
