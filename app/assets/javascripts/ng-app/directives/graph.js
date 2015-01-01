@@ -137,7 +137,7 @@ angular.module('NodeZen')
           .data(data.nodes)
           .enter()
           .append("line")
-          .style("stroke", "black")          // colour the line
+          .style("stroke", "gray")          // colour the line
           .style("stroke-width", 2)         // adjust line width
           .style("stroke-linecap", "round")  // stroke-linecap type
           .attr("x1", function(d, i){
