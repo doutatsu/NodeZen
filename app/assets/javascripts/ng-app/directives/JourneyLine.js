@@ -73,14 +73,21 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
             })
 
           JourneyVis.append("circle")
-              .style("fill", "cyan")
+              // .style("fill", "cyan")
               .attr("r", 10)
               .attr("cx", function(d,i){
                   return (i + 1) * 40;
               })
               .attr("cy", elementHeight/2)
-              //.on('mouseover', tip.show)
-              //.on('mouseleave', tip.hide)
+              .style("fill",function(d,i){
+                if (i == journeyPos.length-1) {
+                  return 'black'
+                } else {
+                  return 'cyan'
+                };
+              })
+              // .on('mouseover', tip.show)
+              // .on('mouseleave', tip.hide)
               .on("click", function(d, i){
                   scope.$parent.journeyLineNavigate(d.id, i);
                   //tip.hide;
