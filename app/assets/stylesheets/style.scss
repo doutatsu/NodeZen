@@ -25,16 +25,22 @@
   stroke: #ccc;
 }
 .node circle {
-  // fill: white;
   fill: rgb(156,217,240);
 }
 .d3-tip{
-  // line-height: 0;
   padding: 0 !important;
   border-radius: 4px !important;
   div{
-    padding: 10px;
+    padding: 15px;
     font-family: open_sansregular;
+  }
+}
+.tags{
+  .tag{
+    background: rgb(63,68,232);
+    display: inline;
+    border-radius: 21px;
+    padding: 5px;
   }
 }
 .widget{
@@ -44,4 +50,24 @@
 .preview{
   position: relative;
   max-width: 100%;
+}
+.social{
+  .btn{
+    border-radius: 20px !important;
+  }
+  .facebook{
+    background: #3b5998;
+    border-color: #3b5998;
+  }
+  .twitter{
+    background: #0084b4;
+    border-color: #0084b4;
+  }
+  .twitter:hover{
+    background: #00aced;
+  }
+  .google{
+    background: #d34836;
+    border-color: #d34836;
+  }
 }

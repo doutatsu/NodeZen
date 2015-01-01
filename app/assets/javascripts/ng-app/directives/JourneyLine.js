@@ -73,13 +73,14 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
             })
 
           JourneyVis.append("circle")
-              // .style("fill", "cyan")
+              .style("fill", "cyan")
+              .style("stroke-width", 2)  
               .attr("r", 10)
               .attr("cx", function(d,i){
                   return (i + 1) * 40;
               })
               .attr("cy", elementHeight/2)
-              .style("fill",function(d,i){
+              .style("stroke",function(d,i){
                 if (i == journeyPos.length-1) {
                   return 'black'
                 } else {

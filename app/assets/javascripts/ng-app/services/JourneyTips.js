@@ -21,36 +21,11 @@ angular.module('NodeZen').factory('JourneyTips', ['$http',
 
             var toolTipContent = "";
 
-            if(node.domain === "youtube") {
-                var videoID;
-                var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-                var match = node.link.match(regExp);
-
-                if (match&&match[7].length==11){
-                    videoID = match[7];
-                }
-
-                toolTipContent += '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + videoID + '?autoplay=0&theme=light" frameborder="0">';
-
-            } else if (node.domain === "soundcloud") {
-                toolTipContent += '<div id="soundcloud-import">SoundCloud player loading.</div>';
-                d3tipInstance.soundCloudImport(node);
-
-            } else if(node.domain === "spotify"){
-                toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
-            }
-            else if(node.kind === "article"){
-                toolTipContent += '<img class="preview" src="' + node.preview + '"></img>'
-            }
-
             //desc
             toolTipContent += 
-            '<div class="description">Description: ' + node.description + '</div>' + 
-            '<div class="tags">Tags: Music</div>' + 
-            '<div class="social">Facebook Twitter Google+</div>';
+            '<div class="description">Description: ' + node.description + '</div>';
             
             return toolTipContent;
-
         }
 
         d3tipInstance.soundCloudImport = function(node){	

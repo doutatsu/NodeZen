@@ -46,8 +46,8 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             //desc
             toolTipContent += 
             '<div class="description">Description: ' + node.description + '</div>' + 
-            '<div class="tags">Tags: Music</div>' + 
-            '<div class="social">Facebook Twitter Google+</div>';
+            '<div class="tags">Tags:' + '<div class="tag">Music</div>' + '</div>' +
+            '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
             
             return toolTipContent;
 

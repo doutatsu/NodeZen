@@ -120,42 +120,6 @@ angular.module('NodeZen')
           }
           nodePos.push(calculatedPosition);
         })
-
-        // Initial view
-        // console.log(nodePos[0][nodePos[0].length-1])
-        // var OriginPos = nodePos
-        // var nodes     = svg.selectAll(".node")
-        // var rootNode  = nodePos[0][nodePos[0].length-1] // store middle node
-        // console.log(nodePos[nodes[0].length-1])
-        // var x         = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
-        // var y         = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
-        
-        // for (var i = nodePos[0].length - 2; i >= 0; i--) {
-        //   OriginPos[i] = { transform : "translate(" + nodePos[i].x + "," + nodePos[i].y + ")" }
-        // };
-
-            // Put all nodes inside the centre one 
-            // d3.selectAll(nodes[0])
-            //   .transition()
-            //     .duration(1)
-            //     .attr("transform", "translate(" + nodePos[nodes[0].length-1].x - this.children[1].cx.baseVal.value + "," + nodePos[nodes[0].length-1].y - this.children[1].cy.baseVal.value + ")")
-
-            // setInterval(function(){ 
-            //   // return nodes
-            //   d3.selectAll(nodes[0]).each(function(d,i) {
-            //     d3.select(this)
-            //       .transition()
-            //         .duration(750)
-            //         .attr("transform", OriginPos[d.index])
-            //   })
-            //   // return labels
-            //   d3.selectAll(labels[0]).each(function(d,i) {
-            //     d3.select(this)
-            //       .transition()
-            //         .duration(750)
-            //         .attr("transform", OriginPos[d.index])
-            //   })
-            // }, 750);
       
         /* Initialize tooltip */
         tip = d3tip.initialize(svg, nodePos);
@@ -188,7 +152,7 @@ angular.module('NodeZen')
           .data(data.nodes)
           .enter()
           .append("g")
-          // .on('mouseover', tip.show)
+          .on('mouseover', tip.show)
           .on('click', function(node){
             var selectedNode = this;
             var x            = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
@@ -203,14 +167,14 @@ angular.module('NodeZen')
               }
             })
             .transition()
-              .duration(750)
+              .duration(450)
               .attr("x2", nodePos[nodePos.length-1].x)
               .attr("y2", nodePos[nodePos.length-1].y)
 
             // collapse chosen node towards the centre
             d3.select(selectedNode)
               .transition()
-                .duration(750)
+                .duration(450)
                 .ease("cubic-in-out")
                 .attr("transform", "translate(" + x + "," + y + ")")
               .each("end", function() {
@@ -225,7 +189,7 @@ angular.module('NodeZen')
             })
             // Fade them out
             .transition()
-            .duration(750)
+            .duration(450)
             .style('opacity','0')
 
             //select all the edges except for the selected node
@@ -238,7 +202,7 @@ angular.module('NodeZen')
             })
             // Fade them out
             .transition()
-            .duration(750)
+            .duration(450)
             .style('opacity','0')
           });
           
@@ -262,7 +226,8 @@ angular.module('NodeZen')
             })      // x position of the second end of the line
 
           nodes.append("circle")
-            .attr("class", "node")          
+            .attr("class", "node")   
+            .attr("fill", "white")       
             .attr("x", -64)
             .attr("y", -32)
             .attr("r", 40)
@@ -281,7 +246,7 @@ angular.module('NodeZen')
             .attr('dominant-baseline', 'central')
             .attr('font-family', 'FontAwesome')
             .attr('font-size', '30px')
-            .attr('fill', 'white')
+            .attr('fill', 'black')
             .attr("x", function(d, i){
               return nodePos[i].x;
             })
@@ -329,13 +294,15 @@ angular.module('NodeZen')
               var y = nodePos[i].y - this.children[1].cy.baseVal.value
               d3.select(this)
                 .transition()
-                  .duration(750)
+                  .duration(1500)
+                  .ease('elastic')
                   .attr("transform", "translate(" + x + "," + y + ")")
               // collapse the edge line towards the centre
               d3.selectAll(edges[0]).each(function(d,i) {
                 d3.select(this)
                   .transition()
-                    .duration(750)
+                    .duration(1500)
+                    .ease('elastic')
                     .attr("x2", nodePos[i].x)
                     .attr("y2", nodePos[i].y)
               })
