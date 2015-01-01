@@ -42,11 +42,15 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             else if(node.kind === "article"){
                 toolTipContent += '<img class="preview" src="' + node.preview + '"></img>'
             }
-
+            var tags = '';
+            var nodes = node.tags.split(",");
+            for(var i = 0; i < nodes.length-1; i++){
+              tags += '<div class="tag">' + nodes[i] + '</div>';
+            }
             //desc
             toolTipContent += 
             '<div class="description">Description: ' + node.description + '</div>' + 
-            '<div class="tags">Tags:' + '<div class="tag">Music</div>' + '</div>' +
+            '<div class="tags">Tags:' + tags + '</div>' +
             '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
             
             return toolTipContent;
