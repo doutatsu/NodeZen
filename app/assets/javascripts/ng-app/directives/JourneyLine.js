@@ -30,6 +30,9 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
 
       scope.render = function (data) {
 
+        // cheeky jquery trick to close open tooltips
+        $(".journey-tip").remove();
+
         var journeyPos = [];
         var journeyLineNodeSpacing = 40;
 

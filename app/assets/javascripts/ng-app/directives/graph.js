@@ -47,7 +47,10 @@ angular.module('NodeZen')
 
         scope.render = function (data) {
 
-    			svg.on("click", function(){
+          // cheeky jquery trick to close open tooltips
+          $(".d3-tip").remove();
+    			
+          svg.on("click", function(){
     				svg.selectAll(".node").each(function(d, i) { 
     					tip.hide(this);
     				})
