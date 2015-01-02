@@ -80,6 +80,6 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
         }
 
         // $scope.getData();
-        $scope.getNodes(19);
+        $scope.getNodes(23);
 
 }]);

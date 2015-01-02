@@ -56,9 +56,14 @@ news.map! { |node| node.id }
 history.map! { |node| node.id }
 sports.map! { |node| node.id }
 
-Node.create(title: "Music",   description: "Cool", edges: music.join(','), kind: "music"    )
-Node.create(title: "News",    description: "Cool", edges: news.join(','), kind: "website"   )
-Node.create(title: "History", description: "Cool", edges: history.join(','), kind: "article")
-Node.create(title: "Sports",  description: "Cool", edges: sports.join(','), kind: "website" )
+kinds = Node.create([ 
+  {title: "Music",   description: "Cool", edges: music.join(','), kind: "music"    },
+  {title: "News",    description: "Cool", edges: news.join(','), kind: "website"   },
+  {title: "History", description: "Cool", edges: history.join(','), kind: "article"},
+  {title: "Sports",  description: "Cool", edges: sports.join(','), kind: "website" }
+])
+
+kinds.map! { |node| node.id }
+Node.create(title: "Start",  description: "Cool", edges: kinds.join(','), kind: "website" )
 
 
