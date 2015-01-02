@@ -18,7 +18,7 @@ angular.module('NodeZen')
         //let's use a funky d3 scale, shall we?
         var edgeScale = d3.scale
           .linear()
-          .domain([1, 1000])
+          .domain([650, 800])
           .range([250, 300]);
 
         //let's use a funky d3 scale, shall we?
