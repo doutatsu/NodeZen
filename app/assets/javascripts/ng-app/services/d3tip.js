@@ -40,7 +40,8 @@ angular.module('NodeZen').factory('d3tip', ['$http',
                 toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
             }
             else if(node.kind === "article"){
-                toolTipContent += '<img class="preview" src="' + node.preview + '"></img>'
+                toolTipContent += '<div class="preview"></div>'
+                $('d3tip.preview').css('background', 'red');
             }
             var tags = '';
             var nodes = node.tags.split(",");
@@ -50,8 +51,8 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             //desc
             toolTipContent += 
             '<div class="description">Description: ' + node.description + '</div>' + 
-            '<div class="tags">Tags:' + tags + '</div>' +
-            '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
+            '<div class="tags">Tags:' + tags + '</div>'
+            // '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
             
             return toolTipContent;
 

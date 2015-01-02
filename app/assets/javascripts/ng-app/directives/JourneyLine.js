@@ -86,8 +86,8 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
                   return 'cyan'
                 };
               })
-              // .on('mouseover', tip.show)
-              // .on('mouseleave', tip.hide)
+              .on('mouseover', tip.show)
+              .on('mouseleave', tip.hide)
               .on("click", function(d, i){
                   scope.$parent.journeyLineNavigate(d.id, i);
                   //tip.hide;

@@ -6,7 +6,7 @@ angular.module('NodeZen').factory('JourneyTips', ['$http',
     	d3tipInstance.initialize = function(elementWidth, elementHeigth, nodePos){
 
 			var d3tip = d3.tip()
-			.attr('class', 'd3-tip')
+			.attr('class', 'journey-tip')
 			.html(function(d) {
 				return d3tipInstance.generateTooltipContent(d);
 			})
@@ -22,8 +22,7 @@ angular.module('NodeZen').factory('JourneyTips', ['$http',
             var toolTipContent = "";
 
             //desc
-            toolTipContent += 
-            '<div class="description">Description: ' + node.description + '</div>';
+            toolTipContent += '<span>' + node.title + '</span>';
             
             return toolTipContent;
         }

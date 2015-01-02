@@ -35,12 +35,22 @@
     font-family: open_sansregular;
   }
 }
+.journey-tip{
+  padding: 0 !important;
+  // border-radius: 4px !important;
+  background-color: gray;
+  span{
+    padding: 15px;
+    font-family: open_sansregular;
+  }
+}
 .tags{
   .tag{
     background: rgb(63,68,232);
     display: inline;
     border-radius: 21px;
-    padding: 5px;
+    padding: 1px 10px 1px 10px;
+    margin: 0 5px;
   }
 }
 .widget{
