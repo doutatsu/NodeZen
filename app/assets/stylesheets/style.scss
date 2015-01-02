@@ -40,6 +40,7 @@
   // border-radius: 4px !important;
   background-color: gray;
   span{
+    color: white;
     padding: 15px;
     font-family: open_sansregular;
   }
@@ -47,10 +48,10 @@
 .tags{
   .tag{
     background: rgb(63,68,232);
-    display: inline;
+    display: inline-block;
     border-radius: 21px;
-    padding: 1px 10px 1px 10px;
-    margin: 0 5px;
+    padding: 1px 10px;
+    margin: 5px 5px;
   }
 }
 .widget{

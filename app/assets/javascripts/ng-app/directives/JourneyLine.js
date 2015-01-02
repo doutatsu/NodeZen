@@ -54,9 +54,9 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
             .enter()
 
         JourneyVis.append("line")            
-            .style("stroke", "#6878D9")          // colour the line
+            .style("stroke", "#6878D9")       // colour the line
             .style("stroke-width", 2)         // adjust line width
-            .style("stroke-linecap", "round")  // stroke-linecap type
+            .style("stroke-linecap", "round") // stroke-linecap type
             .attr("x1", function(d, i){
                 return journeyPos[i].x;
             })

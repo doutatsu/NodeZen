@@ -58,9 +58,9 @@ sports.map! { |node| node.id }
 
 kinds = Node.create([ 
   {title: "Music",   description: "Cool", edges: music.join(','), kind: "music"    },
-  {title: "News",    description: "Cool", edges: news.join(','), kind: "website"   },
-  {title: "History", description: "Cool", edges: history.join(','), kind: "article"},
-  {title: "Sports",  description: "Cool", edges: sports.join(','), kind: "website" }
+  {title: "News",    description: "Cool", edges: news.join(','), kind: "news"      },
+  {title: "History", description: "Cool", edges: history.join(','), kind: "history"},
+  {title: "Sports",  description: "Cool", edges: sports.join(','), kind: "sports"  }
 ])
 
 kinds.map! { |node| node.id }
