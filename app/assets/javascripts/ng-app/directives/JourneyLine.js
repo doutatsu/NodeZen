@@ -54,7 +54,7 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
             .enter()
 
         JourneyVis.append("line")            
-            .style("stroke", "cyan")          // colour the line
+            .style("stroke", "#6878D9")          // colour the line
             .style("stroke-width", 2)         // adjust line width
             .style("stroke-linecap", "round")  // stroke-linecap type
             .attr("x1", function(d, i){
@@ -75,7 +75,7 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
             })
 
           JourneyVis.append("circle")
-              .style("fill", "cyan")
+              .style("fill", "#6878D9")
               .style("stroke-width", 2)  
               .attr("r", 10)
               .attr("cx", function(d,i){
@@ -86,7 +86,7 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
                 if (i == journeyPos.length-1) {
                   return 'black'
                 } else {
-                  return 'cyan'
+                  return '#6878D9'
                 };
               })
               .on('mouseover', tip.show)

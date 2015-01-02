@@ -16,15 +16,15 @@ angular.module('NodeZen')
 
         //let's use a funky d3 scale, shall we?
         var edgeScale = d3.scale
-                          .linear()
-                          .domain([1, 1000])
-                          .range([250, 300]);
+          .linear()
+          .domain([1, 1000])
+          .range([250, 300]);
 
         //let's use a funky d3 scale, shall we?
         var labelScale = d3.scale
-                          .linear()
-                          .domain([1, 23])
-                          .range([50, 230]);
+          .linear()
+          .domain([1, 23])
+          .range([50, 230]);
 
         var svg = d3.select(element[0])
           .append("svg")
@@ -195,7 +195,8 @@ angular.module('NodeZen')
               .each("end", function() {
                 // load node children
                 tip.hide;
-                scope.$parent.getNodes(node.id);
+                var d = scope.$parent.getNodes(node.id);
+                console.log(d)
               })
 
             // select all the nodes except the node we've chosen
