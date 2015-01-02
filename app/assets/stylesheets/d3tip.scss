@@ -1,13 +1,16 @@
 .d3-tip {
   line-height: 1;
   font-weight: bold;
-  padding: 12px;
   width: 600px;
-  // height: 300px;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
-  border-radius: 2px;
   pointer-events: none;
+  padding: 0 !important;
+  border-radius: 4px;
+  div{
+    padding: 15px;
+    font-family: open_sansregular;
+  }
 }
 
 /* Creates a small triangle extender for the tooltip */

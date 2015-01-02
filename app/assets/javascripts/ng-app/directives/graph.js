@@ -12,6 +12,7 @@ angular.module('NodeZen')
         data: '='
       },
       link: function (scope, element, attrs) {
+        console.log($('body').height())
       	width = angular.element($window)[0].innerWidth;
 
         //let's use a funky d3 scale, shall we?

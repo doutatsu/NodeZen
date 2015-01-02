@@ -27,14 +27,7 @@
 .node circle {
   fill: rgb(156,217,240);
 }
-.d3-tip{
-  padding: 0 !important;
-  border-radius: 4px !important;
-  div{
-    padding: 15px;
-    font-family: open_sansregular;
-  }
-}
+
 .journey-tip{
   padding: 0 !important;
   // border-radius: 4px !important;
@@ -45,6 +38,7 @@
     font-family: open_sansregular;
   }
 }
+
 .tags{
   .tag{
     background: rgb(63,68,232);
