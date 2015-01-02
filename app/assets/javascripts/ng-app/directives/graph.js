@@ -140,7 +140,7 @@ angular.module('NodeZen')
         /* Initialize tooltip */
         tip = d3tip.initialize(svg, nodePos);
         svg.call(tip)
-        var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac", "news": "\uf1ea", "sports": "\uf1e3", "history": "\uf02d"}
+        var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac", "news": "\uf1ea", "sports": "\uf1e3", "history": "\uf02d", "person": "\uf007", "ad": "\uf06b", "picture": "\uf030"}
 
         var edges = svg
           .selectAll(".edges")            

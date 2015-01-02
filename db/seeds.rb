@@ -47,7 +47,8 @@ sports = Node.create([
   {title: "BBC Sport - Manchester City 3-0 Crystal Palace", description: "David Silva scores twice as Manchester City join Chelsea at the top of the table with victory over Crystal Palace.", link: "http://www.bbc.co.uk/sport/0/football/30459797", preview: "http://news.bbcimg.co.uk/media/images/79865000/jpg/_79865034_davidsilva.jpg", kind: "article", tags: "bbc,sport,manchester city,manchester,crystal palace,david silva,chelsea"},
   {title: "Ultimate Best Football Tricks & Skills", description: "If you like my work, become a fan on facebook and follow me on twitter", link: "https://www.youtube.com/watch?v=j3BslT97fR4", kind: "video", tags: "football,tricks,skills,youtube,compilation"},
   {title: "USA v AUS - Men's Basketball Quarterfinal | London 2012 Olympics", description: "The USA take on Australia in the quarterfinal of the men's basketball tournament at the London 2012 Olympic Games.", link: "https://www.youtube.com/watch?v=Aiem1w_TvaA", kind: "video", tags: "basketball,youtube,london,olympics"},
-  {title: "The Best Game Of Tennis Ever?", description: "In tennis you can go for games without seeing something truly outstanding. When Andy Murray took on Michael Llodra they produced four of the best points you'll ever see in the course of a single game. Enjoy!", link: "https://www.youtube.com/watch?v=oyxhHkOel2I", kind: "video", tags: "tennis,youtube,andy murray,michael llodra"}
+  {title: "The Best Game Of Tennis Ever?", description: "In tennis you can go for games without seeing something truly outstanding. When Andy Murray took on Michael Llodra they produced four of the best points you'll ever see in the course of a single game. Enjoy!", link: "https://www.youtube.com/watch?v=oyxhHkOel2I", kind: "video", tags: "tennis,youtube,andy murray,michael llodra"},
+  {title: "Sochi 2014: Russia top medal table as Olympics come to an end", description: "Host nation Russia finished on top of the medal table as the 22nd Winter Olympics came to a close in Sochi on Sunday after 17 days of competition.", link: "http://www.bbc.co.uk/sport/0/winter-olympics/26314345", kind: "article", tags: "sochi,russia,olympics"}
 ])
 
 # Categories
@@ -65,5 +66,16 @@ kinds = Node.create([
 
 kinds.map! { |node| node.id }
 Node.create(title: "Start",  description: "Cool", edges: kinds.join(','), kind: "website" )
+
+
+# examples = Node.create([ 
+#   {title: "Relaxing Music",   description: "Cool", kind: "music"     },
+#   {title: "Essay Examples",    description: "Cool", kind: "picture"  },
+#   {title: "50% off Microsoft Office", description: "Cool", kind: "ad"},
+#   {title: "Best writing tips",  description: "Cool", kind: "article"  },
+#   {title: "Friedrich Nietzsche",  description: "Cool", kind: "person"  }
+# ])
+# examples.map! { |node| node.id }
+# Node.create(title: "How to: write an essay", description: "Cool", edges: examples.join(','), kind: "website" )
 
 
