@@ -53,9 +53,6 @@ angular.module('NodeZen').factory('node', ['Restangular', '$q',
   	node.getNodes = function(edges){
   		edges.unshift("node");
   		return Restangular.several('node', 1, 2).get();
-      // if (graphData.edges.length <= 0) {
-        // $("#myModal").modal("show");
-      // }
   		//return Restangular.several.apply(null, edges).getList();
   	}
 

@@ -55,13 +55,16 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                 var childrenPromise = $scope.getChildren(rootNode);
                 childrenPromise.then(function(childNodes){
                     nodes = childNodes;
+                    // Show thank you modal if no edges spotted
+                    if (childNodes.length <= 0) {
+                        $("#myModal").modal("show");
+                    }
                     rootNode.edges.push(rootNode.id);
                     nodes.push(rootNode);
                     $scope.addToJourneyLine(rootNode);
                     $scope.graphData = node.constructD3Data(nodes);
                 })
             })
-
         };
 
         $scope.addToJourneyLine = function(node){
