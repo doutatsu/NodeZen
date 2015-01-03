@@ -29,7 +29,21 @@ angular.module('NodeZen').factory('d3tip', ['$http',
                   videoID = match[7];
               }
 
-              toolTipContent += '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + videoID + '?autoplay=0&theme=light" frameborder="0"></iframe>';
+              toolTipContent +=  '<div id="youtube-import" style="margin:0px;"><div class="title">' + node.name + '</div>'
+              toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
+         	  toolTipContent += "<div class='youtube preview' id='" + videoID + "' style='height:281px;background-image:url(http://i.ytimg.com/vi/" + videoID + "/sddefault.jpg)'><div class='play'></div></div></div>";
+
+			  // // Overlay the Play icon to make it look like a video player
+			  
+
+			  $(document).delegate('#youtube-import', 'click', function() {
+
+			      // The height and width of the iFrame should be the same as parent
+			      var iframe = '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1&theme=light" frameborder="0"></iframe>';
+			      // Replace the YouTube thumbnail with YouTube HTML5 Player
+			      $(this).replaceWith(iframe);
+			   });
+
 
             } else if (node.domain === "soundcloud") {
                 toolTipContent += '<div id="soundcloud-import" style="height:180px;" class"outerLoadingBar"><div class="innerLoadingBar"><img src="/assets/ajax-loader.gif" height="42" width="42"></img></div></div>';
