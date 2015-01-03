@@ -62,6 +62,15 @@
   border-top: 1px solid gray;
   padding-top: 15px;
 }
+.title{
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 12;
+  /* width: 100%; */
+  margin: 0 !important;
+  padding: 5px;
+  border-radius: 4px 0 0 0;
+}
 .preview{
   margin: 0 !important;
   position: relative;
