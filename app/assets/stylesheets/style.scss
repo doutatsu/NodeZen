@@ -63,8 +63,23 @@
   padding-top: 15px;
 }
 .preview{
+  margin: 0 !important;
   position: relative;
-  max-width: 100%;
+  max-height: 178px;
+  overflow: hidden; 
+  img{
+    width: 100%;
+  }
+  img.scale{
+    /* corrects inline gap in enclosing div */
+    display: block;
+    width: 100%;
+    /* just in case, to force correct aspect ratio */
+    height: auto !important;
+    width: auto\9; /* ie8+9 */
+    /* lt ie8 */
+    -ms-interpolation-mode: bicubic; 
+  }
 }
 
 .social{

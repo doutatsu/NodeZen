@@ -38,11 +38,11 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 
             } else if(node.domain === "spotify"){
                 toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
-            }
-            else if(node.kind === "article"){
-                toolTipContent += '<div class="preview"></div>'
-                // $('d3tip.preview').css('background', 'red');
-            }
+            
+            } else if(node.kind === "article" || node.kind === "website"){
+                var preview = "<img src='" + node.preview + "'>"
+                toolTipContent += '<div class="preview">' + preview + '</div>'         
+              }
             var tags = '';
             var nodes = node.tags.split(",");
             for(var i = 0; i < nodes.length-1; i++){
@@ -56,7 +56,6 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             // '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
             
             return toolTipContent;
-
         }
 
         d3tipInstance.soundCloudImport = function(node){	
