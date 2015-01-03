@@ -40,7 +40,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             
             } else if(node.kind === "article" || node.kind === "website"){
                 toolTipContent +=  '<div class="title">' + node.name + '</div>'
-                toolTipContent +=  '<a class="expand" href="' + node.link + ' target="_blank"><i class="fa fa-expand"></i></a>'
+                toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
                 
                 var preview = "<img src='" + node.preview + "'>"
                 toolTipContent += '<div class="preview">' + preview + '</div>'         
