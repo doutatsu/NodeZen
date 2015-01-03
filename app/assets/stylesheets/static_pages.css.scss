@@ -23,35 +23,37 @@ body {
   background-color: $blue;
   text-align: center;
   z-index: 2;
-  
-  .logo {
-    @media (max-width: 468px) {
-      margin-top: 87px;
+
+  .cover-text{
+    // @media (max-width: 468px) { margin-top: 87px; }
+    // margin-top: 120px;
+    .logo {
+      @media (max-width: 468px) {
+        height: 150px;
+      }
       height: 150px;
     }
-    margin-top: 120px;
-    height: 150px;
-  }
-  
-  .text {
-    @media (max-width: 468px) { h3 { font-size: 20px; } }
-    color: white;
-    .logo-text{
-      @media (max-width: 468px) { font-size: 35px; }
-      font-size: 45px;
-      padding-bottom: 15px;
-    }
-    .btn-lg {
-      color: white;
-      background: inherit;
-      border: 2px solid white;
-      margin-top: 25px;
-      border-radius: 30px;
-    }
     
-    .btn-lg:hover {
-      color: $brown;
-      border-color: $brown;
+    .text {
+      @media (max-width: 468px) { h3 { font-size: 20px; } }
+      color: white;
+      .logo-text{
+        @media (max-width: 468px) { font-size: 35px; }
+        font-size: 45px;
+        padding-bottom: 15px;
+      }
+      .btn-lg {
+        color: white;
+        background: inherit;
+        border: 2px solid white;
+        margin-top: 25px;
+        border-radius: 30px;
+      }
+      
+      .btn-lg:hover {
+        color: $brown;
+        border-color: $brown;
+      }
     }
   }
   
