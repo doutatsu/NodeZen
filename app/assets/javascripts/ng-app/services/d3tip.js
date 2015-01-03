@@ -40,6 +40,8 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             
             } else if(node.kind === "article" || node.kind === "website"){
                 toolTipContent +=  '<div class="title">' + node.name + '</div>'
+                toolTipContent +=  '<a class="expand" href="' + node.link + '"><i class="fa fa-expand"></i></a>'
+                
                 var preview = "<img src='" + node.preview + "'>"
                 toolTipContent += '<div class="preview">' + preview + '</div>'         
               }
@@ -51,8 +53,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             //desc
             toolTipContent += 
             '<div class="description">' + node.description + '</div>' + 
-            '<div class="tags">' + tags + '</div>' + 
-            '<div class="source"><a href="' + node.link + '">Source</a></div>'
+            '<div class="tags">' + tags + '</div>'
             // '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
             
             return toolTipContent;
