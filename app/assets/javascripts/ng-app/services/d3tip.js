@@ -30,7 +30,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
                   videoID = match[7];
               }
 
-              toolTipContent += '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + videoID + '?autoplay=0&theme=light" frameborder="0">';
+              toolTipContent += '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + videoID + '?autoplay=0&theme=light" frameborder="0"></iframe>';
 
             } else if (node.domain === "soundcloud") {
                 toolTipContent += '<div id="soundcloud-import" style="height:180px">SoundCloud player loading.</div>';
