@@ -29,8 +29,8 @@
 }
 
 .journey-tip{
-  padding: 0 !important;
-  // border-radius: 4px !important;
+  padding: 0;
+  border-radius: 4px;
   background-color: gray;
   span{
     color: white;
@@ -40,6 +40,7 @@
 }
 
 .tags{
+
   .tag{
     background: rgb(63,68,232);
     display: inline-block;
@@ -47,15 +48,25 @@
     padding: 1px 10px;
     margin: 5px 5px;
   }
+  .tag:first-child { margin-left: 0 !important; }
+  .tag:nth-child(3n+6) { margin-left: 0 !important; padding-left: 15px !important; padding-right: 15px !important;
+ }
 }
-.widget{
-  border-radius: 0 !important; 
-  border: none !important; 
+.description{
+  margin-bottom: 0px !important;
+  border-bottom: 1px solid gray;
+  padding-bottom: 15px;
+}
+.source{
+  margin-top: 0px !important;
+  border-top: 1px solid gray;
+  padding-top: 15px;
 }
 .preview{
   position: relative;
   max-width: 100%;
 }
+
 .social{
   .btn{
     border-radius: 20px !important;
@@ -76,3 +87,8 @@
     border-color: #d34836;
   }
 }
+// soundcloud widget
+// .widget{
+//   border-radius: 0 !important; 
+//   border: none !important; 
+// }
