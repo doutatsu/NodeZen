@@ -20,7 +20,6 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 		d3tipInstance.generateTooltipContent = function (node) {
 
             var toolTipContent = "";
-
             if(node.domain === "youtube") {
               var videoID;
               var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
@@ -40,6 +39,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
                 toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
             
             } else if(node.kind === "article" || node.kind === "website"){
+                toolTipContent +=  '<div class="title">' + node.name + '</div>'
                 var preview = "<img src='" + node.preview + "'>"
                 toolTipContent += '<div class="preview">' + preview + '</div>'         
               }
