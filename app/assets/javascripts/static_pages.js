@@ -2,8 +2,9 @@ $(document).ready(function () {
   // examples();
 
   var height = $('.cover').height()
+  $('.bg').height()
   $('#main').css('margin-top',height);
-  $('.cover-text').css('padding-top',(height * 0.50) - 260);
+  $('.cover-text').css('bottom',$('.bg').height() + 60);
 
   $('#navigation').affix({
       offset: { top: height }
