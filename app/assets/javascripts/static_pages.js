@@ -2,10 +2,9 @@ $(document).ready(function () {
   // examples();
 
   var height = $('.cover').height()
-  $('.bg').height()
-  $('#main').css('margin-top',height);
-  $('.cover-text').css('bottom',$('.bg').height() + 60);
-
+  $('#main').css('margin-top', height);
+  // var bottom = $('.cover-text').css("bottom");
+  $('.cover-text').css('bottom',($('.bg').height() + 60));
   $('#navigation').affix({
       offset: { top: height }
   });

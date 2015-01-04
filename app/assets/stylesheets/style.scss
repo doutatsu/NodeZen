@@ -53,6 +53,13 @@
   .tag:nth-child(3n+6) { margin-left: 0 !important; padding-left: 15px !important; padding-right: 15px !important;
  }
 }
+
+#main{
+  .row{
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+}
 .description{
   margin-bottom: 0px !important;
   border-bottom: 1px solid gray;

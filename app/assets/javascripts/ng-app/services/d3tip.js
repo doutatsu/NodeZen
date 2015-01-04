@@ -33,8 +33,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
               toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
          	  toolTipContent += "<div class='youtube preview' id='" + videoID + "' style='height:281px;background-image:url(http://i.ytimg.com/vi/" + videoID + "/sddefault.jpg)'><div class='play'></div></div></div>";
 
-			  // // Overlay the Play icon to make it look like a video player
-			  
+			  // Overlay the Play icon to make it look like a video player
 
 			  $(document).delegate('#youtube-import', 'click', function() {
 
