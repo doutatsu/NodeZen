@@ -196,7 +196,7 @@ angular.module('NodeZen')
               .each("end", function() {
                 // load node children
                 tip.hide;
-                var d = scope.$parent.getNodes(node.id);
+                var d = scope.$parent.getNodes(node.id, "graph");
               })
 
             // select all the nodes except the node we've chosen

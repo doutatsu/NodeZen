@@ -83,7 +83,7 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
               })
               .attr("cy", elementHeight/2)
               .style("stroke",function(d,i){
-                if (i == journeyPos.length-1) {
+                if (d.current === true) {
                   return 'black'
                 } else {
                   return '#6878D9'

@@ -47,7 +47,7 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
             return deferred.promise;
         }
 
-        $scope.getNodes = function (id) {
+        $scope.getNodes = function (id, context) {
             var nodes = [];
             var promise = $scope.getNode(id);
 
@@ -61,15 +61,38 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                     }
                     rootNode.edges.push(rootNode.id);
                     nodes.push(rootNode);
-                    $scope.addToJourneyLine(rootNode);
+                    if(context === "graph"){
+                        rootNode.current = true;
+                        $scope.addToJourneyLine(rootNode);
+                    } else if(context === "journeyLine") {
+                        for(var i = 0; i < $scope.journeyLine.length; i++){
+                            $scope.journeyLine[i].current = false;
+                            if($scope.journeyLine[i].id === rootNode.id){
+                                $scope.journeyLine[i].current = true; 
+                            }
+                        }
+                    }
                     $scope.graphData = node.constructD3Data(nodes);
                 })
             })
         };
 
         $scope.addToJourneyLine = function(node){
+            var indexOfCurrentNode;
+            for(var i = 0; i < $scope.journeyLine.length; i++){
+                if($scope.journeyLine[i].current === true){
+                    indexOfCurrentNode = i;
+                }
+                $scope.journeyLine[i].current = false;
+            }
+
             if($scope.journeyLine.length > 0){
                 if($scope.journeyLine[$scope.journeyLine.length-1].id !== node.id){
+                    if(typeof $scope.journeyLine[indexOfCurrentNode+1] !== "undefined"){
+                        if($scope.journeyLine[indexOfCurrentNode+1].id !== node.id){
+                            $scope.journeyLine = $scope.journeyLine.slice(0, indexOfCurrentNode+1);
+                        }
+                    }
                     $scope.journeyLine.push(node);
                 }
             } else {
@@ -78,11 +101,10 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
         } 
 
         $scope.journeyLineNavigate = function(nodeId, arrayPos){
-            $scope.journeyLine = $scope.journeyLine.slice(0, arrayPos);
-            $scope.getNodes(nodeId);
+            $scope.getNodes(nodeId, "journeyLine");
         }
 
         // $scope.getData();
-        $scope.getNodes(32);
+        $scope.getNodes(32, "graph");
 
 }]);
