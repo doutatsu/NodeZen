@@ -91,9 +91,13 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                     if(typeof $scope.journeyLine[indexOfCurrentNode+1] !== "undefined"){
                         if($scope.journeyLine[indexOfCurrentNode+1].id !== node.id){
                             $scope.journeyLine = $scope.journeyLine.slice(0, indexOfCurrentNode+1);
+                            $scope.journeyLine.push(node);
+                        } else {
+                            $scope.journeyLine[indexOfCurrentNode+1].current = true;
                         }
+                    } else {
+                        $scope.journeyLine.push(node);
                     }
-                    $scope.journeyLine.push(node);
                 }
             } else {
                 $scope.journeyLine.push(node);
