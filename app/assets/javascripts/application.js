@@ -28,13 +28,6 @@
 //= require_tree .
 //= require_tree ../templates
 
-$(document).delegate('.facebook', 'click', function() {
-  FB.ui(
-   {
-    method: 'share',
-    href: 'https://www.nodezen.me'
-  }, function(response){});
-})
 $(document).delegate('.twitter', 'click', function() {
   var width  = 575,
       height = 400,
