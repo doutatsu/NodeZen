@@ -103,6 +103,7 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                     } else {
                         $scope.journeyLine.push(node);
                     }
+                }
             } else {
                 $scope.journeyLine.push(node);
             }
