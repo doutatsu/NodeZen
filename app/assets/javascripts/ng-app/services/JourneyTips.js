@@ -119,7 +119,7 @@ angular.module('NodeZen').factory('JourneyTips', ['$http',
 				return mappings[4][level+depth];
 			}
 
-			return "n";//mappings[level + depth];
+			return mappings[level + depth];
 		}
 		
 		return d3tipInstance;

@@ -83,7 +83,12 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                 if($scope.journeyLine[i].current === true){
                     indexOfCurrentNode = i;
                 }
+                
                 $scope.journeyLine[i].current = false;
+                
+                if($scope.journeyLine[i].id === node.id){
+                    $scope.journeyLine[i].current = true; 
+                }
             }
 
             if($scope.journeyLine.length > 0){
@@ -98,7 +103,6 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                     } else {
                         $scope.journeyLine.push(node);
                     }
-                }
             } else {
                 $scope.journeyLine.push(node);
             }
