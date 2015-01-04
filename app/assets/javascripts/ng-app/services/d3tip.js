@@ -59,15 +59,20 @@ angular.module('NodeZen').factory('d3tip', ['$http',
                 var preview = "<img src='" + node.preview + "'>"
                 toolTipContent += '<div class="preview">' + preview + '</div>'         
               }
-            var tags = '';
-            var nodes = node.tags.split(",");
-            for(var i = 0; i < nodes.length-1; i++){
-              tags += '<div class="tag">' + nodes[i] + '</div>';
-            }
             //desc
             toolTipContent += 
-            '<div class="description">' + node.description + '</div>' + 
-            '<div class="tags">' + tags + '</div>'
+            '<div class="description">' + node.description + '</div>'
+            
+            if (node.tags !== null) {
+              var tags = '';
+              var nodes = node.tags.split(",");
+              for(var i = 0; i < nodes.length-1; i++){
+                tags += '<div class="tag">' + nodes[i] + '</div>';
+              }
+              toolTipContent += '<div class="tags">' + tags + '</div>'
+            };
+
+            
             // '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
             
             return toolTipContent;
