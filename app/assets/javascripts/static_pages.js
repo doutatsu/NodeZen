@@ -6,7 +6,7 @@ $(document).ready(function () {
   // var bottom = $('.cover-text').css("bottom");
   var retina = window.devicePixelRatio > 1;
   if (retina) {
-    $('.cover-text').css('bottom',($('.bg').height() + 10));
+    $('.cover-text').css('bottom',($('.bg').height() + 40));
   } else{
     $('.cover-text').css('bottom',($('.bg').height() + 60));
   };
