@@ -52,7 +52,7 @@ angular.module('NodeZen').factory('d3tip', ['$http',
             } else if(node.domain === "spotify"){
                 toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
             
-            } else if(node.kind === "article" || node.kind === "website"){
+            } else if(node.kind === "article" || node.kind === "website" || node.kind === "person"){
                 toolTipContent +=  '<div class="title">' + node.name + '</div>'
                 toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
                 
