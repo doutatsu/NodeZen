@@ -12,8 +12,8 @@ window.App = angular
     $stateProvider
         .state('graph', {
             controller: 'GraphCtrl',
-            url: "/d3",
-            templateUrl: "views/d3.html"
+            url: "/explore",
+            templateUrl: "views/explore.html"
         });
 
     // default fall back route
