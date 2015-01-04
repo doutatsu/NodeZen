@@ -1,5 +1,18 @@
 footer{
   @media (max-width: 515px) { 
+    height: 250px;
+  }
+  @media (max-width: 573px) { 
+    height: 339px;
+  }
+  @media (max-width: 627px) { 
+    height: 306px;
+  }
+  @media (max-width: 767px) { 
+    height: 277px;
+  }
+  height: 313px;
+  @media (max-width: 515px) { 
     h2{ font-size: 20px !important; }
     p{ font-size: 15px !important; }
   }
@@ -28,5 +41,8 @@ footer{
       padding: 20px 25px;
       height: auto;
     }
+  }
+  .footer-thank-you{
+    margin-top: 80px;
   }
 }
