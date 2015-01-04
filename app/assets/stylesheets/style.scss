@@ -130,18 +130,27 @@
 
 .social{
   .btn{
+
     border-radius: 20px !important;
   }
   .facebook{
+    float: left;
+    padding: 4px 19px 4px 19px;
     background: #3b5998;
-    border-color: #3b5998;
+  }
+  .facebook:hover{
+    background: #6484B5;
+    border-color: #6484B5;
   }
   .twitter{
+    float: left;
+    padding-top: 4px;
+    padding-bottom: 4px;
     background: #0084b4;
-    border-color: #0084b4;
   }
   .twitter:hover{
     background: #00aced;
+    border-color: #00aced;
   }
   .google{
     background: #d34836;

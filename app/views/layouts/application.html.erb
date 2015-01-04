@@ -16,7 +16,7 @@
     <meta property="og:title" content="NodeZen"/>
     <meta property="og:url" content="http://www.nodezen.me"/>
     <meta property="og:site_name" content="NodeZen"/>
-<!--     <meta property="og:image" content="https://refme.co/assets/icons/logo_refme-cb939497de60a82cb04157ebf9c27f4f.png" /> -->
+    <meta property="og:image" content="http://www.nodezen.me/assets/images/og_logo.png" />
     <meta property="og:description" content="Explore your interests in a revolutionary visual way, a free and inspiring social network to explore, discover and collaborate." />
     <meta property="fb:app_id" content="559421844192671" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,5 +32,24 @@
     <%= yield %>
   </body>
   <!-- twitter script -->
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript">
+window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
+</script>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1527088204236774',
+      xfbml      : true,
+      version    : 'v2.1'
+    });
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </html>

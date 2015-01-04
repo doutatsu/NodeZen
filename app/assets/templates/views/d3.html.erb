@@ -12,14 +12,20 @@
         <div class="modal-body">
         <p>Thank you for trying out our tech demo.</p>
         <p>This is a very early prototype and to help us build a product you would love to use please consider filling out a quick survey</p>
+        <p>Also please share it with your friends using one of the buttons provided below</p>
         <p>If you still want to explore some more, please continue.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Return to the graph</button>
-          <form action="http://goo.gl/forms/FK7N5FaYGs" style='display:inline'>
-            <input type="submit" class="btn btn-primary" value="Go to the survey">
-        </form>
-        </div>
+          <div class="social">
+            <a class="facebook btn btn-primary btn-lg" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="http://www.facebook.com/sharer/sharer.php?u=www.nodezen.me"><i class="fa fa-facebook"></i></a>
+            <a class="twitter btn btn-primary btn-lg" href="https://twitter.com/share?url=http%3A%2F%2Fwww.nodezen.me&via=NodeZenMCR&hashtags=techdemo&text=Check%20out%20this%20tech%20demo%20of%20revolutionary%20new%20way%20to%20discover%20content%20at">
+            <i class="fa fa-twitter"></i>
+          </a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Return to the graph</button>
+            <form action="http://goo.gl/forms/FK7N5FaYGs" style='display:inline'>
+              <input type="submit" class="btn btn-primary" value="Go to the survey">
+            </form>
+          </div>
       </div>
     </div>
   </div>
