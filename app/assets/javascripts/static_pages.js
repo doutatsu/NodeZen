@@ -4,7 +4,13 @@ $(document).ready(function () {
   var height = $('.cover').height()
   $('#main').css('margin-top', height);
   // var bottom = $('.cover-text').css("bottom");
-  $('.cover-text').css('bottom',($('.bg').height() + 60));
+  var retina = window.devicePixelRatio > 1;
+  if (retina) {
+    $('.cover-text').css('bottom',($('.bg').height() + 40));
+  } else{
+    $('.cover-text').css('bottom',($('.bg').height() + 60));
+  };
+  
   $('#navigation').affix({
       offset: { top: height }
   });
