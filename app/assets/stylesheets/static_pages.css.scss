@@ -1,7 +1,7 @@
 @import 'animate';
 $blue:  #6878D9;
 $brown: #484452;
-$gray:  #808080;
+$gray:  #696969;
 $content-margins:30px;
 
 @-webkit-keyframes globe {
@@ -104,11 +104,17 @@ body {
   font-size: 20px;
   margin-bottom: 0px !important;
   margin-top: 0px !important;
-  a{
-    /* background: #6878D9; */
+  .demo-btn{
+    // background: $blue; 
     /* color: white; */
+    margin-top: 25px;
     border: 2px solid black;
     border-radius: 30px;
+    -webkit-animation-iteration-count: infinite;
+  }
+  .demo-btn:hover{
+    background: $blue; 
+    color: white;
   }
 }
 
