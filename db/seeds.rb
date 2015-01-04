@@ -22,7 +22,7 @@ aphex = Node.create([
 aphex.map! { |node| node.id }
 
 pfloyd = Node.create([
-  {title:"Pink Floyd",description:"Pink Floyd were an English rock band formed in London. They achieved international acclaim with their progressive and psychedelic music",link:"http://en.wikipedia.org/wiki/Pink_Floyd", preview:"http://en.wikipedia.org/wiki/Pink_Floyd#mediaviewer/File:Pink_Floyd_-_all_members.jpg",kind:"article",tags:"British, psychedelic, rock, band"},
+  {title:"Pink Floyd",description:"Pink Floyd were an English rock band formed in London. They achieved international acclaim with their progressive and psychedelic music",link:"http://en.wikipedia.org/wiki/Pink_Floyd", preview:"http://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg",kind:"article",tags:"British, psychedelic, rock, band"},
   {title:"Dark Side of The Moon", description:"One of the best psychedelic rock albums of all time",link:"https://www.youtube.com/watch?v=OewretHyIy4",preview:"",kind:"music",tags:"psychedelic, pink, floyd, 1973"},
   {title:"Syd Barrett", description:"Roger Keith Syd Barrett (6 January 1946 – 7 July 2006) was an English musician, composer, singer, songwriter and painter. Best known as a founder member of the band Pink Floyd, Barrett was the lead vocalist, guitarist and principal songwriter in its early years and is credited with naming the band.", link:"http://en.wikipedia.org/wiki/Syd_Barrett", preview:"http://en.wikipedia.org/wiki/Syd_Barrett#mediaviewer/File:Syd.jpg", kind:"person", tags:"pink,floyd, guitarist"},
 ]);
