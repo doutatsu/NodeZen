@@ -28,15 +28,6 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    @media
-      only screen and (-webkit-min-device-pixel-ratio: 2),
-      only screen and (   min--moz-device-pixel-ratio: 2),
-      only screen and (     -o-min-device-pixel-ratio: 2/1),
-      only screen and (        min-device-pixel-ratio: 2),
-      only screen and (                min-resolution: 192dpi),
-      only screen and (                min-resolution: 2dppx) {
-      bottom: -20px;       
-      }
     .logo {
       @media (max-width: 468px) {
         height: 150px;
@@ -89,14 +80,25 @@ body {
 }
 
 .outline-text {
-    h1 {
-        padding: 20px 0 20px 0;
-    }
-    
-    p {
-        color: #808080;
-        font-size: 16px;
-    }
+  h1 {
+    padding: 20px 0 20px 0;
+  }
+  p {
+    color: #808080;
+    font-size: 16px;
+  }
+}
+.demo{
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  a{
+    border-radius: 0;
+  /* background: #6878D9; */
+  /* color: white; */
+  // font-family: open_sansregular;
+  }
 }
 
 .navigation {
