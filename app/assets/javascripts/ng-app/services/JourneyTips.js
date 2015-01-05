@@ -19,24 +19,24 @@ angular.module('NodeZen').factory('JourneyTips', ['$http',
 
 		d3tipInstance.generateTooltipContent = function (node) {
 
-            var toolTipContent = "";
+      var toolTipContent = "";
 
-            //desc
-            toolTipContent += '<span>' + node.title + '</span>';
-            
-            return toolTipContent;
-        }
+      //desc
+      toolTipContent += '<span>' + node.title + '</span>';
+      
+      return toolTipContent;
+    }
 
-        d3tipInstance.soundCloudImport = function(node){	
-    		//for some reason using $http causes a problem while hiding d3tips. jquery .ajax works though... mystery
-            var client_ID = '9fe2a2240624e436a99fd049a59af11c';
-    	    $.ajax({
+    d3tipInstance.soundCloudImport = function(node){	
+			//for some reason using $http causes a problem while hiding d3tips. jquery .ajax works though... mystery
+      var client_ID = '9fe2a2240624e436a99fd049a59af11c';
+		 	$.ajax({
 				url: 'http://api.soundcloud.com/resolve.json?url=' + node.link + '&client_id=' + client_ID,
 				context: document.body
 			}).done(function(result) {
 				$("#soundcloud-import").replaceWith('<iframe id="frame" width="100%" height="180px" style="z-index:999999" type="text/html" 	scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
 			});
-        }
+    }
 
 		d3tipInstance.calculateToolTipDirection = function(d, i, nodePos, elementWidth, elementHeigth){
 			/*

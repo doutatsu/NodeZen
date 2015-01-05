@@ -19,74 +19,74 @@ angular.module('NodeZen').factory('d3tip', ['$http',
 
 		d3tipInstance.generateTooltipContent = function (node) {
 
-            var toolTipContent = "";
-            if(node.domain === "youtube") {
-              var videoID;
-              var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-              var match = node.link.match(regExp);
+      // if (node.description === "Cool") { return null };
 
-              if (match&&match[7].length==11){
-                  videoID = match[7];
-              }
+      var toolTipContent = "";
+      if(node.domain === "youtube") {
+        var videoID;
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = node.link.match(regExp);
 
-              toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
-              toolTipContent +=  '<div id="youtube-import" style="margin:0px;" data-video="' +  videoID + '"><div class="title">' + node.name + '</div>'
-         	  toolTipContent += "<div class='youtube youtube-preview' id='" + videoID + "' style='height:281px;background-image:url(http://i.ytimg.com/vi/" + videoID + "/sddefault.jpg)'><div class='play'></div></div></div>";
-
-			  // Overlay the Play icon to make it look like a video player
-
-			  $(document).delegate('#youtube-import', 'click', function() {
-
-
-			      // The height and width of the iFrame should be the same as parent
-			      var iframe = '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + $(this).data('video') + '?autoplay=1&theme=light" frameborder="0"></iframe>';
-			      // Replace the YouTube thumbnail with YouTube HTML5 Player
-			      $(this).replaceWith(iframe);
-			   });
-
-
-            } else if (node.domain === "soundcloud") {
-                toolTipContent += '<div id="soundcloud-import" style="height:180px;" class"outerLoadingBar"><div class="innerLoadingBar"><img src="/assets/ajax-loader.gif" height="42" width="42"></img></div></div>';
-                d3tipInstance.soundCloudImport(node);
-
-            } else if(node.domain === "spotify"){
-                toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
-            
-            } else if(node.kind === "article" || node.kind === "website" || node.kind === "person"){
-                toolTipContent +=  '<div class="title">' + node.name + '</div>'
-                toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
-                
-                var preview = "<img src='" + node.preview + "'>"
-                toolTipContent += '<div class="preview">' + preview + '</div>'         
-              }
-            //desc
-            toolTipContent += 
-            '<div class="description">' + node.description + '</div>'
-            
-            if (node.tags !== null) {
-              var tags = '';
-              var nodes = node.tags.split(",");
-              for(var i = 0; i < nodes.length-1; i++){
-                tags += '<div class="tag">' + nodes[i] + '</div>';
-              }
-              toolTipContent += '<div class="tags">' + tags + '</div>'
-            };
-
-            
-            // '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
-            
-            return toolTipContent;
+        if (match&&match[7].length==11){
+            videoID = match[7];
         }
 
+        toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
+        toolTipContent +=  '<div id="youtube-import" style="margin:0px;" data-video="' +  videoID + '"><div class="title">' + node.name + '</div>'
+   	    toolTipContent += "<div class='youtube youtube-preview' id='" + videoID + "' style='height:281px;background-image:url(http://i.ytimg.com/vi/" + videoID + "/sddefault.jpg)'><div class='play'></div></div></div>";
+
+      // Overlay the Play icon to make it look like a video player
+
+			  $(document).delegate('#youtube-import', 'click', function() {
+		      // The height and width of the iFrame should be the same as parent
+		      var iframe = '<iframe id="ytplayer" style="z-index:999999" type="text/html" width="100%" height="270" src="https://www.youtube.com/embed/' + $(this).data('video') + '?autoplay=1&theme=light" frameborder="0"></iframe>';
+		      // Replace the YouTube thumbnail with YouTube HTML5 Player
+		      $(this).replaceWith(iframe);
+			  });
+
+
+        } else if (node.domain === "soundcloud") {
+            toolTipContent += '<div id="soundcloud-import" style="height:180px;" class"outerLoadingBar"><div class="innerLoadingBar"><img src="/assets/ajax-loader.gif" height="42" width="42"></img></div></div>';
+            d3tipInstance.soundCloudImport(node);
+
+        } else if(node.domain === "spotify"){
+            toolTipContent += '<iframe src="https://embed.spotify.com/?uri=' + node.link + '" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>'
+        
+        } else if(node.kind === "article" || node.kind === "website" || node.kind === "person"){
+            toolTipContent +=  '<div class="title">' + node.name + '</div>'
+            toolTipContent +=  '<a class="expand" href="' + node.link + '" target="_blank"><i class="fa fa-expand"></i></a>'
+            
+            var preview = "<img src='" + node.preview + "'>"
+            toolTipContent += '<div class="preview">' + preview + '</div>'         
+          }
+        //desc
+        toolTipContent += 
+        '<div class="description">' + node.description + '</div>'
+        
+        if (node.tags !== null) {
+          var tags = '';
+          var nodes = node.tags.split(",");
+          for(var i = 0; i < nodes.length; i++){
+            tags += '<div class="tag">' + nodes[i] + '</div>';
+          }
+          toolTipContent += '<div class="tags">' + tags + '</div>'
+        };
+
+        
+        // '<div class="social"><button type="button" class="facebook btn btn-primary btn-lg"><i class="fa fa-facebook"></i></button> <button type="button" class="twitter btn btn-primary btn-lg"><i class="fa fa-twitter"></i></button>  <button type="button" class="google btn btn-primary btn-lg"><i class="fa fa-google-plus"></i></button> </div>';
+        
+        return toolTipContent;
+      }
+
         d3tipInstance.soundCloudImport = function(node){	
-        		//for some reason using $http causes a problem while hiding d3tips. jquery .ajax works though... mystery
-                var client_ID = '9fe2a2240624e436a99fd049a59af11c';
-        	    $.ajax({
-					url: 'http://api.soundcloud.com/resolve.json?url=' + node.link + '&client_id=' + client_ID,
-					context: document.body
-				}).done(function(result) {
-					$("#soundcloud-import").replaceWith('<iframe id="frame" width="100%" height="180px" style="z-index:999999" type="text/html" 	scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
-				});
+        	//for some reason using $http causes a problem while hiding d3tips. jquery .ajax works though... mystery
+          var client_ID = '9fe2a2240624e436a99fd049a59af11c';
+        	$.ajax({
+					  url: 'http://api.soundcloud.com/resolve.json?url=' + node.link + '&client_id=' + client_ID,
+					  context: document.body
+				  }).done(function(result) {
+					  $("#soundcloud-import").replaceWith('<iframe id="frame" width="100%" height="180px" style="z-index:999999" type="text/html" 	scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
+				  });
         }
 
 		d3tipInstance.calculateToolTipDirection = function(d, i, nodePos, svg){

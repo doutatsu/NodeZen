@@ -140,7 +140,10 @@ angular.module('NodeZen')
         /* Initialize tooltip */
         tip = d3tip.initialize(svg, nodePos);
         svg.call(tip)
-        var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", "website": "\uf0ac", "news": "\uf1ea", "sports": "\uf1e3", "history": "\uf02d", "person": "\uf007", "ad": "\uf06b", "picture": "\uf030"}
+        var icons_codes = {"video": "\uf04b", "music": "\uf001", "article": "\uf0f6", 
+        "website": "\uf0ac", "news": "\uf1ea", "sports": "\uf1e3", "history": "\uf02d", 
+        "person": "\uf007", "ad": "\uf06b", "picture": "\uf030",
+        "tech": "\uf109"}
 
         var edges = svg
           .selectAll(".edges")            
@@ -169,6 +172,12 @@ angular.module('NodeZen')
           .enter()
           .append("g")
           .on('mouseover', tip.show)
+          // .on('mouseover', function(d){
+          //   if (d.description !== "Cool"){
+          //     console.log(svg.select(this))
+          //     // tip.show(d3.select(this));
+          //   }
+          // })
           .on('click', function(node){
             var selectedNode = this;
             var x            = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;

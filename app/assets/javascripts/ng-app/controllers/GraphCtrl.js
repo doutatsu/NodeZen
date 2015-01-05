@@ -114,6 +114,6 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
         }
 
         // $scope.getData();
-        $scope.getNodes(32, "graph");
+        $scope.getNodes(45, "graph");
 
 }]);
