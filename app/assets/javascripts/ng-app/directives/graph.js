@@ -78,8 +78,14 @@ angular.module('NodeZen')
 
         data.nodes.forEach(function(node, i){
           
+          //prevent cross shape on graphs with only 4 nodes
+          var degreeOffset = 0;
+          if(data.nodes.length === 5){
+            degreeOffset = 45;
+          }
+
           var angleBetweenEachNode = (360 / (data.nodes.length - 1));
-          var angleOfCurrentNode   = i * angleBetweenEachNode;
+          var angleOfCurrentNode   = i * angleBetweenEachNode + degreeOffset;
           var edgeLength           = edgeScale($('body').height());
           var deg2rad              = Math.PI/180;
           var rad2deg              = 180/Math.PI;
