@@ -12,6 +12,7 @@ angular.module('NodeZen')
         data: '='
       },
       link: function (scope, element, attrs) {
+        $("#tutorial").modal("show");
         // console.log($('body').height())
       	width = angular.element($window)[0].innerWidth;
 
