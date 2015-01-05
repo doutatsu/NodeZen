@@ -17,7 +17,7 @@
         </div>
         <div class="modal-footer">
           <div class="social">
-            <a class="facebook btn btn-primary btn-lg" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="http://www.facebook.com/sharer/sharer.php?u=www.nodezen.me"><i class="fa fa-facebook"></i></a>
+            <a class="facebook btn btn-primary btn-lg" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=www.nodezen.me"><i class="fa fa-facebook"></i></a>
             <a class="twitter btn btn-primary btn-lg" href="https://twitter.com/share?url=http%3A%2F%2Fwww.nodezen.me&via=NodeZenMCR&hashtags=techdemo&text=Check%20out%20this%20tech%20demo%20of%20revolutionary%20new%20way%20to%20discover%20content%20at">
             <i class="fa fa-twitter"></i>
           </a>
@@ -39,15 +39,19 @@
         </div>
         <div class="modal-body">
         <h3 style='margin-top:0'>Navigation</h3>
-        <p>Navigation through our UI is made by clicking on any of the bubbles or as we call them - <span style='color: #6878D9'>Nodes</span></p>
-        <p>If you hover over any node you'll see the content inside. You'll see youtube videos, songs as well as websites. Icons hint at the type of content inside.</p>
-        <p>If it's a website, you can go to the source location by pressing on expand button in top right corner of preview picture</p>
+        <p>Navigate your way by clicking on bubbles (<span style='color: #6878D9'>Nodes</span>)</p>
+        <p>Hover on Nodes to see their content.</p>
+        <p>Click expand (<i class="fa fa-expand" style="color: black"></i>) button to visit the website.</p>
         <h3>Journey Line</h3>
-        <p>During your exploration our <span style='color: #6878D9'>Journey Line</span>, located in bottom left corner, keeps the history of your path. You can hover over to see the title of the node. By clicking on the circle, you'll be taken back to that location.</p>
+
+        <p><span style='color: #6878D9'>Journey Line</span>(<%= image_tag("journey-line.png") %>) keeps track of your history</p>
+        <p>Hover on circles to see titles.</p>
+        <p>Click to return to selected node</p>
         <h3>One more thing...</h3>
-        <p>We would strongly encourage you to explore till the end of your chosen path. There you'll be given a chance to complete a short survey as well as share our demo on Facebook and Twitter. It would really help us a lot! </p>
+        <p>We would strongly encourage you to explore till the end of your chosen path. </p>
+        <p>There you'll be given a chance to complete a short survey as well as share our demo on Facebook and Twitter. It would really help us a lot! </p>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" style='text-align: center'>
           <button style="border-radius: 20px" type="button" class="btn btn-primary" data-dismiss="modal">Let me try it already!</button>
         </div>
       </div>

@@ -185,6 +185,7 @@ angular.module('NodeZen')
             }
            })   
           .on('click', function(node){
+            ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Node' });
             var selectedNode = this;
             var x            = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
             var y            = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;

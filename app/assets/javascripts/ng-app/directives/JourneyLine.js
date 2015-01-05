@@ -92,6 +92,7 @@ angular.module('NodeZen').directive('journeyLine', ['$window', 'JourneyTips', fu
               .on('mouseenter',tip.show)
               .on('mouseleave', tip.hide)
               .on("mousedown", function(d, i){
+                  ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Journey Line Node' });
                   scope.$parent.journeyLineNavigate(d.id, i);
                   //tip.hide;
               })
