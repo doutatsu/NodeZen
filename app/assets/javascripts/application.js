@@ -54,6 +54,6 @@ $(document).delegate('.expand', 'click', function() {
   ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Website Expand'});
 })
 $(document).ready(function () {
-  ga('create', 'UA-57217646-1', 'auto');
+  ga('create', 'UA-57217646-2', 'auto');
   ga('send', 'pageview');             // Sends a pageview.
 })
