@@ -28,3 +28,5 @@ gem 'newrelic_rpm'
 # Mailchimp API
 gem 'gibbon'
 gem 'metainspector'
+# Webserver
+gem 'thin'
