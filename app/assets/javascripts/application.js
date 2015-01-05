@@ -30,6 +30,7 @@
 //= require_tree ../templates
 
 $(document).delegate('.twitter', 'click', function() {
+  ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Twitter Share' });
   var width  = 575,
       height = 400,
       left   = ($(window).width()  - width)  / 2,
@@ -44,4 +45,7 @@ $(document).delegate('.twitter', 'click', function() {
   window.open(url, 'twitter', opts);
 
   return false;
+})
+$(document).ready(function () {
+  ga('create', 'UA-57217646-1', 'auto');
 })
