@@ -1,6 +1,6 @@
 {
   "name": "NodeZen",
-  "version": "0.0.1",
+  "version": "1",
   "dependencies": {
     "angular": "latest",
     "angular-ui-router": "latest",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/doutatsu/NodeZen",
   "authors": [
-    "doutatsu <doutatsu@me.com>"
+    "Maksim Fedotov <max@nodezen.me>"
   ],
   "description": "Symantic Web",
   "license": "MIT"
