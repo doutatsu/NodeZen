@@ -12,7 +12,6 @@ angular.module('NodeZen')
         data: '='
       },
       link: function (scope, element, attrs) {
-        ga('send', 'screenview', {'screenName': 'Demo Page'});
         $("#tutorial").modal("show");
         // console.log($('body').height())
       	width = angular.element($window)[0].innerWidth;

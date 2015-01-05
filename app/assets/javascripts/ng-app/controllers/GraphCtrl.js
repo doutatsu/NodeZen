@@ -57,6 +57,7 @@ angular.module('NodeZen').controller('GraphCtrl', ["$scope", "Restangular", "nod
                     nodes = childNodes;
                     // Show thank you modal if no edges spotted
                     if (childNodes.length <= 0) {
+                        ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'End of Path' });
                         $("#myModal").modal("show");
                     }
                     rootNode.edges.push(rootNode.id);

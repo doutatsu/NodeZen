@@ -25,7 +25,6 @@ group :test, :development do
 end
 
 gem 'newrelic_rpm'
-# gem 'google-analytics-rails'
 # Mailchimp API
 gem 'gibbon'
 gem 'metainspector'

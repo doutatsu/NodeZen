@@ -30,7 +30,7 @@
 //= require_tree ../templates
 
 $(document).delegate('.twitter', 'click', function() {
-  ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Twitter Share' });
+  ga('send', {'hitType': 'social','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Twitter Share' });
   var width  = 575,
       height = 400,
       left   = ($(window).width()  - width)  / 2,
@@ -46,6 +46,14 @@ $(document).delegate('.twitter', 'click', function() {
 
   return false;
 })
+$(document).delegate('.facebook', 'click', function() {
+  ga('send', {'hitType': 'social','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Facebook Share'});
+  return !window.open(this.href, 'Facebook', 'width=640,height=300');
+})
+$(document).delegate('.expand', 'click', function() {
+  ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Website Expand'});
+})
 $(document).ready(function () {
   ga('create', 'UA-57217646-1', 'auto');
+  ga('send', 'pageview');             // Sends a pageview.
 })

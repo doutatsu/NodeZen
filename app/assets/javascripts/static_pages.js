@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  ga('send', 'screenview', {'screenName': 'Landing Page'});
   // examples();
   $('.demo-btn').addClass('animated pulse');
   var height = $('.cover').height()
