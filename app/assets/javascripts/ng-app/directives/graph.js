@@ -171,13 +171,12 @@ angular.module('NodeZen')
           .data(data.nodes)
           .enter()
           .append("g")
-          .on('mouseover', tip.show)
-          // .on('mouseover', function(d){
-          //   if (d.description !== "Cool"){
-          //     console.log(svg.select(this))
-          //     // tip.show(d3.select(this));
-          //   }
-          // })
+           .on('mouseover', function(d, i){
+            var hoveredNode = d3.select(this).select(".node");
+            if(d.description !== "Cool"){
+              tip.show(d, i, hoveredNode[0][0]);
+            }
+           })   
           .on('click', function(node){
             var selectedNode = this;
             var x            = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
