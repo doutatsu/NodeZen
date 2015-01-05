@@ -19,7 +19,6 @@
 //= require angular-rails-templates
 //= require d3
 //= require d3-tip
-//= require qtip2
 //= require eventEmitter
 //= require eventie
 //= require imagesloaded
