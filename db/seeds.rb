@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# Music
+# ------------------------------------------ Music ------------------------------------------
 aphex = Node.create([
   {title:"Richard D. James",description:"Aphex Twin (born Richard David James on August 18, 1971 in Limerick, Ireland) is a Cornish electronic music artist, credited with innovations in the genres of techno, ambient, acid and drum and bass.",link:"http://en.wikipedia.org/wiki/Aphex_Twin",preview:"http://upload.wikimedia.org/wikipedia/commons/7/76/Aphex_Twin_2.jpg",kind:"person",tags:"British, Producer, IDM"},
   {title:"Selected Ambient Works 85-92",description:"One of the best classic ambient albums of all time",link:"https://www.youtube.com/watch?v=Xw5AiRVqfqk",preview:"",kind:"music",tags:"ambient, afx"},
@@ -69,16 +69,39 @@ history = Node.create([
   {title: "Russia", description: "Everything about Russian old and new history", tags: 'russia,history'},
   {title: "Great Britain", description: "Great Britain explained", tags: 'uk,great britain,history'}
 ])
-
-# Sports
-sports = Node.create([ 
-  {title: "BBC Sport - Manchester City 3-0 Crystal Palace", description: "David Silva scores twice as Manchester City join Chelsea at the top of the table with victory over Crystal Palace.", link: "http://www.bbc.co.uk/sport/0/football/30459797", preview: "http://news.bbcimg.co.uk/media/images/79865000/jpg/_79865034_davidsilva.jpg", kind: "article", tags: "bbc,sport,manchester city,manchester,crystal palace,david silva,chelsea"},
-  {title: "Ultimate Best Football Tricks & Skills", description: "If you like my work, become a fan on facebook and follow me on twitter", link: "https://www.youtube.com/watch?v=j3BslT97fR4", kind: "video", tags: "football,tricks,skills,youtube,compilation"},
-  {title: "USA v AUS - Men's Basketball Quarterfinal | London 2012 Olympics", description: "The USA take on Australia in the quarterfinal of the men's basketball tournament at the London 2012 Olympic Games.", link: "https://www.youtube.com/watch?v=Aiem1w_TvaA", kind: "video", tags: "basketball,youtube,london,olympics"},
-  {title: "The Best Game Of Tennis Ever?", description: "In tennis you can go for games without seeing something truly outstanding. When Andy Murray took on Michael Llodra they produced four of the best points you'll ever see in the course of a single game. Enjoy!", link: "https://www.youtube.com/watch?v=oyxhHkOel2I", kind: "video", tags: "tennis,youtube,andy murray,michael llodra"},
-  {title: "Sochi 2014: Russia top medal table as Olympics come to an end", description: "Host nation Russia finished on top of the medal table as the 22nd Winter Olympics came to a close in Sochi on Sunday after 17 days of competition.", link: "http://www.bbc.co.uk/sport/0/winter-olympics/26314345", kind: "article", tags: "sochi,russia,olympics"}
+# ------------------------------------------ Sports ------------------------------------------
+football = Node.create([
+{title:"football: tricks of the greats", description:"Although football is essentially a team game, some moves have come to be associated with the great players who invented, or perfected, them. In conjunction with the renowned Brazilian Soccer Schools, Videojug has produced a series of films that show drills that will allow you to do the Robinho step-over, the Ronaldo chop, the Ronaldinho elastic, the Maradona, the Leonardo and the Adriano. All of these are spectacular skills, but all are useful in a match situation. Follow these drills and you’ll soon be dazzling the opposition with your football tricks", link:"http://www.videojug.com/tag/football-tricks-of-the-greats", preview:"http://the-soccer-essentials.com/wp-content/uploads/2011/10/how-to-do-the-rainbow.jpg", kind:"website", tags:"football,tricks,tutorials"}
 ])
+football.map!   { |node| node.id }
 
+tennis = Node.create([ 
+{title:"Andy Murray", description:"Andrew Barron 'Andy' Murray OBE (born 15 May 1987) is a Scottish professional tennis player, ranked world No. 6. He has been ranked as British number 1 since 27 February 2006. He achieved a top-10 ranking by the ATP for the first time on 16 April 2007, and was at a career peak of world No. 2 from 17 August 2009 to 13 September 2009, then again from 1 April 2013 to 21 April 2013 and 13 May 2013 to 18 August 2013.", link:"http://en.wikipedia.org/wiki/Andy_Murray", preview:"http://static.guim.co.uk/sys-images/Sport/Pix/pictures/2012/8/30/1346290524042/Andy-Murray-in-action-aga-009.jpg", kind:"person", tags:"tennis,profile,andy murray"},
+{title:"Michaël Llodra", description:"Michaël Llodra (born May 18, 1980) is a French professional tennis player. He is a prolific doubles player with three Grand Slam championships and an Olympic Silver medal, and has also had success in singles, winning five career titles and gaining victories over Novak Djokovic, Juan Martín del Potro, Tomáš Berdych, Robin Söderling, Jo-Wilfried Tsonga, Nikolay Davydenko, Janko Tipsarević and John Isner. Llodra has been called 'the best volleyer on tour' and is one of the few remaining practitioners of the classic serve-and-volley style of playing.", link:"http://en.wikipedia.org/wiki/Micha%C3%ABl_Llodra", preview:"http://upload.wikimedia.org/wikipedia/commons/b/ba/Michael_Llodra_Indian_Wells.jpg", kind:"person", tags:"tennis,profile,michaël llodra"},
+{title:"Australian Open 2012 R3 - Murray vs Llodra HD highlights", description:"Murray vs Llodra", link:"https://www.youtube.com/watch?v=CLf2LH4Gofc", preview:"", kind:"video", tags:"tennis,australian open,michaël llodra,andy murray"},
+])
+tennis.map!   { |node| node.id }
+
+basketball = Node.create([ 
+{title:"Ray Lewis Inspirational Speech : Stanford Basketball", description:"Ray Lewis of the Baltimore Ravens stops by to deliver a message to the Stanford Basketball team before their game in the NIT tournament.", link:"https://www.youtube.com/watch?v=07fhOVQ9wEA", preview:"", kind:"video", tags:"basketball,ray lewis,inspiration"},
+{title:"Gladiator - Now We Are Free Super Theme Song", description:"I combined 'Honor Him', 'Elysium', and 'Now We Are Free' into one song.  This was pretty simple to do, the only editing required was to blend them together and rearrange 'Elysium' and 'Honor Him' and 'Now We Are Free'", link:"https://www.youtube.com/watch?v=-yOZEiHLuVU", preview:"", kind:"video", tags:"gladiator,ray lewis,inspiration"},
+])
+basketball.map!   { |node| node.id }
+
+manchester = Node.create([ 
+  {title:"Manchester City F.C.", description:"Manchester City Football Club is a Premier League football club in Manchester, England. Founded in 1880 as St. Mark's (West Gorton), they became Ardwick Association Football Club in 1887 and Manchester City in 1894", link:"http://en.wikipedia.org/wiki/Manchester_City_F.C.", preview:"http://www.mcfc.co.uk/images/logo-manchester-city-print.gif", kind:"person", tags:"football,manchester,manchester city"},
+  {title:"Crystal Palace F.C.", description:"Crystal Palace Football Club is an English professional football club based in South Norwood, London. They currently play in the highest level in English football, the Premier League. Since 1964, the club have mostly played in the top two leagues of English football. The club was founded in 1905 at the site of the famous Crystal Palace Exhibition building by the owners of the FA Cup Final stadium, who wanted their own team to play at the historic venue. Palace applied to be elected to The Football League, but this was rejected and they instead joined the Southern Football League Second Division, playing home games at The Crystal Palace, inspiration for the club's initial nickname, 'The Glaziers'. Palace won the Division and promotion in their first season, and played in the Southern League First Division for the next fifteen years", link:"http://en.wikipedia.org/wiki/Crystal_Palace_F.C.", preview:"http://www.true-faith.co.uk/wp-content/uploads/2013/12/CrystalPalacebadge.jpg", kind:"person", tags:"football,crystal palace,london"},
+  {title:"Manchester City vs Crystal Palace 3 0 All Goals Full Highlights", description:"Manchester City vs Crystal Palace 3-0", link:"https://www.youtube.com/watch?v=sxHeKBqdMts", preview:"", kind:"video", tags:"football,crystal palace,manchester city"}
+])
+manchester.map!   { |node| node.id }
+
+sports = Node.create([ 
+  {title: "BBC Sport - Manchester City 3-0 Crystal Palace", description: "David Silva scores twice as Manchester City join Chelsea at the top of the table with victory over Crystal Palace.", link: "http://www.bbc.co.uk/sport/0/football/30459797", preview: "http://news.bbcimg.co.uk/media/images/79865000/jpg/_79865034_davidsilva.jpg", kind: "article", tags: "bbc,sport,manchester city,manchester,crystal palace,david silva,chelsea", edges: manchester.join(',')},
+  {title: "Ultimate Best Football Tricks & Skills", description: "If you like my work, become a fan on facebook and follow me on twitter", link: "https://www.youtube.com/watch?v=j3BslT97fR4", kind: "video", tags: "football,tricks,skills,youtube,compilation", edges: football.join(',')},
+  {title: "NBA Basketball - 'More Than a Game' (HD) - Inspirational", description:"A motivational NBA basketball video with a good soundtrack.", link:"https://www.youtube.com/watch?v=F75tlBo0NT4", preview:"", kind:"video", tags:"basketball,NBA",edges: basketball.join(',')},
+  {title: "The Best Game Of Tennis Ever?", description: "In tennis you can go for games without seeing something truly outstanding. When Andy Murray took on Michael Llodra they produced four of the best points you'll ever see in the course of a single game. Enjoy!", link: "https://www.youtube.com/watch?v=oyxhHkOel2I", kind: "video", tags: "tennis,youtube,andy murray,michael llodra", edges: tennis.join(',')},
+])
+# ------------------------------------------ Technology ------------------------------------------
 apple = Node.create([
 {title:"Iphone Cases, Armbands & Films", description:"Buy iPhone cases & covers direct from Apple. Explore our range of iPhone bumpers and cases and buy online today at the official UK Apple Store.", link:"http://store.apple.com/uk/iphone/iphone-accessories/cases", preview:"http://www.iphone5cases.com/wp-content/uploads/2012/09/ultra-slim-iphone5cases.jpg", kind:"website", tags:"apple,iphone,case,accessories"},
 {title:"Apple iPad Air Review!", description:"iPad Air Review - The DeFacto tablet from a Googler's POV!", link:"https://www.youtube.com/watch?v=Hr8E-_yU2YA", preview:"", kind:"video", tags:"ipad,apple,reviews,youtube"},
@@ -117,7 +140,6 @@ nasa = Node.create([
 ])
 nasa.map!   { |node| node.id }
 
-# Technology
 tech = Node.create([ 
 {title:"iPhone 6 and 6 Plus review: bigger and better, but with stiffer competition", description:"Even with a slightly larger screen, the iPhone remains comfortable to hold. With fast performance, a great display, an elegant new design and a much-needed software update, it's one of the best smartphones you can buy right now. We wish it had the same long battery life as the iPhone 6 Plus (not to mention its optical image stabilization) but even then, the iPhone 6 is still the better choice for most people", link:"http://www.engadget.com/2014/09/16/iphone-6-and-6-plus-review/", preview:"http://o.aolcdn.com/hss/storage/midas/7434a3763e9e4bae6e7d780a45ef5327/200766880/iPhone_6_main_final-960.jpg", kind:"article", tags:"apple,ios,ios 8,iphone,iphone6,iphone6plus,review,uk-reviews,video", edges: apple.join(',')},
 {title:"Nasa proposes cloud-based zeppelin city above Venus", description:"Nasa's concept mission to Venus is called Havoc, which stands for High Altitude Venus Operational Concept, and as concepts go, it's a pretty exciting one. The basic idea is to build a floating city of zeppelins manned by astronauts, which would hover in the planet's atmosphere", link:"http://www.wired.co.uk/news/archive/2014-12/22/venus-zeppelin-cloud-city", preview:"http://i.kinja-img.com/gawker-media/image/upload/s--JczRSQ_1--/c_fit,fl_progressive,q_80,w_636/r005fpsxac3cxhfbjgpy.jpg", kind:"article", tags:"nasa,zeppelin,venus,city", edges: nasa.join(',')},
@@ -136,7 +158,6 @@ tech.map!    { |node| node.id }
 kinds = Node.create([ 
   {title: "Music",       description: "Cool", edges: music.join(','),   kind: "music"   },
   {title: "News",        description: "Cool", edges: news.join(','),    kind: "news"    },
-  {title: "History",     description: "Cool", edges: history.join(','), kind: "history" },
   {title: "Sports",      description: "Cool", edges: sports.join(','),  kind: "sports"  },
   {title: "Technology",  description: "Cool", edges: tech.join(','),    kind: "tech"    }
 ])
