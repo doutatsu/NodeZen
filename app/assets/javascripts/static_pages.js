@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // examples();
-  $('.demo-btn').addClass('animated pulse');
+  // $('.demo-btn').addClass('animated pulse');
   var height = $('.cover').height()
   $('#main').css('margin-top', height);
   // var bottom = $('.cover-text').css("bottom");

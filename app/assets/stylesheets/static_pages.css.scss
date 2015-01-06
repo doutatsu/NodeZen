@@ -56,6 +56,11 @@ body {
         color: $brown;
         border-color: $brown;
       }
+      .demo-btn{
+        margin-left: 50px;
+        padding-left: 39px !important;
+        padding-right: 39px !important;
+      }
     }
   }
   
@@ -104,18 +109,6 @@ body {
   font-size: 20px;
   margin-bottom: 0px !important;
   margin-top: 0px !important;
-  .demo-btn{
-    // background: $blue; 
-    /* color: white; */
-    margin-top: 25px;
-    border: 2px solid black;
-    border-radius: 30px;
-    -webkit-animation-iteration-count: infinite;
-  }
-  .demo-btn:hover{
-    background: $blue; 
-    color: white;
-  }
 }
 
 .navigation {
