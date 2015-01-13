@@ -184,11 +184,11 @@ angular.module('NodeZen')
               tip.show(d, i, hoveredNode[0][0]);
             }
            })   
-          .on('click', function(node){
+          .on('click', function(node, i){
             ga('send', {'hitType': 'event','eventCategory': 'button', 'eventAction': 'click','eventLabel': 'Node' });
             var selectedNode = this;
-            var x            = nodePos[nodes[0].length-1].x - selectedNode.children[1].cx.baseVal.value;
-            var y            = nodePos[nodes[0].length-1].y - selectedNode.children[1].cy.baseVal.value;
+            var x            = nodePos[nodes[0].length-1].x - nodePos[i].x;
+            var y            = nodePos[nodes[0].length-1].y - nodePos[i].y;
 
             //collapse the edge line towards the centre
             d3.selectAll(edges[0]).filter(function(d,i) {
@@ -291,7 +291,6 @@ angular.module('NodeZen')
               return nodePos[i].y;
             })
             .text(function(d) {
-              // console.log(icons_codes[d.kind]); 
               return icons_codes[d.kind]; 
             });
             
@@ -320,8 +319,8 @@ angular.module('NodeZen')
           var Nodes = nodes[0].slice(0, -1); 
           // Put all nodes inside the centre one
           d3.selectAll(Nodes).each(function(d,i) {
-            var x = nodePos[nodePos.length-1].x - this.children[1].cx.baseVal.value
-            var y = nodePos[nodePos.length-1].y - this.children[1].cy.baseVal.value
+            var x = nodePos[nodePos.length-1].x - nodePos[i].x;
+            var y = nodePos[nodePos.length-1].y - nodePos[i].y;
 
             d3.select(this)
               .attr("transform", "translate(" + x + "," + y + ")")
@@ -334,8 +333,8 @@ angular.module('NodeZen')
           // return nodes
           setTimeout(function(){ 
             d3.selectAll(nodes[0]).each(function(d,i) {
-              var x = nodePos[i].x - this.children[1].cx.baseVal.value
-              var y = nodePos[i].y - this.children[1].cy.baseVal.value
+              var x = 0;
+              var y = 0;
               d3.select(this)
                 .attr("display", "block")
                 .transition()
