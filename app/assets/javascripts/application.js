@@ -54,8 +54,8 @@ $(document).delegate('.expand', 'click', function() {
 })
 $(document).ready(function () {
   // Staging tracking
-  // ga('create', 'UA-57217646-1', 'auto');
+  ga('create', 'UA-57217646-1', 'auto');
   // Production tracking
-  ga('create', 'UA-57217646-2', 'auto');
+  // ga('create', 'UA-57217646-2', 'auto');
   ga('send', 'pageview');             // Sends a pageview.
 })

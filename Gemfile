@@ -24,9 +24,13 @@ group :test, :development do
   gem 'factory_girl'
 end
 
+# Reddit gems
+gem "redd", "~> 0.7.0"
+gem "oj", platforms: :ruby # fast JSON parser.
+
 gem 'newrelic_rpm'
 # Mailchimp API
 gem 'gibbon'
-gem 'metainspector'
+# gem 'metainspector'
 # Webserver
 gem 'thin'
